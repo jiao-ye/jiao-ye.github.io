@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>使用Obsidian来编写hexo博客</title>
-    <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
-<li>在官网下载Obsidian：<a href="https://obsidian.md/">https://obsidian.md/</a><br><img src="/../../images/Pasted%20image%2020250221230923.png"><br>按照提示安装，最好将目标位置改为D盘</li>
-<li>安装完成，选择打开myBlog文件夹<br><img src="/../../images/Pasted%20image%2020250221231158.png"></li>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
 </ul>
-<h1 id="配置Obsidian"><a href="#配置Obsidian" class="headerlink" title="配置Obsidian"></a>配置Obsidian</h1><ul>
-<li>点击Obsidian的设置<br><img src="/../../images/Pasted%20image%2020250221231614.png"></li>
-<li>点击文件与链接，忽略以下文件<br><img src="/../../images/Pasted%20image%2020250221231806.png"></li>
-<li>在myBlog\source下新建images文件夹，将内部链接类型改为基于当前笔记的相对路径，关闭wiki链接，将附件默认存放路径改为指定的附件文件夹，将附件文件夹路径改为source&#x2F;images<br><img src="/../../images/Pasted%20image%2020250221232138.png"></li>
-<li>将新建笔记的存放位置改为指定的附件文件夹，将存放新建笔记的文件<br><img src="/../../images/Pasted%20image%2020250221232446.png"></li>
+<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
 </ul>
-<h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><ul>
-<li>关闭安全模式，在插件市场下载如下四个插件<br><img src="/../images/Pasted%20image%2020250222161719.png"></li>
+<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
 </ul>
-<h2 id="git、float-toc、tree下载无需配置"><a href="#git、float-toc、tree下载无需配置" class="headerlink" title="git、float toc、tree下载无需配置"></a>git、float toc、tree下载无需配置</h2><h2 id="Shell插件配置"><a href="#Shell插件配置" class="headerlink" title="Shell插件配置"></a>Shell插件配置</h2><ul>
-<li>点击New shell command，创建新的命令</li>
-<li>写入start deploy.sh命令，该脚本在已经在<a href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" title="hexo搭建个人博客推送至github">hexo搭建个人博客推送至github</a>中创建<br> <img src="/../images/Pasted%20image%2020250222162125.png"></li>
-<li>点击执行按钮，就会自动部署到远程仓库</li>
-</ul>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
 ]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
       <tags>
-        <tag>hexo博客</tag>
-        <tag>Obsidian</tag>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
       </tags>
   </entry>
   <entry>
@@ -132,6 +130,36 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>next主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Obsidian来编写hexo博客</title>
+    <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
+<li>在官网下载Obsidian：<a href="https://obsidian.md/">https://obsidian.md/</a><br><img src="/../../images/Pasted%20image%2020250221230923.png"><br>按照提示安装，最好将目标位置改为D盘</li>
+<li>安装完成，选择打开myBlog文件夹<br><img src="/../../images/Pasted%20image%2020250221231158.png"></li>
+</ul>
+<h1 id="配置Obsidian"><a href="#配置Obsidian" class="headerlink" title="配置Obsidian"></a>配置Obsidian</h1><ul>
+<li>点击Obsidian的设置<br><img src="/../../images/Pasted%20image%2020250221231614.png"></li>
+<li>点击文件与链接，忽略以下文件<br><img src="/../../images/Pasted%20image%2020250221231806.png"></li>
+<li>在myBlog\source下新建images文件夹，将内部链接类型改为基于当前笔记的相对路径，关闭wiki链接，将附件默认存放路径改为指定的附件文件夹，将附件文件夹路径改为source&#x2F;images<br><img src="/../../images/Pasted%20image%2020250221232138.png"></li>
+<li>将新建笔记的存放位置改为指定的附件文件夹，将存放新建笔记的文件<br><img src="/../../images/Pasted%20image%2020250221232446.png"></li>
+</ul>
+<h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><ul>
+<li>关闭安全模式，在插件市场下载如下四个插件<br><img src="/../images/Pasted%20image%2020250222161719.png"></li>
+</ul>
+<h2 id="git、float-toc、tree下载无需配置"><a href="#git、float-toc、tree下载无需配置" class="headerlink" title="git、float toc、tree下载无需配置"></a>git、float toc、tree下载无需配置</h2><h2 id="Shell插件配置"><a href="#Shell插件配置" class="headerlink" title="Shell插件配置"></a>Shell插件配置</h2><ul>
+<li>点击New shell command，创建新的命令</li>
+<li>写入start deploy.sh命令，该脚本在已经在<a href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" title="hexo搭建个人博客推送至github">hexo搭建个人博客推送至github</a>中创建<br> <img src="/../images/Pasted%20image%2020250222162125.png"></li>
+<li>点击执行按钮，就会自动部署到远程仓库</li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>Obsidian</tag>
       </tags>
   </entry>
 </search>
