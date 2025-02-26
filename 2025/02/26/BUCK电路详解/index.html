@@ -26,22 +26,22 @@
 <meta property="og:site_name" content="角页">
 <meta property="og:description" content="什么是BUCK电路">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226174346.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226174516.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226175122.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226175229.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226180138.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226195201.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226195734.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226201507.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226201559.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226174346.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226174516.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226175122.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226175229.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226180138.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226195201.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226195734.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226201507.png">
+<meta property="og:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226201559.png">
 <meta property="article:published_time" content="2025-02-26T08:46:48.000Z">
-<meta property="article:modified_time" content="2025-02-26T12:18:44.734Z">
+<meta property="article:modified_time" content="2025-02-26T12:30:04.332Z">
 <meta property="article:author" content="jiaoye">
 <meta property="article:tag" content="电路">
 <meta property="article:tag" content="DC-DC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250226174346.png">
+<meta name="twitter:image" content="http://jiao-ye.github.io/2025/02/26/images/Pasted%20image%2020250226174346.png">
 
 
 <link rel="canonical" href="http://jiao-ye.github.io/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/">
@@ -65,8 +65,6 @@
   </noscript>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -236,7 +234,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-02-26 16:46:48 / 修改时间：20:18:44" itemprop="dateCreated datePublished" datetime="2025-02-26T16:46:48+08:00">2025-02-26</time>
+      <time title="创建时间：2025-02-26 16:46:48 / 修改时间：20:30:04" itemprop="dateCreated datePublished" datetime="2025-02-26T16:46:48+08:00">2025-02-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,24 +256,19 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="../images/Pasted%20image%2020250226174346.png" alt=""><br><img src="../images/Pasted%20image%2020250226174516.png" alt=""><h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2></li>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="../images/Pasted%20image%2020250226175122.png" alt=""><br>可以看到波形如下：<br><img src="../images/Pasted%20image%2020250226175229.png" alt=""></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="../images/Pasted%20image%2020250226180138.png" alt=""></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<script type="math/tex; mode=display">i(t) = C \frac{dV(t)}{dt}</script></li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2></li>
+<li>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</li>
+<li><p>下面是同步BUCK的示例<br><img src="../images/Pasted%20image%2020250226195201.png" alt=""></p>
 </li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="../images/Pasted%20image%2020250226195734.png" alt=""><br>可以看到与理论值相差不大</p>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="../images/Pasted%20image%2020250226201507.png" alt=""></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="../images/Pasted%20image%2020250226201559.png" alt=""></p>
 </li>
 </ul>
-<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
-<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
 
     </div>
 
@@ -362,6 +355,12 @@
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 
