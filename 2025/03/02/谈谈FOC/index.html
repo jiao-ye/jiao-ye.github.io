@@ -19,22 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jiao-ye.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="角页">
-<meta property="og:url" content="http://jiao-ye.github.io/archives/2025/02/index.html">
+    <meta name="description" content="什么FOC ？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈FOC">
+<meta property="og:url" content="http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/index.html">
 <meta property="og:site_name" content="角页">
+<meta property="og:description" content="什么FOC ？">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-02T15:24:18.000Z">
+<meta property="article:modified_time" content="2025-03-02T16:06:18.779Z">
 <meta property="article:author" content="jiaoye">
+<meta property="article:tag" content="无刷电机">
+<meta property="article:tag" content="FOC">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://jiao-ye.github.io/archives/2025/02/">
+<link rel="canonical" href="http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2025/02/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/","path":"2025/03/02/谈谈FOC/","title":"谈谈FOC"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 角页</title>
+<title>谈谈FOC | 角页</title>
   
 
 
@@ -69,7 +75,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">角页</h1>
+      <p class="site-title">角页</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -122,7 +128,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -135,6 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88FOC-%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么FOC ？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E5%95%A5%E8%A6%81%E7%94%A8%E5%88%B0FOC-%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">为啥要用到FOC ？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FOC%E5%88%B0%E5%BA%95%E5%92%8B%E5%B7%A5%E4%BD%9C%E7%9A%84-%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">FOC到底咋工作的 ？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%95%E5%85%8B%E4%B8%8E%E5%85%8B%E6%8B%89%E5%85%8B%E5%8F%98%E6%8D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">帕克与克拉克变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8B%E6%8B%89%E5%85%8B%E5%8F%98%E6%8D%A2"><span class="nav-number">3.1.1.</span> <span class="nav-text">克拉克变换</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,109 +183,118 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 5 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2025<span class="collection-year-count">5</span></span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jiaoye.gif">
+      <meta itemprop="name" content="jiaoye">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="角页">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="谈谈FOC | 角页">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          谈谈FOC
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-02 23:24:18" itemprop="dateCreated datePublished" datetime="2025-03-02T23:24:18+08:00">2025-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-03 00:06:18" itemprop="dateModified" datetime="2025-03-03T00:06:18+08:00">2025-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="什么FOC-？"><a href="#什么FOC-？" class="headerlink" title="什么FOC ？"></a>什么FOC ？</h1><ul>
+<li>FOC(磁场定向控制)，这是一种电机的控制方法，我们控制”直流电机“很简单，而控制”交流电机“却很复杂，FOC就是一种可以让我们像控制”直流电机“一样去控制“交流电机”一样。类比一下，一辆车在路上行走是什么状态，有两个，一个是速度，一个是方向，如何控制速度和方向呢，我们有方向盘和油门，可以分别控制方向和速度。这和无刷电机有什么关联呢？我们控制无刷电机控制的究竟是什么？其实也是速度和方向，那么无刷电机的速度和方向由谁来控制呢？磁场和转矩。就相当于方向盘和油门，方向盘和油门都是汽车出厂就有的。那么我们如何得到无刷电机的“方向盘”和“油门”呢？这就要用到FOC将两者从一个“混乱”的状态解耦(分离)出来，以便我们可以方便的控制。</li>
+</ul>
+<h1 id="为啥要用到FOC-？"><a href="#为啥要用到FOC-？" class="headerlink" title="为啥要用到FOC ？"></a>为啥要用到FOC ？</h1><ul>
+<li>FOC的优点就是能让电机在低速的状态下也能保持平稳运行，能精准控制速度与力矩，同时也更加的省电</li>
+</ul>
+<h1 id="FOC到底咋工作的-？"><a href="#FOC到底咋工作的-？" class="headerlink" title="FOC到底咋工作的 ？"></a>FOC到底咋工作的 ？</h1><ul>
+<li>对FOC有了基本的了解，那么就可以看看它的工作流程了。</li>
+</ul>
+<h2 id="帕克与克拉克变换"><a href="#帕克与克拉克变换" class="headerlink" title="帕克与克拉克变换"></a>帕克与克拉克变换</h2><ul>
+<li>前面我们提到，FOC首先要从一个”混乱“状态将“方向盘”(磁场)与”油门“(转矩)解耦出来，这时候就需要用到一个工具“帕克变换”与”克拉克变换“。</li>
+</ul>
+<h3 id="克拉克变换"><a href="#克拉克变换" class="headerlink" title="克拉克变换"></a>克拉克变换</h3>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-26T16:46:48+08:00"
-              content="2025-02-26">
-          02-26
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">BUCK电路详解</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA/" rel="tag"># 无刷电机</a>
+              <a href="/tags/FOC/" rel="tag"># FOC</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/" rel="prev" title="BUCK电路详解">
+                  <i class="fa fa-angle-left"></i> BUCK电路详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-22T20:55:24+08:00"
-              content="2025-02-22">
-          02-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">next主题的使用</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-21T22:59:52+08:00"
-              content="2025-02-21">
-          02-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/" itemprop="url">
-            <span itemprop="name">使用Obsidian来编写hexo博客</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-21T21:43:39+08:00"
-              content="2025-02-21">
-          02-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" itemprop="url">
-            <span itemprop="name">hexo搭建个人博客推送至github</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>

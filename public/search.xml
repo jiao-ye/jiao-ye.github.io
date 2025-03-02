@@ -1,37 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BUCK电路详解</title>
-    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
-<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-]]></content>
-      <categories>
-        <category>硬件</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-        <tag>DC-DC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo搭建个人博客推送至github</title>
     <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
     <content><![CDATA[<h1 id="安装git与Nodejs"><a href="#安装git与Nodejs" class="headerlink" title="安装git与Nodejs"></a>安装git与Nodejs</h1><ul>
@@ -139,6 +108,37 @@
       </tags>
   </entry>
   <entry>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
+</ul>
+<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
+</ul>
+<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
+</ul>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
+]]></content>
+      <categories>
+        <category>硬件</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Obsidian来编写hexo博客</title>
     <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
@@ -166,6 +166,30 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谈谈FOC</title>
+    <url>/2025/03/02/%E8%B0%88%E8%B0%88FOC/</url>
+    <content><![CDATA[<h1 id="什么FOC-？"><a href="#什么FOC-？" class="headerlink" title="什么FOC ？"></a>什么FOC ？</h1><ul>
+<li>FOC(磁场定向控制)，这是一种电机的控制方法，我们控制”直流电机“很简单，而控制”交流电机“却很复杂，FOC就是一种可以让我们像控制”直流电机“一样去控制“交流电机”一样。类比一下，一辆车在路上行走是什么状态，有两个，一个是速度，一个是方向，如何控制速度和方向呢，我们有方向盘和油门，可以分别控制方向和速度。这和无刷电机有什么关联呢？我们控制无刷电机控制的究竟是什么？其实也是速度和方向，那么无刷电机的速度和方向由谁来控制呢？磁场和转矩。就相当于方向盘和油门，方向盘和油门都是汽车出厂就有的。那么我们如何得到无刷电机的“方向盘”和“油门”呢？这就要用到FOC将两者从一个“混乱”的状态解耦(分离)出来，以便我们可以方便的控制。</li>
+</ul>
+<h1 id="为啥要用到FOC-？"><a href="#为啥要用到FOC-？" class="headerlink" title="为啥要用到FOC ？"></a>为啥要用到FOC ？</h1><ul>
+<li>FOC的优点就是能让电机在低速的状态下也能保持平稳运行，能精准控制速度与力矩，同时也更加的省电</li>
+</ul>
+<h1 id="FOC到底咋工作的-？"><a href="#FOC到底咋工作的-？" class="headerlink" title="FOC到底咋工作的 ？"></a>FOC到底咋工作的 ？</h1><ul>
+<li>对FOC有了基本的了解，那么就可以看看它的工作流程了。</li>
+</ul>
+<h2 id="帕克与克拉克变换"><a href="#帕克与克拉克变换" class="headerlink" title="帕克与克拉克变换"></a>帕克与克拉克变换</h2><ul>
+<li>前面我们提到，FOC首先要从一个”混乱“状态将“方向盘”(磁场)与”油门“(转矩)解耦出来，这时候就需要用到一个工具“帕克变换”与”克拉克变换“。</li>
+</ul>
+<h3 id="克拉克变换"><a href="#克拉克变换" class="headerlink" title="克拉克变换"></a>克拉克变换</h3>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>无刷电机</tag>
+        <tag>FOC</tag>
       </tags>
   </entry>
 </search>
