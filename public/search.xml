@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
+</ul>
+<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
+</ul>
+<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
+</ul>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
+]]></content>
+      <categories>
+        <category>硬件</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo搭建个人博客推送至github</title>
     <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
     <content><![CDATA[<h1 id="安装git与Nodejs"><a href="#安装git与Nodejs" class="headerlink" title="安装git与Nodejs"></a>安装git与Nodejs</h1><ul>
@@ -74,37 +105,6 @@
       </tags>
   </entry>
   <entry>
-    <title>BUCK电路详解</title>
-    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
-<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-]]></content>
-      <categories>
-        <category>硬件</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-        <tag>DC-DC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>next主题的使用</title>
     <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
@@ -136,6 +136,37 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>next主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>串联谐振与并联谐振</title>
+    <url>/2025/03/03/%E4%B8%B2%E8%81%94%E8%B0%90%E6%8C%AF%E4%B8%8E%E5%B9%B6%E8%81%94%E8%B0%90%E6%8C%AF/</url>
+    <content><![CDATA[<h1 id="什么是谐振？"><a href="#什么是谐振？" class="headerlink" title="什么是谐振？"></a>什么是谐振？</h1><h2 id="RLC串联谐振"><a href="#RLC串联谐振" class="headerlink" title="RLC串联谐振"></a>RLC串联谐振</h2><ul>
+<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img src="/../images/Pasted%20image%2020250303235346.png"></p>
+</li>
+<li><p>电路的阻抗为<br> $$ Z &#x3D; R + j\left( \omega L - \frac{1}{\omega C} \right) $$<br> 从上面可以看出阻抗具有虚部，那么端口电压与端口电流的相位肯定不是相同的，相差一个阻抗角</p>
+</li>
+<li><p>我们知道，流经电阻的电压和电流是相位相同的，那么我们是否可以把该电路的阻抗等效成一个电阻呢，当然可以，只需要令<br> $$ \left( \omega L - \frac{1}{\omega C} \right)&#x3D;0 $$<br> 此时该电路的阻抗就等效为R</p>
+</li>
+<li><p>可以求得：<br> $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</p>
+</li>
+</ul>
+<p> 当上式成立时，此时该电路就发生了谐振。</p>
+<ul>
+<li>如果我们变化这个频率，电路会怎样变化，w增大，可以推出<br>$$ \left( \omega L - \frac{1}{\omega C} \right)&gt;0 $$<br> 那么此时的阻抗角<br> $$\theta &#x3D; \arctan\left(\frac{X}{R}\right)&gt;0$$<br> 可以得出电压超前电流，那么此时该电路呈现出感性，反之则呈现出容性</li>
+</ul>
+<h2 id="RLC并联谐振"><a href="#RLC并联谐振" class="headerlink" title="RLC并联谐振"></a>RLC并联谐振</h2><ul>
+<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img src="/../images/Pasted%20image%2020250304003015.png"></li>
+<li>电路的导纳为<br> $$ Y &#x3D; G + j\left( \omega C - \frac{1}{\omega L} \right) $$<br> 一样的我们令<br> $$ \left( \omega C - \frac{1}{\omega L} \right)&#x3D;0 $$<br> 此时电路的导纳就等效为G，端电流与端电压的相位就相同了</li>
+<li>同样可以求得<br>  $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</li>
+<li>如果我们改变这个频率，令w增大，那么可以推出<br>   $$ \left( \omega C - \frac{1}{\omega L} \right)&gt;0 $$<br>   此时电流的相位超前电压，电路呈现容性，反之呈现感性。</li>
+</ul>
+<h1 id="谐振的特性"><a href="#谐振的特性" class="headerlink" title="谐振的特性"></a>谐振的特性</h1>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
       </tags>
   </entry>
   <entry>
