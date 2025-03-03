@@ -139,37 +139,6 @@
       </tags>
   </entry>
   <entry>
-    <title>串联谐振与并联谐振</title>
-    <url>/2025/03/03/%E4%B8%B2%E8%81%94%E8%B0%90%E6%8C%AF%E4%B8%8E%E5%B9%B6%E8%81%94%E8%B0%90%E6%8C%AF/</url>
-    <content><![CDATA[<h1 id="什么是谐振？"><a href="#什么是谐振？" class="headerlink" title="什么是谐振？"></a>什么是谐振？</h1><h2 id="RLC串联谐振"><a href="#RLC串联谐振" class="headerlink" title="RLC串联谐振"></a>RLC串联谐振</h2><ul>
-<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img src="/../images/Pasted%20image%2020250303235346.png"></p>
-</li>
-<li><p>电路的阻抗为<br> $$ Z &#x3D; R + j\left( \omega L - \frac{1}{\omega C} \right) $$<br> 从上面可以看出阻抗具有虚部，那么端口电压与端口电流的相位肯定不是相同的，相差一个阻抗角</p>
-</li>
-<li><p>我们知道，流经电阻的电压和电流是相位相同的，那么我们是否可以把该电路的阻抗等效成一个电阻呢，当然可以，只需要令<br> $$ \left( \omega L - \frac{1}{\omega C} \right)&#x3D;0 $$<br> 此时该电路的阻抗就等效为R</p>
-</li>
-<li><p>可以求得：<br> $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</p>
-</li>
-</ul>
-<p> 当上式成立时，此时该电路就发生了谐振。</p>
-<ul>
-<li>如果我们变化这个频率，电路会怎样变化，w增大，可以推出<br>$$ \left( \omega L - \frac{1}{\omega C} \right)&gt;0 $$<br> 那么此时的阻抗角<br> $$\theta &#x3D; \arctan\left(\frac{X}{R}\right)&gt;0$$<br> 可以得出电压超前电流，那么此时该电路呈现出感性，反之则呈现出容性</li>
-</ul>
-<h2 id="RLC并联谐振"><a href="#RLC并联谐振" class="headerlink" title="RLC并联谐振"></a>RLC并联谐振</h2><ul>
-<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img src="/../images/Pasted%20image%2020250304003015.png"></li>
-<li>电路的导纳为<br> $$ Y &#x3D; G + j\left( \omega C - \frac{1}{\omega L} \right) $$<br> 一样的我们令<br> $$ \left( \omega C - \frac{1}{\omega L} \right)&#x3D;0 $$<br> 此时电路的导纳就等效为G，端电流与端电压的相位就相同了</li>
-<li>同样可以求得<br>  $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</li>
-<li>如果我们改变这个频率，令w增大，那么可以推出<br>   $$ \left( \omega C - \frac{1}{\omega L} \right)&gt;0 $$<br>   此时电流的相位超前电压，电路呈现容性，反之呈现感性。</li>
-</ul>
-<h1 id="谐振的特性"><a href="#谐振的特性" class="headerlink" title="谐振的特性"></a>谐振的特性</h1>]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Obsidian来编写hexo博客</title>
     <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
