@@ -1,71 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BUCK电路详解</title>
-    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
-<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-]]></content>
-      <categories>
-        <category>硬件</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-        <tag>DC-DC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>next主题的使用</title>
-    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="修改主页头像"><a href="#修改主页头像" class="headerlink" title="修改主页头像"></a>修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="开启搜索功能"><a href="#开启搜索功能" class="headerlink" title="开启搜索功能"></a>开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>next主题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo搭建个人博客推送至github</title>
     <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
     <content><![CDATA[<h1 id="安装git与Nodejs"><a href="#安装git与Nodejs" class="headerlink" title="安装git与Nodejs"></a>安装git与Nodejs</h1><ul>
@@ -136,6 +71,71 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
+</ul>
+<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
+</ul>
+<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
+</ul>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
+]]></content>
+      <categories>
+        <category>硬件</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>next主题的使用</title>
+    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>有四个类型</p>
+<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>categories下index文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h1 id="修改主页头像"><a href="#修改主页头像" class="headerlink" title="修改主页头像"></a>修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="开启搜索功能"><a href="#开启搜索功能" class="headerlink" title="开启搜索功能"></a>开启搜索功能</h1><ul>
+<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑 主题配置文件，启用本地搜索功能：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -235,7 +235,7 @@
 <h2 id="帕克与克拉克变换"><a href="#帕克与克拉克变换" class="headerlink" title="帕克与克拉克变换"></a>帕克与克拉克变换</h2><ul>
 <li>前面我们提到，FOC首先要从一个”混乱“状态将“方向盘”(磁场)与”油门“(转矩)解耦出来，这时候就需要用到一个工具“帕克变换”与”克拉克变换“。</li>
 </ul>
-<h3 id="克拉克变换"><a href="#克拉克变换" class="headerlink" title="克拉克变换"></a>克拉克变换</h3><h1 id="直接附上公式​-begin-bmatrix-V-alpha-V-beta-end-bmatrix"><a href="#直接附上公式​-begin-bmatrix-V-alpha-V-beta-end-bmatrix" class="headerlink" title="直接附上公式​$$\begin{bmatrix}V_\alpha \V_\beta\end{bmatrix}"></a>直接附上公式<br>​$$<br>\begin{bmatrix}<br>V_\alpha \<br>V_\beta<br>\end{bmatrix}</h1><p>\frac{2}{3}<br>\begin{bmatrix}<br>1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \<br>0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2}<br>\end{bmatrix}<br>\begin{bmatrix}<br>V_a \<br>V_b \<br>V_c<br>\end{bmatrix}<br>$$                        </p>
+<h3 id="克拉克变换"><a href="#克拉克变换" class="headerlink" title="克拉克变换"></a>克拉克变换</h3><p>直接附上公式<br>​$$\begin{bmatrix}V_\alpha \V_\beta\end{bmatrix}&#x3D;\frac{2}{3}\begin{bmatrix}1 &amp; \frac{1}{2} &amp; -\frac{1}{2} \0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2}\end{bmatrix}\begin{bmatrix}V_a \V_b \V_c\end{bmatrix}$$                        </p>
 <ul>
 <li>输入：三相电压</li>
 <li>输出：Vα​，Vβ​​</li>
