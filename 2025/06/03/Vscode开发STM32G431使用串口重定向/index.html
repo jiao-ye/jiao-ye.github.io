@@ -19,33 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jiao-ye.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言">
+    <meta name="description" content="在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向 在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈FOC">
-<meta property="og:url" content="http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/index.html">
+<meta property="og:title" content="Vscode开发STM32G431使用串口重定向">
+<meta property="og:url" content="http://jiao-ye.github.io/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/index.html">
 <meta property="og:site_name" content="角页">
-<meta property="og:description" content="前言">
+<meta property="og:description" content="在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向 在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250309162556.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250309164801.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250309162556.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250309170657.png">
-<meta property="article:published_time" content="2025-03-02T15:24:18.000Z">
-<meta property="article:modified_time" content="2025-04-02T05:33:48.583Z">
+<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250603222055.png">
+<meta property="article:published_time" content="2025-06-03T14:15:49.000Z">
+<meta property="article:modified_time" content="2025-06-03T14:28:56.013Z">
 <meta property="article:author" content="jiaoye">
-<meta property="article:tag" content="无刷电机">
-<meta property="article:tag" content="FOC">
+<meta property="article:tag" content="STM32G431">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250309162556.png">
+<meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250603222055.png">
 
 
-<link rel="canonical" href="http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/">
+<link rel="canonical" href="http://jiao-ye.github.io/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/","path":"2025/03/02/谈谈FOC/","title":"谈谈FOC"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://jiao-ye.github.io/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/","path":"2025/06/03/Vscode开发STM32G431使用串口重定向/","title":"Vscode开发STM32G431使用串口重定向"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>谈谈FOC | 角页</title>
+<title>Vscode开发STM32G431使用串口重定向 | 角页</title>
   
 
 
@@ -133,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,7 +142,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88FOC-%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什么FOC ？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E5%95%A5%E8%A6%81%E7%94%A8%E5%88%B0FOC-%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">为啥要用到FOC ？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FOC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">FOC工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%95%E5%85%8B%E4%B8%8E%E5%85%8B%E6%8B%89%E5%85%8B%E5%8F%98%E6%8D%A2"><span class="nav-number">4.1.</span> <span class="nav-text">帕克与克拉克变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8B%E6%8B%89%E5%85%8B%E5%8F%98%E6%8D%A2"><span class="nav-number">4.1.1.</span> <span class="nav-text">克拉克变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%95%E5%85%8B%E5%8F%98%E6%8D%A2"><span class="nav-number">4.1.2.</span> <span class="nav-text">帕克变换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%A7%92%E5%BA%A6"><span class="nav-number">5.</span> <span class="nav-text">测角度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E4%B8%89%E7%9B%B8%E7%94%B5%E5%8E%8B"><span class="nav-number">6.</span> <span class="nav-text">生成三相电压</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,13 +156,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -199,7 +194,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jiao-ye.github.io/2025/03/02/%E8%B0%88%E8%B0%88FOC/">
+    <link itemprop="mainEntityOfPage" href="http://jiao-ye.github.io/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jiaoye.gif">
@@ -212,12 +207,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="谈谈FOC | 角页">
+      <meta itemprop="name" content="Vscode开发STM32G431使用串口重定向 | 角页">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          谈谈FOC
+          Vscode开发STM32G431使用串口重定向
         </h1>
 
         <div class="post-meta-container">
@@ -227,15 +222,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-03-02 23:24:18" itemprop="dateCreated datePublished" datetime="2025-03-02T23:24:18+08:00">2025-03-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-02 13:33:48" itemprop="dateModified" datetime="2025-04-02T13:33:48+08:00">2025-04-02</time>
+      <time title="创建时间：2025-06-03 22:15:49 / 修改时间：22:28:56" itemprop="dateCreated datePublished" datetime="2025-06-03T22:15:49+08:00">2025-06-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,7 +232,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+          <a href="/categories/STM32/" itemprop="url" rel="index"><span itemprop="name">STM32</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/STM32/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
         </span>
     </span>
 
@@ -256,42 +249,11 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文不涉及复杂的推导，而是用简单的语言介绍FOC</p>
-<h1 id="什么FOC-？"><a href="#什么FOC-？" class="headerlink" title="什么FOC ？"></a>什么FOC ？</h1><ul>
-<li>FOC(磁场定向控制)，这是一种电机的控制方法，我们控制”直流电机“很简单，而控制”交流电机“却很复杂，FOC就是一种可以让我们像控制”直流电机“一样去控制“交流电机”一样。类比一下，一辆车在路上行走是什么状态，有两个，一个是速度，一个是方向，如何控制速度和方向呢，我们有方向盘和油门，可以分别控制方向和速度。这和无刷电机有什么关联呢？我们控制无刷电机控制的究竟是什么？其实也是速度和方向，那么无刷电机的速度和方向由谁来控制呢？磁场和转矩。就相当于方向盘和油门，方向盘和油门都是汽车出厂就有的。那么我们如何得到无刷电机的“方向盘”和“油门”呢？这就要用到FOC将两者从一个“混乱”的状态解耦(分离)出来，以便我们可以方便的控制。</li>
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
+<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
 </ul>
-<h1 id="为啥要用到FOC-？"><a href="#为啥要用到FOC-？" class="headerlink" title="为啥要用到FOC ？"></a>为啥要用到FOC ？</h1><ul>
-<li>FOC的优点就是能让电机在低速的状态下也能保持平稳运行，能精准控制速度与力矩，同时也更加的省电，总之就是“它”行，更牛</li>
-</ul>
-<h1 id="FOC工作流程"><a href="#FOC工作流程" class="headerlink" title="FOC工作流程"></a>FOC工作流程</h1><ul>
-<li>对FOC有了基本的了解，那么就可以看看它的工作流程了。</li>
-</ul>
-<h2 id="帕克与克拉克变换"><a href="#帕克与克拉克变换" class="headerlink" title="帕克与克拉克变换"></a>帕克与克拉克变换</h2><ul>
-<li>前面我们提到，FOC首先要从一个”混乱“状态将“方向盘”(磁场)与”油门“(转矩)解耦出来，这时候就需要用到一个工具“帕克变换”与”克拉克变换“。</li>
-</ul>
-<h3 id="克拉克变换"><a href="#克拉克变换" class="headerlink" title="克拉克变换"></a>克拉克变换</h3><p>直接附上公式<br>​$$\begin{bmatrix}V_\alpha \V_\beta\end{bmatrix}&#x3D;\frac{2}{3}\begin{bmatrix}1 &amp; \frac{1}{2} &amp; -\frac{1}{2} \0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2}\end{bmatrix}\begin{bmatrix}V_a \V_b \V_c\end{bmatrix}$$                        </p>
-<ul>
-<li>输入：三相电压</li>
-<li>输出：Vα​，Vβ​​</li>
-<li>Vα​ 和 Vβ是两相静止坐标系的分量<br>这样我们就把三相的电压转换成两相，但这还不够，我们还需要借助另一个工具“帕克变换”，利用这个变换可以生成一个始终与转子“对齐”的坐标系</li>
-</ul>
-<h3 id="帕克变换"><a href="#帕克变换" class="headerlink" title="帕克变换"></a>帕克变换</h3><p>公式<br>$$\begin{bmatrix}V_d \V_q\end{bmatrix}&#x3D;\begin{bmatrix}\cos\theta &amp; \sin\theta \-\sin\theta &amp; \cos\theta\end{bmatrix}\begin{bmatrix}V_\alpha \V_\beta\end{bmatrix}$$</p>
-<ul>
-<li>Vd 是直轴分量</li>
-<li>Vq 是交轴分量</li>
-<li>θ 是旋转角度（通常为转子角度或同步旋转角度）<br>到这里，我们就得到了两个量 Vd，Vq，也就是“方向盘”(磁场)和“油门”(转矩)，通过控制这两个量我们就能很好的控制无刷电机了</li>
-<li>到这FOC的实际流程图为，只需要控制Uq与Ud，就能控制Ua，Ub，Uc<br><img src="/../images/Pasted%20image%2020250309162556.png"><br>这就是FOC的核心思想，通过这两个工具实现电压电流的解耦控制，到此，我们已经获得了最重要的两个量，但是在实际中该如何实现呢</li>
-</ul>
-<h1 id="测角度"><a href="#测角度" class="headerlink" title="测角度"></a>测角度</h1><ul>
-<li>还记得在上文中帕克变换中的那个θ吗，这个量是需要我们测出来的，大多用的是磁传感器，简单来说就是在转子下方粘一个磁铁，然后对着磁传感器，通过读取磁传感器的信息，就能获得转子的机器角度，但这个角度并不是上文中的θ，还需要乘极对数，我们称之为电角度，也就是说<br>$$<br>电角度 &#x3D; 机器角度 \cdot 极对数<br>$$</li>
-<li>极对数就是电机磁极的对数<br>如图<br><img src="/../images/Pasted%20image%2020250309164801.png"><br>该电机中间的就是磁铁，极对数为7，也就是说，上文中的θ等于磁传感器的数值乘7</li>
-<li>到此，FOC的核心变量就全部已知了，我们就可以顺利的走过如下流程<br><img src="/../images/Pasted%20image%2020250309162556.png"></li>
-</ul>
-<h1 id="生成三相电压"><a href="#生成三相电压" class="headerlink" title="生成三相电压"></a>生成三相电压</h1><ul>
-<li>在上文中，我们已经获得了Ua，Ub，Uc，如果我们有一个可以“随心所欲”的三相电源，那么，我们只需要让该电源按照我们给定的电压去变换就行，但显然是不可能的。一般供电，我们都是用直流电源，这时，大名鼎鼎的SVPWM就来了，这也是FOC中最难的一部分</li>
-<li>通过面积等效原理可以知道下图的两个波形是等效的，这不是正好符合我们心意吗，对于直流电源我们很容易生成矩形波(b)，那么我们只需要合理的控制开关不就能等效成下图的(a)吗<br><img src="/../images/Pasted%20image%2020250309170657.png"></li>
-</ul>
-
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -300,22 +262,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA/" rel="tag"># 无刷电机</a>
-              <a href="/tags/FOC/" rel="tag"># FOC</a>
+              <a href="/tags/STM32G431/" rel="tag"># STM32G431</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/" rel="prev" title="BUCK电路详解">
-                  <i class="fa fa-angle-left"></i> BUCK电路详解
+                <a href="/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/" rel="prev" title="STM32时钟树">
+                  <i class="fa fa-angle-left"></i> STM32时钟树
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/03/%E7%94%B5%E8%B7%AF%E7%AC%94%E8%AE%B0/" rel="next" title="电路笔记">
-                  电路笔记 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
