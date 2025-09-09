@@ -32,111 +32,15 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo搭建个人博客推送至github</title>
-    <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
-    <content><![CDATA[<h1 id="安装git与Nodejs"><a href="#安装git与Nodejs" class="headerlink" title="安装git与Nodejs"></a>安装git与Nodejs</h1><ul>
-<li><p>在Windows上安装Git，可以从Git官网直接<a href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a><br>装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就<br>说明Git安装成功。<br><img src="/../../images/Pasted%20image%2020250221215415.png"></p>
-</li>
-<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"># 其中Your Name和email@example.com替换成github账户名和邮箱</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装NodeJS<br>网址 <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 并配置环境变量。</li>
-<li>安装之后可以输入以下命令查看是否安装成功。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221220038.png"></p>
-<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><ul>
-<li>新建文件夹，在该文件夹下打开”git bach here“。<br><img src="/../../images/Pasted%20image%2020250221220553.png"></li>
-<li>在命令行执行下列命令。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行完成后，运行 hexo server 命令，在浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000</a> 就能够预览效果了。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221220910.png"></p>
-<h1 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h1><ul>
-<li>我用的是NEXT主题：<a href="https://github.com/next-theme/hexo-theme-next%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E8%A7%A3%E5%8E%8B%E5%9C%A8myBlog/themes%E8%B7%AF%E5%BE%84%E4%B8%8B%E3%80%82%E7%84%B6%E5%90%8E%E6%89%93%E5%BC%80_config.yml%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E3%80%82">https://github.com/next-theme/hexo-theme-next，下载完成后解压在myBlog\themes路径下。然后打开_config.yml文件修改如下。</a><br><img src="/../../images/Pasted%20image%2020250221221700.png"><br>这里为了简便我将解压后的文件重命名为next，保存之后刷新 <a href="http://localhost:4000/">http://localhost:4000</a> 页面，主题就已经更改完成。</li>
-</ul>
-<h1 id="修改next主题配置"><a href="#修改next主题配置" class="headerlink" title="修改next主题配置"></a>修改next主题配置</h1><ul>
-<li>详细配置请见</li>
-</ul>
-<h1 id="将博客部署在github上"><a href="#将博客部署在github上" class="headerlink" title="将博客部署在github上"></a>将博客部署在github上</h1><ul>
-<li>在github上建立一个新仓库，在这里注意仓库名一定要是： 用户名.github.io，如我的用户名是jiao-ye，那么我的新仓库名就为jiao-ye.github.io</li>
-<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，将本地仓库能连接远程仓库，输入下列命令。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#email@example.com替换成github邮箱</span><br></pre></td></tr></table></figure>
-<p>按照提示完成后便可以生成ssh key。<br>查看ssh key</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221223544.png"><br>复制输出的ssh key，在github上建立新的ssh key<br><img src="/../../images/Pasted%20image%2020250221223704.png"><br><img src="/../../images/Pasted%20image%2020250221223713.png"></p>
-<ul>
-<li>将本地仓库与远程仓库连接起来，打开_config.yml文件进行如下修改<br><img src="/../../images/Pasted%20image%2020250221223919.png"><br><img src="/../../images/Pasted%20image%2020250221223957.png"></li>
-<li>安装部署插件</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行如下两条指令生成与部署</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g # 生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
-<ul>
-<li>用浏览器输入 用户名.github.io 就可以访问自己的个人博客了</li>
-</ul>
-<h1 id="编写shell脚本方便部署"><a href="#编写shell脚本方便部署" class="headerlink" title="编写shell脚本方便部署"></a>编写shell脚本方便部署</h1><ul>
-<li>在myBlog下新建deploy.sh脚本，粘贴下列代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 生成静态文件</span><br><span class="line">hexo clean &amp;&amp; hexo generate</span><br><span class="line"></span><br><span class="line"># 部署到 GitHub Pages</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<ul>
-<li>给与权限</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod u+x deploy.sh</span><br></pre></td></tr></table></figure>
-<ul>
-<li>双击deploy.sh即可一键部署<br><img src="/../../images/Pasted%20image%2020250221224633.png"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>Obsidian</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32时钟树</title>
-    <url>/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
-<li>在对STM32编程时，代码第一步总是要开启外设时钟使能，在数据手册上可以看到所有外设都是挂载在时钟树下，所以时钟树到底是个什么玩意？本文在此介绍。</li>
-</ul>
-<h1 id="时钟树"><a href="#时钟树" class="headerlink" title="时钟树"></a>时钟树</h1><ul>
-<li>首先解释一下什么是时钟树，STM32的时钟树(Clock Tree)是指控制器内部时钟信号从源头到各个外设的分配和控制系统。它是一个复杂的网络结构，决定了CPU、总线和外设的工作频率。</li>
-</ul>
-<h2 id="时钟的种类"><a href="#时钟的种类" class="headerlink" title="时钟的种类"></a>时钟的种类</h2><ul>
-<li>从数据手册可以看出，STM32系列的单片机又有四个基础时钟源，<strong>HSI振荡器时钟，LSI振荡器时钟，HSE振荡器时钟，HSI振荡器时钟</strong>，这四个时钟就是最基本的时钟来源，也就是时钟树的根，之后就是<strong>PLL锁相环</strong>和<strong>SYSCLK系统时钟</strong>。</li>
-<li>这几者的关系可以先看成这样的关系<br><img src="/../images/Pasted%20image%2020250513211843.png"></li>
-<li>我们直接查看数据手册<br><img src="/../images/Pasted%20image%2020250513212416.png"><br>可以看到外设的最高频率可以达到170M，显然可以看到这四个基础时钟都无法直接提供170M的频率，那么这170M的时钟是哪来的呢？从上面的关系图可以看出，将HSE或者HSI接入PLL就能输出170M的频率了。</li>
-<li>系统时钟的来源：HSI振荡器时钟 HSE振荡器时钟 PLL锁相环  ，</li>
-<li>两个次级时钟源：LSI振荡器时钟 LSE振荡器时钟</li>
-</ul>
-<h2 id="时钟树的框图"><a href="#时钟树的框图" class="headerlink" title="时钟树的框图"></a>时钟树的框图</h2><p><img src="/../images/Pasted%20image%2020250513213131.png"><br>乍一看很复杂，但我们不需要看这么多，我们将其简化一下，只需要看红色部分就行<br><img src="/../images/Pasted%20image%2020250513215153.png"></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vscode开发STM32G431使用串口重定向</title>
     <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
     <content><![CDATA[<ul>
 <li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
 <li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
+]]></content>
       <categories>
         <category>STM32</category>
         <category>笔记</category>
@@ -210,6 +114,93 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo搭建个人博客推送至github</title>
+    <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
+    <content><![CDATA[<h1 id="安装git与Nodejs"><a href="#安装git与Nodejs" class="headerlink" title="安装git与Nodejs"></a>安装git与Nodejs</h1><ul>
+<li><p>在Windows上安装Git，可以从Git官网直接<a href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a><br>装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就<br>说明Git安装成功。<br><img src="/../../images/Pasted%20image%2020250221215415.png"></p>
+</li>
+<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"># 其中Your Name和email@example.com替换成github账户名和邮箱</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装NodeJS<br>网址 <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 并配置环境变量。</li>
+<li>安装之后可以输入以下命令查看是否安装成功。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250221220038.png"></p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><ul>
+<li>新建文件夹，在该文件夹下打开”git bach here“。<br><img src="/../../images/Pasted%20image%2020250221220553.png"></li>
+<li>在命令行执行下列命令。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行完成后，运行 hexo server 命令，在浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000</a> 就能够预览效果了。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250221220910.png"></p>
+<h1 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h1><ul>
+<li>我用的是NEXT主题：<a href="https://github.com/next-theme/hexo-theme-next%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E8%A7%A3%E5%8E%8B%E5%9C%A8myBlog/themes%E8%B7%AF%E5%BE%84%E4%B8%8B%E3%80%82%E7%84%B6%E5%90%8E%E6%89%93%E5%BC%80_config.yml%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E3%80%82">https://github.com/next-theme/hexo-theme-next，下载完成后解压在myBlog\themes路径下。然后打开_config.yml文件修改如下。</a><br><img src="/../../images/Pasted%20image%2020250221221700.png"><br>这里为了简便我将解压后的文件重命名为next，保存之后刷新 <a href="http://localhost:4000/">http://localhost:4000</a> 页面，主题就已经更改完成。</li>
+</ul>
+<h1 id="修改next主题配置"><a href="#修改next主题配置" class="headerlink" title="修改next主题配置"></a>修改next主题配置</h1><ul>
+<li>详细配置请见</li>
+</ul>
+<h1 id="将博客部署在github上"><a href="#将博客部署在github上" class="headerlink" title="将博客部署在github上"></a>将博客部署在github上</h1><ul>
+<li>在github上建立一个新仓库，在这里注意仓库名一定要是： 用户名.github.io，如我的用户名是jiao-ye，那么我的新仓库名就为jiao-ye.github.io</li>
+<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，将本地仓库能连接远程仓库，输入下列命令。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#email@example.com替换成github邮箱</span><br></pre></td></tr></table></figure>
+<p>按照提示完成后便可以生成ssh key。<br>查看ssh key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250221223544.png"><br>复制输出的ssh key，在github上建立新的ssh key<br><img src="/../../images/Pasted%20image%2020250221223704.png"><br><img src="/../../images/Pasted%20image%2020250221223713.png"></p>
+<ul>
+<li>将本地仓库与远程仓库连接起来，打开_config.yml文件进行如下修改<br><img src="/../../images/Pasted%20image%2020250221223919.png"><br><img src="/../../images/Pasted%20image%2020250221223957.png"></li>
+<li>安装部署插件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行如下两条指令生成与部署</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g # 生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用浏览器输入 用户名.github.io 就可以访问自己的个人博客了</li>
+</ul>
+<h1 id="编写shell脚本方便部署"><a href="#编写shell脚本方便部署" class="headerlink" title="编写shell脚本方便部署"></a>编写shell脚本方便部署</h1><ul>
+<li>在myBlog下新建deploy.sh脚本，粘贴下列代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 生成静态文件</span><br><span class="line">hexo clean &amp;&amp; hexo generate</span><br><span class="line"></span><br><span class="line"># 部署到 GitHub Pages</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给与权限</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod u+x deploy.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>双击deploy.sh即可一键部署<br><img src="/../../images/Pasted%20image%2020250221224633.png"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>电路笔记</title>
     <url>/2025/03/03/%E7%94%B5%E8%B7%AF%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是记录在学习电路时一下概念和难懂的点</p>
@@ -258,6 +249,38 @@
       </categories>
       <tags>
         <tag>电路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32时钟树</title>
+    <url>/2025/05/11/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%AC%94%E8%AE%B0/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li>在对STM32编程时，代码第一步总是要开启外设时钟使能，在数据手册上可以看到所有外设都是挂载在时钟树下，所以时钟树到底是个什么玩意？本文在此介绍。</li>
+</ul>
+<h1 id="时钟树"><a href="#时钟树" class="headerlink" title="时钟树"></a>时钟树</h1><ul>
+<li>首先解释一下什么是时钟树，STM32的时钟树(Clock Tree)是指控制器内部时钟信号从源头到各个外设的分配和控制系统。它是一个复杂的网络结构，决定了CPU、总线和外设的工作频率。</li>
+</ul>
+<h2 id="时钟的种类"><a href="#时钟的种类" class="headerlink" title="时钟的种类"></a>时钟的种类</h2><ul>
+<li>从数据手册可以看出，STM32系列的单片机又有四个基础时钟源，<strong>HSI振荡器时钟，LSI振荡器时钟，HSE振荡器时钟，HSI振荡器时钟</strong>，这四个时钟就是最基本的时钟来源，也就是时钟树的根，之后就是<strong>PLL锁相环</strong>和<strong>SYSCLK系统时钟</strong>。</li>
+<li>这几者的关系可以先看成这样的关系<br><img src="/../../images/Pasted%20image%2020250513211843.png"></li>
+<li>我们直接查看数据手册<br><img src="/../../images/Pasted%20image%2020250513212416.png"><br>可以看到外设的最高频率可以达到170M，显然可以看到这四个基础时钟都无法直接提供170M的频率，那么这170M的时钟是哪来的呢？从上面的关系图可以看出，将HSE或者HSI接入PLL就能输出170M的频率了。</li>
+<li>系统时钟的来源：HSI振荡器时钟 HSE振荡器时钟 PLL锁相环  ，</li>
+<li>两个次级时钟源：LSI振荡器时钟 LSE振荡器时钟</li>
+</ul>
+<h2 id="时钟树的框图"><a href="#时钟树的框图" class="headerlink" title="时钟树的框图"></a>时钟树的框图</h2><p><img src="/../../images/Pasted%20image%2020250513213131.png"><br>乍一看很复杂，但我们不需要看这么多，我们将其简化一下，只需要看红色部分就行<br><img src="/../../images/Pasted%20image%2020250513215153.png"></p>
+<ul>
+<li>LSI(内部低速时钟)：时钟信号由内部RC振荡电路产生，频率为32.768K</li>
+<li>HSI(内部高速时钟)：时钟信号由内部RC振荡电路产生，STM32G431有两个时钟源(16M和48M)，一般用于独立看门狗</li>
+<li>LSE(外部低速时钟)：时钟信号由外部晶振提供，一般为32.768K，一般用于RTC实时时钟</li>
+<li>HSE(外部高速时钟)：时钟信号由外部晶振提供，范围为4-48M，主要是用该时钟</li>
+<li>PLL锁相环：将时钟的信号进行放大<br> 简单介绍PLL锁相环，先看PLL的框图：<br> <img src="/../../images/Pasted%20image%2020250909172639.png"><br>  鉴相器：通过比较输入输出的相位差，输出一定的电压信号<br>  低通滤波：滤除鉴相器输出的杂波<br>  压控振荡器：使输出信号的频率与低通滤波输出的频率保持一致<br>  那么我们只要在反馈通道上加上一个分频器，就能实现输出信号的放大</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32</tag>
       </tags>
   </entry>
 </search>
