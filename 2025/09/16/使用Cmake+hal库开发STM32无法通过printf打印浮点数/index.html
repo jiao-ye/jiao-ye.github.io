@@ -19,22 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jiao-ye.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="角页">
-<meta property="og:url" content="http://jiao-ye.github.io/categories/STM32/%E7%AC%94%E8%AE%B0/index.html">
+    <meta name="description" content="在开发STM32中，代码如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="未命名">
+<meta property="og:url" content="http://jiao-ye.github.io/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/index.html">
 <meta property="og:site_name" content="角页">
+<meta property="og:description" content="在开发STM32中，代码如下：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250916104932.png">
+<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250916105907.png">
+<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250916110026.png">
+<meta property="article:published_time" content="2025-09-16T02:45:54.000Z">
+<meta property="article:modified_time" content="2025-09-16T03:01:33.829Z">
 <meta property="article:author" content="jiaoye">
+<meta property="article:tag" content="调试">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250916104932.png">
 
 
-<link rel="canonical" href="http://jiao-ye.github.io/categories/STM32/%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://jiao-ye.github.io/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/STM32/笔记/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://jiao-ye.github.io/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/","path":"2025/09/16/使用Cmake+hal库开发STM32无法通过printf打印浮点数/","title":"未命名"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: 笔记 | 角页</title>
+<title>未命名 | 角页</title>
   
 
 
@@ -176,50 +185,102 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">笔记
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jiao-ye.github.io/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jiaoye.gif">
+      <meta itemprop="name" content="jiaoye">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="角页">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="未命名 | 角页">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          未命名
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2025</span>
+
+      <time title="创建时间：2025-09-16 10:45:54 / 修改时间：11:01:33" itemprop="dateCreated datePublished" datetime="2025-09-16T10:45:54+08:00">2025-09-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/STM32/" itemprop="url" rel="index"><span itemprop="name">STM32</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-06-03T22:15:49+08:00"
-              content="2025-06-03">
-          06-03
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/" itemprop="url">
-            <span itemprop="name">Vscode开发STM32G431使用串口重定向</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%B0%83%E8%AF%95/" rel="tag"># 调试</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/" rel="prev" title="未命名">
+                  <i class="fa fa-angle-left"></i> 未命名
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
