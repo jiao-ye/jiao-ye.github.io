@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
+</ul>
+<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
+</ul>
+<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
+</ul>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
+]]></content>
+      <categories>
+        <category>硬件</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STM32G431启用FPU与DSP库</title>
     <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
     <content><![CDATA[<h1 id="FPU与DSP"><a href="#FPU与DSP" class="headerlink" title="FPU与DSP"></a>FPU与DSP</h1><ul>
@@ -41,67 +72,6 @@
       </tags>
   </entry>
   <entry>
-    <title>BUCK电路详解</title>
-    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
-<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-]]></content>
-      <categories>
-        <category>硬件</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-        <tag>DC-DC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32单片机下载显示failed to erase memory</title>
-    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
-    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vscode开发STM32G431使用串口重定向</title>
-    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
-    <content><![CDATA[<ul>
-<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
-<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>STM32时钟树</title>
     <url>/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
@@ -131,6 +101,18 @@
       </categories>
       <tags>
         <tag>STM32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32单片机下载显示failed to erase memory</title>
+    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
+    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
       </tags>
   </entry>
   <entry>
@@ -207,6 +189,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Vscode开发STM32G431使用串口重定向</title>
+    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
+    <content><![CDATA[<ul>
+<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
+<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>next主题的使用</title>
     <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
@@ -280,34 +280,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
-    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
-    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决STM32G431BOOT0与IIC冲突问题</title>
-    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<ul>
-<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Obsidian来编写hexo博客</title>
     <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
@@ -335,6 +307,34 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
+    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
+    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
       </tags>
   </entry>
 </search>
