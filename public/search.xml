@@ -32,6 +32,18 @@
       </tags>
   </entry>
   <entry>
+    <title>STM32单片机下载显示failed to erase memory</title>
+    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
+    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STM32G431启用FPU与DSP库</title>
     <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
     <content><![CDATA[<h1 id="FPU与DSP"><a href="#FPU与DSP" class="headerlink" title="FPU与DSP"></a>FPU与DSP</h1><ul>
@@ -67,20 +79,26 @@
         <category>STM32</category>
       </categories>
       <tags>
-        <tag>STM32</tag>
         <tag>调试</tag>
+        <tag>STM32</tag>
       </tags>
   </entry>
   <entry>
-    <title>STM32单片机下载显示failed to erase memory</title>
-    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
-    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+    <title>Vscode开发STM32G431使用串口重定向</title>
+    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
+    <content><![CDATA[<ul>
+<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
+<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
 ]]></content>
       <categories>
         <category>STM32</category>
+        <category>笔记</category>
       </categories>
       <tags>
-        <tag>调试</tag>
+        <tag>STM32G431</tag>
       </tags>
   </entry>
   <entry>
@@ -116,21 +134,37 @@
       </tags>
   </entry>
   <entry>
-    <title>Vscode开发STM32G431使用串口重定向</title>
-    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
-    <content><![CDATA[<ul>
-<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
-<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
+    <title>next主题的使用</title>
+    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>有四个类型</p>
+<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>categories下index文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h1 id="修改主页头像"><a href="#修改主页头像" class="headerlink" title="修改主页头像"></a>修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="开启搜索功能"><a href="#开启搜索功能" class="headerlink" title="开启搜索功能"></a>开启搜索功能</h1><ul>
+<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑 主题配置文件，启用本地搜索功能：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
 ]]></content>
       <categories>
-        <category>STM32</category>
-        <category>笔记</category>
+        <category>教程</category>
       </categories>
       <tags>
-        <tag>STM32G431</tag>
+        <tag>hexo博客</tag>
+        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -205,59 +239,6 @@
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>next主题的使用</title>
-    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="修改主页头像"><a href="#修改主页头像" class="headerlink" title="修改主页头像"></a>修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="开启搜索功能"><a href="#开启搜索功能" class="headerlink" title="开启搜索功能"></a>开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>next主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2025/10/27/%E2%80%9CA%20dexterous%20and%20compliant%20aerial%20continuum%20manipulator%20for%20cluttered%20and%20constrained%20environments%E2%80%9D/</url>
-    <content><![CDATA[<p><span class="highlight" data-annotation="%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2Flocal%2F7cHO0Qz7%2Fitems%2FNNBFUWUJ%22%2C%22pageLabel%22%3A%221%22%2C%22position%22%3A%7B%22pageIndex%22%3A0%2C%22rects%22%3A%5B%5B39.685001373%2C650.4815254207499%2C561.3170226750426%2C676.38452529775%5D%2C%5B39.685001373%2C622.5891751531963%2C539.4341679836989%2C648.4921750301963%5D%2C%5B39.685001373%2C594.6968248856426%2C202.8376363982721%2C620.5998247626427%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2Flocal%2F7cHO0Qz7%2Fitems%2FFWST87PK%22%5D%2C%22locator%22%3A%221%22%7D%7D" ztype="zhighlight"><a href="zotero://open/library/items/NNBFUWUJ?page=1">“A dexterous and compliant aerial continuum manipulator for cluttered and constrained environments”</a></span></p>
-<p>一款适用于杂乱和受限的环境的灵巧而顺应的空中连续体机械手</p>
-<p>https:&#x2F;&#x2F;doi.org&#x2F;10.1038&#x2F;s41467-024-55157-2</p>
-<p>期刊：Nature Communications</p>
-<p>作者Rui Peng, Yu Wang, Minghao Lu , Peng Lu 。</p>
-<h3 id="1-主要部分"><a href="#1-主要部分" class="headerlink" title="1. 主要部分"></a>1. <strong>主要部分</strong></h3><p>介绍了AET系统，即一种灵活且适应性强的空中连续体机械臂，专门设计用于在复杂和受限的环境中操作。这种机械臂的设计考虑了在拥挤和受限环境中的操作需求，展示了其在工程和救援任务中的潜在应用。总重量1.8千克，机械臂自重155克，最大缠绕1.2千克的物体</p>
-<p>特点：该系统的核心特点是采用了三段式肌腱驱动的连续体机械臂，所有电机均位于机械臂外部，减少了机械臂的惯性</p>
-<p>主要是试验</p>
-<h3 id="2-系统设计和软件架构"><a href="#2-系统设计和软件架构" class="headerlink" title="2. 系统设计和软件架构"></a>2. <strong>系统设计和软件架构</strong></h3><p>机械设计和软件架构。图3a展示了系统的广义坐标框架和状态信息，详细说明了连续体臂的配置，这些配置通过驱动长度解析得到[2]。图3b则展示了系统的软件架构，包括状态估计、运动学求解器、飞行控制器和机械臂控制器等关键组件[2]。</p>
-<p><img src="/attachments/GP9U2NU9.png" alt="\&lt;img alt&#x3D;&quot;&quot; data-attachment-key&#x3D;&quot;GP9U2NU9&quot; width&#x3D;&quot;1078&quot; height&#x3D;&quot;996&quot; src&#x3D;&quot;attachments&#x2F;GP9U2NU9.png&quot; ztype&#x3D;&quot;zimage&quot;&gt; | 1078"></p>
-<p>软件架构</p>
-<p><img src="/attachments/JCMMBT9I.png" alt="\&lt;img alt&#x3D;&quot;&quot; data-attachment-key&#x3D;&quot;JCMMBT9I&quot; width&#x3D;&quot;1025&quot; height&#x3D;&quot;644&quot; src&#x3D;&quot;attachments&#x2F;JCMMBT9I.png&quot; ztype&#x3D;&quot;zimage&quot;&gt; | 1025"></p>
-<p>试验</p>
-<p><img src="/attachments/FMMWURD4.png" alt="\&lt;img alt&#x3D;&quot;&quot; data-attachment-key&#x3D;&quot;FMMWURD4&quot; width&#x3D;&quot;1036&quot; height&#x3D;&quot;978&quot; src&#x3D;&quot;attachments&#x2F;FMMWURD4.png&quot; ztype&#x3D;&quot;zimage&quot;&gt; | 1036"></p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
   </entry>
   <entry>
     <title>串联谐振与并联谐振</title>
@@ -406,20 +387,6 @@
       </categories>
   </entry>
   <entry>
-    <title>解决STM32G431BOOT0与IIC冲突问题</title>
-    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<ul>
-<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Obsidian来编写hexo博客</title>
     <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
@@ -447,6 +414,20 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
       </tags>
   </entry>
 </search>
