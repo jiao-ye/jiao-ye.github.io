@@ -32,58 +32,6 @@
       </tags>
   </entry>
   <entry>
-    <title>STM32G431启用FPU与DSP库</title>
-    <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
-    <content><![CDATA[<h1 id="FPU与DSP"><a href="#FPU与DSP" class="headerlink" title="FPU与DSP"></a>FPU与DSP</h1><ul>
-<li>STM32的FPU是芯片内部的硬件浮点运算单元，能高速处理所有浮点计算；而DSP库则是建立在FPU等硬件特性之上的软件函数库，它提供了一系列经过极致优化的数字信号处理算法（如FFT、滤波等）。两者关系可概括为：FPU是强大的硬件基础，负责通用浮点加速；DSP库则是专业的软件加速包，针对复杂算法进行特定优化。在实际应用中，应先启用FPU获得基础性能提升，再调用DSP库来处理专门的复杂运算任务。</li>
-<li>下面我们通过STM32CUBEMX + cmake  + vscode 来创建一个完整地项目</li>
-</ul>
-<h1 id="工程创建"><a href="#工程创建" class="headerlink" title="工程创建"></a>工程创建</h1><h2 id="1-新建STMG431CBT6的工程"><a href="#1-新建STMG431CBT6的工程" class="headerlink" title="1.新建STMG431CBT6的工程"></a>1.新建STMG431CBT6的工程</h2><p><img src="/../../images/Pasted%20image%2020250923155732.png"></p>
-<ul>
-<li>选择外部高速时钟<br><img src="/../../images/Pasted%20image%2020250923160215.png"></li>
-<li>开启SWD，就是允许我们使用ST-link进行下载调试，时钟来源选择系统时钟<br><img src="/../../images/Pasted%20image%2020250923161121.png"></li>
-<li>因为我们要用到串口打印相关信息，开启串口2</li>
-<li><img src="/../../images/Pasted%20image%2020250923161436.png"></li>
-<li>配置时钟，按照自己的晶振频率设置<br><img src="/../../images/Pasted%20image%2020250923161706.png"></li>
-<li>配置相关项目相关信息<br>项目名称，开发工具，固件版本<br><img src="/../../images/Pasted%20image%2020250923161903.png"><br>生成源文件和头文件 ，生成项目<br><img src="/../../images/Pasted%20image%2020250923162323.png"></li>
-</ul>
-<h2 id="2-用VSCODE打开并编译看是否成功"><a href="#2-用VSCODE打开并编译看是否成功" class="headerlink" title="2.用VSCODE打开并编译看是否成功"></a>2.用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img src="/../../images/Pasted%20image%2020250923165728.png"></p>
-<h2 id="3-开启FPU并且添加DSP库"><a href="#3-开启FPU并且添加DSP库" class="headerlink" title="3.开启FPU并且添加DSP库"></a>3.开启FPU并且添加DSP库</h2><ul>
-<li>回到CUBEMX<br><img src="/../../images/Pasted%20image%2020250923170055.png"></li>
-<li>找到DSP库，并且勾选上，可能下载会比较慢<br><img src="/../../images/Pasted%20image%2020250923170334.png"><br>返回，并且勾选上添加DSP库，生成代码<br><img src="/../../images/Pasted%20image%2020250923171004.png"><br>返回Vscode看到有如下文件则添加成功<br><img src="/../../images/Pasted%20image%2020250923171138.png"><br>接下来在CMake文件中如下位置添加两行代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Lib/GCC/libarm_cortexM4lf_math.a</span><br><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Include</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250923171646.png"><br>到此，工程创建成功</p>
-<h1 id="测试工程"><a href="#测试工程" class="headerlink" title="测试工程"></a>测试工程</h1><p>为了方便输出信息，我们将串口重定向，在usart.c文件中添加如下代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  // 阻塞方式打印 -&gt; 串口2</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2, (uint8_t *)&amp;ch, 1, 0xFFFF);</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>&#x3D;&#x3D;注意要在gcc-arm-none-eabi.cmake文件如下位置加入-u_printf_float&#x3D;&#x3D;<br><img src="/../../images/Pasted%20image%2020250925165625.png"></li>
-</ul>
-<p>测试代码，注意需要包含stdio头文件<br><img src="/../../images/Pasted%20image%2020250923172715.png"><br>该插件的下载按钮如下<br><img src="/../../images/Pasted%20image%2020250923173120.png"><br>&#x3D;&#x3D;注意，必须加“\n”,不然会有莫名的问题</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">printf(&quot;hello\n&quot;);</span><br></pre></td></tr></table></figure>
-<p>调试信息如下：<br><img src="/../../images/Pasted%20image%2020250925170045.png"><br>成功&#x3D;&#x3D;</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>STM32</tag>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32单片机下载显示failed to erase memory</title>
-    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
-    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>STM32时钟树</title>
     <url>/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
@@ -113,24 +61,6 @@
       </categories>
       <tags>
         <tag>STM32</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vscode开发STM32G431使用串口重定向</title>
-    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
-    <content><![CDATA[<ul>
-<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
-<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
       </tags>
   </entry>
   <entry>
@@ -207,6 +137,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Vscode开发STM32G431使用串口重定向</title>
+    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
+    <content><![CDATA[<ul>
+<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
+<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32单片机下载显示failed to erase memory</title>
+    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
+    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>next主题的使用</title>
     <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
@@ -238,20 +198,6 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>next主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
-    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
-    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
       </tags>
   </entry>
   <entry>
@@ -294,6 +240,60 @@
       </tags>
   </entry>
   <entry>
+    <title>STM32G431启用FPU与DSP库</title>
+    <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="FPU与DSP"><a href="#FPU与DSP" class="headerlink" title="FPU与DSP"></a>FPU与DSP</h1><ul>
+<li>STM32的FPU是芯片内部的硬件浮点运算单元，能高速处理所有浮点计算；而DSP库则是建立在FPU等硬件特性之上的软件函数库，它提供了一系列经过极致优化的数字信号处理算法（如FFT、滤波等）。两者关系可概括为：FPU是强大的硬件基础，负责通用浮点加速；DSP库则是专业的软件加速包，针对复杂算法进行特定优化。在实际应用中，应先启用FPU获得基础性能提升，再调用DSP库来处理专门的复杂运算任务。</li>
+<li>下面我们通过STM32CUBEMX + cmake  + vscode 来创建一个完整地项目</li>
+</ul>
+<h1 id="工程创建"><a href="#工程创建" class="headerlink" title="工程创建"></a>工程创建</h1><h2 id="1-新建STMG431CBT6的工程"><a href="#1-新建STMG431CBT6的工程" class="headerlink" title="1.新建STMG431CBT6的工程"></a>1.新建STMG431CBT6的工程</h2><p><img src="/../../images/Pasted%20image%2020250923155732.png"></p>
+<ul>
+<li>选择外部高速时钟<br><img src="/../../images/Pasted%20image%2020250923160215.png"></li>
+<li>开启SWD，就是允许我们使用ST-link进行下载调试，时钟来源选择系统时钟<br><img src="/../../images/Pasted%20image%2020250923161121.png"></li>
+<li>因为我们要用到串口打印相关信息，开启串口2</li>
+<li><img src="/../../images/Pasted%20image%2020250923161436.png"></li>
+<li>配置时钟，按照自己的晶振频率设置<br><img src="/../../images/Pasted%20image%2020250923161706.png"></li>
+<li>配置相关项目相关信息<br>项目名称，开发工具，固件版本<br><img src="/../../images/Pasted%20image%2020250923161903.png"><br>生成源文件和头文件 ，生成项目<br><img src="/../../images/Pasted%20image%2020250923162323.png"></li>
+</ul>
+<h2 id="2-用VSCODE打开并编译看是否成功"><a href="#2-用VSCODE打开并编译看是否成功" class="headerlink" title="2.用VSCODE打开并编译看是否成功"></a>2.用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img src="/../../images/Pasted%20image%2020250923165728.png"></p>
+<h2 id="3-开启FPU并且添加DSP库"><a href="#3-开启FPU并且添加DSP库" class="headerlink" title="3.开启FPU并且添加DSP库"></a>3.开启FPU并且添加DSP库</h2><ul>
+<li>回到CUBEMX<br><img src="/../../images/Pasted%20image%2020250923170055.png"></li>
+<li>找到DSP库，并且勾选上，可能下载会比较慢<br><img src="/../../images/Pasted%20image%2020250923170334.png"><br>返回，并且勾选上添加DSP库，生成代码<br><img src="/../../images/Pasted%20image%2020250923171004.png"><br>返回Vscode看到有如下文件则添加成功<br><img src="/../../images/Pasted%20image%2020250923171138.png"><br>接下来在CMake文件中如下位置添加两行代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Lib/GCC/libarm_cortexM4lf_math.a</span><br><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Include</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250923171646.png"><br>到此，工程创建成功</p>
+<h1 id="测试工程"><a href="#测试工程" class="headerlink" title="测试工程"></a>测试工程</h1><p>为了方便输出信息，我们将串口重定向，在usart.c文件中添加如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  // 阻塞方式打印 -&gt; 串口2</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2, (uint8_t *)&amp;ch, 1, 0xFFFF);</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&#x3D;&#x3D;注意要在gcc-arm-none-eabi.cmake文件如下位置加入-u_printf_float&#x3D;&#x3D;<br><img src="/../../images/Pasted%20image%2020250925165625.png"></li>
+</ul>
+<p>测试代码，注意需要包含stdio头文件<br><img src="/../../images/Pasted%20image%2020250923172715.png"><br>该插件的下载按钮如下<br><img src="/../../images/Pasted%20image%2020250923173120.png"><br>&#x3D;&#x3D;注意，必须加“\n”,不然会有莫名的问题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">printf(&quot;hello\n&quot;);</span><br></pre></td></tr></table></figure>
+<p>调试信息如下：<br><img src="/../../images/Pasted%20image%2020250925170045.png"><br>成功&#x3D;&#x3D;</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>STM32</tag>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
+    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
+    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Obsidian来编写hexo博客</title>
     <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
@@ -324,9 +324,23 @@
       </tags>
   </entry>
   <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>无人机悬停时间计算方法</title>
     <url>/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="电机转速N和螺旋桨转矩M轴距"><a href="#电机转速N和螺旋桨转矩M轴距" class="headerlink" title="电机转速N和螺旋桨转矩M轴距"></a>电机转速N和螺旋桨转矩M轴距</h1><h2 id="轴距"><a href="#轴距" class="headerlink" title="轴距"></a>轴距</h2><ul>
+    <content><![CDATA[<h1 id="计算电机转速N和螺旋桨转矩M轴距"><a href="#计算电机转速N和螺旋桨转矩M轴距" class="headerlink" title="计算电机转速N和螺旋桨转矩M轴距"></a>计算电机转速N和螺旋桨转矩M轴距</h1><h2 id="轴距"><a href="#轴距" class="headerlink" title="轴距"></a>轴距</h2><ul>
 <li>对角线方向上两个电机中心之间的直线距离，轴距越短，对飞控的精度要求就更高</li>
 </ul>
 <h2 id="拉力"><a href="#拉力" class="headerlink" title="拉力"></a>拉力</h2><ul>
@@ -415,19 +429,5 @@
       <categories>
         <category>无人机</category>
       </categories>
-  </entry>
-  <entry>
-    <title>解决STM32G431BOOT0与IIC冲突问题</title>
-    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<ul>
-<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
-      </tags>
   </entry>
 </search>
