@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
+</ul>
+<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
+</ul>
+<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
+</ul>
+<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
+<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
+]]></content>
+      <categories>
+        <category>硬件</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STM32G431启用FPU与DSP库</title>
     <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
     <content><![CDATA[<h1 id="FPU与DSP"><a href="#FPU与DSP" class="headerlink" title="FPU与DSP"></a>FPU与DSP</h1><ul>
@@ -53,37 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>BUCK电路详解</title>
-    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="什么是BUCK电路"><a href="#什么是BUCK电路" class="headerlink" title="什么是BUCK电路"></a>什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="有什么办法能让这个波形变得更加缓呢"><a href="#有什么办法能让这个波形变得更加缓呢" class="headerlink" title="有什么办法能让这个波形变得更加缓呢"></a>有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="有什么能让这个尖端变缓呢"><a href="#有什么能让这个尖端变缓呢" class="headerlink" title="有什么能让这个尖端变缓呢"></a>有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<h2 id="异步BUCK结构拓补图"><a href="#异步BUCK结构拓补图" class="headerlink" title="异步BUCK结构拓补图"></a>异步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201507.png"></p>
-<h2 id="同步BUCK结构拓补图"><a href="#同步BUCK结构拓补图" class="headerlink" title="同步BUCK结构拓补图"></a>同步BUCK结构拓补图</h2><p><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-]]></content>
-      <categories>
-        <category>硬件</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-        <tag>DC-DC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>STM32时钟树</title>
     <url>/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
@@ -113,58 +113,6 @@
       </categories>
       <tags>
         <tag>STM32</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vscode开发STM32G431使用串口重定向</title>
-    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
-    <content><![CDATA[<ul>
-<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
-<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>next主题的使用</title>
-    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="修改主页头像"><a href="#修改主页头像" class="headerlink" title="修改主页头像"></a>修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="开启搜索功能"><a href="#开启搜索功能" class="headerlink" title="开启搜索功能"></a>开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -241,17 +189,55 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
-    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
-    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+    <title>Vscode开发STM32G431使用串口重定向</title>
+    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
+    <content><![CDATA[<ul>
+<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
+<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
 ]]></content>
       <categories>
         <category>STM32</category>
+        <category>笔记</category>
       </categories>
       <tags>
-        <tag>调试</tag>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>next主题的使用</title>
+    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="主题类型设置"><a href="#主题类型设置" class="headerlink" title="主题类型设置"></a>主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>有四个类型</p>
+<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>categories下index文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h1 id="修改主页头像"><a href="#修改主页头像" class="headerlink" title="修改主页头像"></a>修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="开启搜索功能"><a href="#开启搜索功能" class="headerlink" title="开启搜索功能"></a>开启搜索功能</h1><ul>
+<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑 主题配置文件，启用本地搜索功能：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -294,33 +280,83 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Obsidian来编写hexo博客</title>
-    <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
-<li>在官网下载Obsidian：<a href="https://obsidian.md/">https://obsidian.md/</a><br><img src="/../../images/Pasted%20image%2020250221230923.png"><br>按照提示安装，最好将目标位置改为D盘</li>
-<li>安装完成，选择打开myBlog文件夹<br><img src="/../../images/Pasted%20image%2020250221231158.png"></li>
+    <title>windows使用wsl2+ubuntu20.04安装ROS1的步骤</title>
+    <url>/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/</url>
+    <content><![CDATA[<h1 id="1-首先确保电脑CPU能虚拟化并且打开如下功能"><a href="#1-首先确保电脑CPU能虚拟化并且打开如下功能" class="headerlink" title="1.首先确保电脑CPU能虚拟化并且打开如下功能"></a>1.首先确保电脑CPU能虚拟化并且打开如下功能</h1><p><img src="/../../images/Pasted%20image%2020251208111118.png"></p>
+<p><img src="/../../images/Pasted%20image%2020251208110347.png"></p>
+<h1 id="2-安装wsl2与ubuntu20-04"><a href="#2-安装wsl2与ubuntu20-04" class="headerlink" title="2.安装wsl2与ubuntu20.04"></a>2.安装wsl2与ubuntu20.04</h1><h2 id="2-1安装WSL2"><a href="#2-1安装WSL2" class="headerlink" title="2.1安装WSL2"></a>2.1安装WSL2</h2><ul>
+<li>在power shell里输入wsl–install，安装完成后显示&#96;适用于 Linux 的 Windows 子系统已安装</li>
+<li>输入wsl.exe –update，进度条完成后即可</li>
 </ul>
-<h1 id="配置Obsidian"><a href="#配置Obsidian" class="headerlink" title="配置Obsidian"></a>配置Obsidian</h1><ul>
-<li>点击Obsidian的设置<br><img src="/../../images/Pasted%20image%2020250221231614.png"></li>
-<li>点击文件与链接，忽略以下文件<br><img src="/../../images/Pasted%20image%2020250221231806.png"></li>
-<li>在myBlog\source下新建images文件夹，将内部链接类型改为基于当前笔记的相对路径，关闭wiki链接，将附件默认存放路径改为指定的附件文件夹，将附件文件夹路径改为source&#x2F;images<br><img src="/../../images/Pasted%20image%2020250221232138.png"></li>
-<li>将新建笔记的存放位置改为指定的附件文件夹，将存放新建笔记的文件<br><img src="/../../images/Pasted%20image%2020250221232446.png"></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl --install</span><br><span class="line">wsl.exe --update</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020251208120609.png"></p>
+<h2 id="2-2安装Ubuntu20-04"><a href="#2-2安装Ubuntu20-04" class="headerlink" title="2.2安装Ubuntu20.04"></a>2.2安装Ubuntu20.04</h2><ul>
+<li>直接在store安装，选择20.04版本<br><img src="/../../images/Pasted%20image%2020251208110517.png"></li>
+<li>安装完成后，打开终端输入</li>
 </ul>
-<h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><ul>
-<li>关闭安全模式，在插件市场下载如下四个插件<br><img src="/../images/Pasted%20image%2020250222161719.png"></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
+<p>看是否有如下输出<br><img src="/../../images/Pasted%20image%2020251208110702.png"><br>注意：如果VERSION显示的是1.那么输入以下命令将wsl1切换成wsl2</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl --set-version Ubuntu-20.04 2 </span><br></pre></td></tr></table></figure>
+<ul>
+<li>切换成功后，在终端打开Ubuntu20.04<br><img src="/../../images/Pasted%20image%2020251208111709.png"><br>首次登录要输入用户和密码，打开后显示<br><img src="/../../images/Pasted%20image%2020251208111813.png"><br>安装完成</li>
 </ul>
-<h2 id="git、float-toc、tree下载无需配置"><a href="#git、float-toc、tree下载无需配置" class="headerlink" title="git、float toc、tree下载无需配置"></a>git、float toc、tree下载无需配置</h2><h2 id="Shell插件配置"><a href="#Shell插件配置" class="headerlink" title="Shell插件配置"></a>Shell插件配置</h2><ul>
-<li>点击New shell command，创建新的命令</li>
-<li>写入start deploy.sh命令，该脚本在已经在<a href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" title="hexo搭建个人博客推送至github">hexo搭建个人博客推送至github</a>中创建<br> <img src="/../images/Pasted%20image%2020250222162125.png"></li>
-<li>点击执行按钮，就会自动部署到远程仓库</li>
+<h1 id="3-安装ROS"><a href="#3-安装ROS" class="headerlink" title="3.安装ROS"></a>3.安装ROS</h1><h2 id="3-1必要准备"><a href="#3-1必要准备" class="headerlink" title="3.1必要准备"></a>3.1必要准备</h2><ul>
+<li>在命令行输入以下命令，修改镜像</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vim etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输入ggdG删除原本镜像源<br><img src="/../../images/Pasted%20image%2020251208142046.png"></li>
+<li>粘贴中科大镜像源</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>输入wq保存退出<br><img src="/../../images/Pasted%20image%2020251208142323.png"></p>
+</li>
+<li><p>在终端输入中科大的安装镜像源</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo sh -c &#x27;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#x27;</span><br></pre></td></tr></table></figure>
+<p>**<img src="/../../images/Pasted%20image%2020251208142353.png"></p>
+<ul>
+<li>设置key</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-key adv --keyserver &#x27;hkp://keyserver.ubuntu.com:80&#x27; --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020251208142439.png"></p>
+<ul>
+<li>更新apt</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+<p>这里出现网络问题<br><img src="/../../images/Pasted%20image%2020251208143138.png"><br>解决办法</p>
+<ul>
+<li>1.在ubuntu中执行</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/wsl.conf</span><br></pre></td></tr></table></figure>
+<p>在wsl.config文件中另外加入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[network]</span><br><span class="line">generateResolvConf = false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.删除并手动创建 &#x2F;etc&#x2F;resolv.conf</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rm /etc/resolv.conf</span><br><span class="line">sudo vim /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.写入</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 223.5.5.5</span><br><span class="line">nameserver 119.29.29.29</span><br></pre></td></tr></table></figure>
+<ul>
+<li>4.重启wsl，在powershell里输入wsl – shutdown重启<br>更新成功<br><img src="/../../images/Pasted%20image%2020251208145332.png"></li>
+</ul>
+<h2 id="3-2安装ROS"><a href="#3-2安装ROS" class="headerlink" title="3.2安装ROS"></a>3.2安装ROS</h2><ul>
+<li>输入命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install ros-noetic-desktop-full</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意，笔者并没有遇到安装不上问题，不知道是运气好还是啥，测试过很多次，都是一次成功</li>
 </ul>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>无人机</category>
       </categories>
       <tags>
-        <tag>hexo博客</tag>
-        <tag>Obsidian</tag>
+        <tag>ROS</tag>
       </tags>
   </entry>
   <entry>
@@ -417,17 +453,47 @@
       </categories>
   </entry>
   <entry>
-    <title>解决STM32G431BOOT0与IIC冲突问题</title>
-    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<ul>
-<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
+    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
+    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Obsidian来编写hexo博客</title>
+    <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="下载Obsidian"><a href="#下载Obsidian" class="headerlink" title="下载Obsidian"></a>下载Obsidian</h1><ul>
+<li>在官网下载Obsidian：<a href="https://obsidian.md/">https://obsidian.md/</a><br><img src="/../../images/Pasted%20image%2020250221230923.png"><br>按照提示安装，最好将目标位置改为D盘</li>
+<li>安装完成，选择打开myBlog文件夹<br><img src="/../../images/Pasted%20image%2020250221231158.png"></li>
+</ul>
+<h1 id="配置Obsidian"><a href="#配置Obsidian" class="headerlink" title="配置Obsidian"></a>配置Obsidian</h1><ul>
+<li>点击Obsidian的设置<br><img src="/../../images/Pasted%20image%2020250221231614.png"></li>
+<li>点击文件与链接，忽略以下文件<br><img src="/../../images/Pasted%20image%2020250221231806.png"></li>
+<li>在myBlog\source下新建images文件夹，将内部链接类型改为基于当前笔记的相对路径，关闭wiki链接，将附件默认存放路径改为指定的附件文件夹，将附件文件夹路径改为source&#x2F;images<br><img src="/../../images/Pasted%20image%2020250221232138.png"></li>
+<li>将新建笔记的存放位置改为指定的附件文件夹，将存放新建笔记的文件<br><img src="/../../images/Pasted%20image%2020250221232446.png"></li>
+</ul>
+<h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><ul>
+<li>关闭安全模式，在插件市场下载如下四个插件<br><img src="/../images/Pasted%20image%2020250222161719.png"></li>
+</ul>
+<h2 id="git、float-toc、tree下载无需配置"><a href="#git、float-toc、tree下载无需配置" class="headerlink" title="git、float toc、tree下载无需配置"></a>git、float toc、tree下载无需配置</h2><h2 id="Shell插件配置"><a href="#Shell插件配置" class="headerlink" title="Shell插件配置"></a>Shell插件配置</h2><ul>
+<li>点击New shell command，创建新的命令</li>
+<li>写入start deploy.sh命令，该脚本在已经在<a href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" title="hexo搭建个人博客推送至github">hexo搭建个人博客推送至github</a>中创建<br> <img src="/../images/Pasted%20image%2020250222162125.png"></li>
+<li>点击执行按钮，就会自动部署到远程仓库</li>
 </ul>
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>教程</category>
       </categories>
       <tags>
-        <tag>STM32G431</tag>
+        <tag>hexo博客</tag>
+        <tag>Obsidian</tag>
       </tags>
   </entry>
   <entry>
@@ -440,6 +506,20 @@
       </categories>
       <tags>
         <tag>ROS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
       </tags>
   </entry>
 </search>
