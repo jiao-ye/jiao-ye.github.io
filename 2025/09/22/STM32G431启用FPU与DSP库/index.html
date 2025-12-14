@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jiao-ye.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="FPU与DSP">
+    <meta name="description" content="1.FPU与DSP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32G431启用FPU与DSP库">
 <meta property="og:url" content="http://jiao-ye.github.io/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/index.html">
 <meta property="og:site_name" content="角页">
-<meta property="og:description" content="FPU与DSP">
+<meta property="og:description" content="1.FPU与DSP">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250923155732.png">
 <meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250923160215.png">
@@ -45,10 +45,10 @@
 <meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250923173120.png">
 <meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250925170045.png">
 <meta property="article:published_time" content="2025-09-22T10:15:53.000Z">
-<meta property="article:modified_time" content="2025-09-25T09:07:32.593Z">
+<meta property="article:modified_time" content="2025-12-14T09:36:41.787Z">
 <meta property="article:author" content="jiaoye">
-<meta property="article:tag" content="STM32">
 <meta property="article:tag" content="调试">
+<meta property="article:tag" content="STM32">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250923155732.png">
 
@@ -160,7 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FPU%E4%B8%8EDSP"><span class="nav-number">1.</span> <span class="nav-text">FPU与DSP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">工程创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BASTMG431CBT6%E7%9A%84%E5%B7%A5%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">1.新建STMG431CBT6的工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%A8VSCODE%E6%89%93%E5%BC%80%E5%B9%B6%E7%BC%96%E8%AF%91%E7%9C%8B%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">2.2.</span> <span class="nav-text">2.用VSCODE打开并编译看是否成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BC%80%E5%90%AFFPU%E5%B9%B6%E4%B8%94%E6%B7%BB%E5%8A%A0DSP%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">3.开启FPU并且添加DSP库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">测试工程</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-FPU%E4%B8%8EDSP"><span class="nav-number">1.</span> <span class="nav-text">1.FPU与DSP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">2.工程创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1%E6%96%B0%E5%BB%BASTMG431CBT6%E7%9A%84%E5%B7%A5%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">2.1新建STMG431CBT6的工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2%E7%94%A8VSCODE%E6%89%93%E5%BC%80%E5%B9%B6%E7%BC%96%E8%AF%91%E7%9C%8B%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">2.2.</span> <span class="nav-text">2.2用VSCODE打开并编译看是否成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3%E5%BC%80%E5%90%AFFPU%E5%B9%B6%E4%B8%94%E6%B7%BB%E5%8A%A0DSP%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">2.3开启FPU并且添加DSP库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">3.测试工程</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,7 +249,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-09-25 17:07:32" itemprop="dateModified" datetime="2025-09-25T17:07:32+08:00">2025-09-25</time>
+      <time title="修改时间：2025-12-14 17:36:41" itemprop="dateModified" datetime="2025-12-14T17:36:41+08:00">2025-12-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,11 +277,11 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="FPU与DSP"><a href="#FPU与DSP" class="headerlink" title="FPU与DSP"></a>FPU与DSP</h1><ul>
+    <div class="post-body" itemprop="articleBody"><h1 id="1-FPU与DSP"><a href="#1-FPU与DSP" class="headerlink" title="1.FPU与DSP"></a>1.FPU与DSP</h1><ul>
 <li>STM32的FPU是芯片内部的硬件浮点运算单元，能高速处理所有浮点计算；而DSP库则是建立在FPU等硬件特性之上的软件函数库，它提供了一系列经过极致优化的数字信号处理算法（如FFT、滤波等）。两者关系可概括为：FPU是强大的硬件基础，负责通用浮点加速；DSP库则是专业的软件加速包，针对复杂算法进行特定优化。在实际应用中，应先启用FPU获得基础性能提升，再调用DSP库来处理专门的复杂运算任务。</li>
 <li>下面我们通过STM32CUBEMX + cmake  + vscode 来创建一个完整地项目</li>
 </ul>
-<h1 id="工程创建"><a href="#工程创建" class="headerlink" title="工程创建"></a>工程创建</h1><h2 id="1-新建STMG431CBT6的工程"><a href="#1-新建STMG431CBT6的工程" class="headerlink" title="1.新建STMG431CBT6的工程"></a>1.新建STMG431CBT6的工程</h2><p><img src="/../../images/Pasted%20image%2020250923155732.png"></p>
+<h1 id="2-工程创建"><a href="#2-工程创建" class="headerlink" title="2.工程创建"></a>2.工程创建</h1><h2 id="2-1新建STMG431CBT6的工程"><a href="#2-1新建STMG431CBT6的工程" class="headerlink" title="2.1新建STMG431CBT6的工程"></a>2.1新建STMG431CBT6的工程</h2><p><img src="/../../images/Pasted%20image%2020250923155732.png"></p>
 <ul>
 <li>选择外部高速时钟<br><img src="/../../images/Pasted%20image%2020250923160215.png"></li>
 <li>开启SWD，就是允许我们使用ST-link进行下载调试，时钟来源选择系统时钟<br><img src="/../../images/Pasted%20image%2020250923161121.png"></li>
@@ -290,14 +290,14 @@
 <li>配置时钟，按照自己的晶振频率设置<br><img src="/../../images/Pasted%20image%2020250923161706.png"></li>
 <li>配置相关项目相关信息<br>项目名称，开发工具，固件版本<br><img src="/../../images/Pasted%20image%2020250923161903.png"><br>生成源文件和头文件 ，生成项目<br><img src="/../../images/Pasted%20image%2020250923162323.png"></li>
 </ul>
-<h2 id="2-用VSCODE打开并编译看是否成功"><a href="#2-用VSCODE打开并编译看是否成功" class="headerlink" title="2.用VSCODE打开并编译看是否成功"></a>2.用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img src="/../../images/Pasted%20image%2020250923165728.png"></p>
-<h2 id="3-开启FPU并且添加DSP库"><a href="#3-开启FPU并且添加DSP库" class="headerlink" title="3.开启FPU并且添加DSP库"></a>3.开启FPU并且添加DSP库</h2><ul>
+<h2 id="2-2用VSCODE打开并编译看是否成功"><a href="#2-2用VSCODE打开并编译看是否成功" class="headerlink" title="2.2用VSCODE打开并编译看是否成功"></a>2.2用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img src="/../../images/Pasted%20image%2020250923165728.png"></p>
+<h2 id="2-3开启FPU并且添加DSP库"><a href="#2-3开启FPU并且添加DSP库" class="headerlink" title="2.3开启FPU并且添加DSP库"></a>2.3开启FPU并且添加DSP库</h2><ul>
 <li>回到CUBEMX<br><img src="/../../images/Pasted%20image%2020250923170055.png"></li>
 <li>找到DSP库，并且勾选上，可能下载会比较慢<br><img src="/../../images/Pasted%20image%2020250923170334.png"><br>返回，并且勾选上添加DSP库，生成代码<br><img src="/../../images/Pasted%20image%2020250923171004.png"><br>返回Vscode看到有如下文件则添加成功<br><img src="/../../images/Pasted%20image%2020250923171138.png"><br>接下来在CMake文件中如下位置添加两行代码</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Lib/GCC/libarm_cortexM4lf_math.a</span><br><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Include</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><img src="/../../images/Pasted%20image%2020250923171646.png"><br>到此，工程创建成功</p>
-<h1 id="测试工程"><a href="#测试工程" class="headerlink" title="测试工程"></a>测试工程</h1><p>为了方便输出信息，我们将串口重定向，在usart.c文件中添加如下代码</p>
+<h1 id="3-测试工程"><a href="#3-测试工程" class="headerlink" title="3.测试工程"></a>3.测试工程</h1><p>为了方便输出信息，我们将串口重定向，在usart.c文件中添加如下代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  // 阻塞方式打印 -&gt; 串口2</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2, (uint8_t *)&amp;ch, 1, 0xFFFF);</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>&#x3D;&#x3D;注意要在gcc-arm-none-eabi.cmake文件如下位置加入-u_printf_float&#x3D;&#x3D;<br><img src="/../../images/Pasted%20image%2020250925165625.png"></li>
@@ -314,8 +314,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/STM32/" rel="tag"># STM32</a>
               <a href="/tags/%E8%B0%83%E8%AF%95/" rel="tag"># 调试</a>
+              <a href="/tags/STM32/" rel="tag"># STM32</a>
           </div>
 
         
