@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BUCK电路详解</title>
-    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="1-什么是BUCK电路"><a href="#1-什么是BUCK电路" class="headerlink" title="1.什么是BUCK电路"></a>1.什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="1-1有什么办法能让这个波形变得更加缓呢"><a href="#1-1有什么办法能让这个波形变得更加缓呢" class="headerlink" title="1.1有什么办法能让这个波形变得更加缓呢"></a>1.1有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="1-2有什么能让这个尖端变缓呢"><a href="#1-2有什么能让这个尖端变缓呢" class="headerlink" title="1.2有什么能让这个尖端变缓呢"></a>1.2有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<p>异步BUCK结构拓补图<br><img src="/../images/Pasted%20image%2020250226201507.png"><br>同步BUCK结构拓补图<br><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-]]></content>
-      <categories>
-        <category>硬件</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
-        <tag>DC-DC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PX4+gazebo+ros仿真</title>
     <url>/2025/12/12/PX4+gazebo+ros%E4%BB%BF%E7%9C%9F/</url>
     <content><![CDATA[<h1 id="1-安装ROS"><a href="#1-安装ROS" class="headerlink" title="1.安装ROS"></a>1.安装ROS</h1><ul>
@@ -107,6 +77,48 @@
       </tags>
   </entry>
   <entry>
+    <title>STM32单片机下载显示failed to erase memory</title>
+    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
+    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BUCK电路详解</title>
+    <url>/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="1-什么是BUCK电路"><a href="#1-什么是BUCK电路" class="headerlink" title="1.什么是BUCK电路"></a>1.什么是BUCK电路</h1><ul>
+<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
+</ul>
+<h2 id="1-1有什么办法能让这个波形变得更加缓呢"><a href="#1-1有什么办法能让这个波形变得更加缓呢" class="headerlink" title="1.1有什么办法能让这个波形变得更加缓呢"></a>1.1有什么办法能让这个波形变得更加缓呢</h2><ul>
+<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
+<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
+<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
+<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
+</ul>
+<h2 id="1-2有什么能让这个尖端变缓呢"><a href="#1-2有什么能让这个尖端变缓呢" class="headerlink" title="1.2有什么能让这个尖端变缓呢"></a>1.2有什么能让这个尖端变缓呢</h2><ul>
+<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
+</li>
+<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
+</li>
+<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
+</li>
+</ul>
+<p>异步BUCK结构拓补图<br><img src="/../images/Pasted%20image%2020250226201507.png"><br>同步BUCK结构拓补图<br><img src="/../images/Pasted%20image%2020250226201559.png"></p>
+]]></content>
+      <categories>
+        <category>硬件</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+        <tag>DC-DC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STM32G431启用FPU与DSP库</title>
     <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
     <content><![CDATA[<h1 id="1-FPU与DSP"><a href="#1-FPU与DSP" class="headerlink" title="1.FPU与DSP"></a>1.FPU与DSP</h1><ul>
@@ -142,38 +154,8 @@
         <category>STM32</category>
       </categories>
       <tags>
+        <tag>调试</tag>
         <tag>STM32</tag>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32单片机下载显示failed to erase memory</title>
-    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
-    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vscode开发STM32G431使用串口重定向</title>
-    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
-    <content><![CDATA[<ul>
-<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
-<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
       </tags>
   </entry>
   <entry>
@@ -206,6 +188,63 @@
       </categories>
       <tags>
         <tag>STM32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vscode开发STM32G431使用串口重定向</title>
+    <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
+    <content><![CDATA[<ul>
+<li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
+<li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>next主题的使用</title>
+    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>有四个类型</p>
+<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>categories下index文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
+<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑 主题配置文件，启用本地搜索功能：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
+<ul>
+<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -279,84 +318,6 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>next主题的使用</title>
-    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
-<ul>
-<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>next主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>串联谐振与并联谐振</title>
-    <url>/2025/03/03/%E4%B8%B2%E8%81%94%E8%B0%90%E6%8C%AF%E4%B8%8E%E5%B9%B6%E8%81%94%E8%B0%90%E6%8C%AF/</url>
-    <content><![CDATA[<h1 id="1-什么是谐振？"><a href="#1-什么是谐振？" class="headerlink" title="1.什么是谐振？"></a>1.什么是谐振？</h1><h2 id="1-1RLC串联谐振"><a href="#1-1RLC串联谐振" class="headerlink" title="1.1RLC串联谐振"></a>1.1RLC串联谐振</h2><ul>
-<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img src="/../images/Pasted%20image%2020250303235346.png"></p>
-</li>
-<li><p>电路的阻抗为<br> $$ Z &#x3D; R + j\left( \omega L - \frac{1}{\omega C} \right) $$<br> 从上面可以看出阻抗具有虚部，那么端口电压与端口电流的相位肯定不是相同的，相差一个阻抗角</p>
-</li>
-<li><p>我们知道，流经电阻的电压和电流是相位相同的，那么我们是否可以把该电路的阻抗等效成一个电阻呢，当然可以，只需要令<br> $$ \left( \omega L - \frac{1}{\omega C} \right)&#x3D;0 $$<br> 此时该电路的阻抗就等效为R</p>
-</li>
-<li><p>可以求得：<br> $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</p>
-</li>
-</ul>
-<p> 当上式成立时，此时该电路就发生了谐振。</p>
-<ul>
-<li>如果我们变化这个频率，电路会怎样变化，w增大，可以推出<br>$$ \left( \omega L - \frac{1}{\omega C} \right)&gt;0 $$<br> 那么此时的阻抗角<br> $$\theta &#x3D; \arctan\left(\frac{X}{R}\right)&gt;0$$<br> 可以得出电压超前电流，那么此时该电路呈现出感性，反之则呈现出容性，此时电容与电感的总电压为0，但电容与电感两端的电压却不是为0，而是具有这样的特点：大小相同，方向相反</li>
-</ul>
-<h2 id="1-2RLC并联谐振"><a href="#1-2RLC并联谐振" class="headerlink" title="1.2RLC并联谐振"></a>1.2RLC并联谐振</h2><ul>
-<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img src="/../images/Pasted%20image%2020250304003015.png"></li>
-<li>电路的导纳为<br> $$ Y &#x3D; G + j\left( \omega C - \frac{1}{\omega L} \right) $$<br> 一样的我们令<br> $$ \left( \omega C - \frac{1}{\omega L} \right)&#x3D;0 $$<br> 此时电路的导纳就等效为G，端电流与端电压的相位就相同了</li>
-<li>同样可以求得<br>  $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</li>
-<li>如果我们改变这个频率，令w增大，那么可以推出<br>   $$ \left( \omega C - \frac{1}{\omega L} \right)&gt;0 $$<br>   此时电流的相位超前电压，电路呈现容性，反之呈现感性。此时电容与电感的总电流为0，但电容与电感所在的支路电流却不是为0，而是具有这样的特点：大小相同，方向相反</li>
-</ul>
-<h2 id="1-3谐振的特性"><a href="#1-3谐振的特性" class="headerlink" title="1.3谐振的特性"></a>1.3谐振的特性</h2><ul>
-<li>对于RLC串联电路，我们可由阻抗的模值等于<br>$$|Z| &#x3D; \sqrt{R^2 + X^2}$$<br>此时的电流等于<br>$$I &#x3D; \frac{U}Z$$<br>可知当阻抗最小时，电流最大，那么什么时候阻抗最小，如果X等于0，那么|Z|就最小，也就是发生谐振的时候，所以RLC串联电路发生谐振时，电路的电流是最大的</li>
-<li>同理我们可以推出RLC并联电路发生谐振时，电路的电流是最小的</li>
-</ul>
-<h2 id="1-4品质因数"><a href="#1-4品质因数" class="headerlink" title="1.4品质因数"></a>1.4品质因数</h2><ul>
-<li>在RLC串联谐振中，品质因数的定义是电容或电感的电压与电源的比值<br>$$Q &#x3D; \frac{w L}{R} &#x3D; \frac{1}{w C R}&#x3D;\frac{1}{R} \sqrt{\frac{L}{C}}$$<br>可以看到电路的品质因数由RLC的参数决定，如果Q大于0，则说明电容&#x2F;电感两端的电压大于电源电压，这就叫做”过电压“，在实际中，我们应该避免过电压的产生</li>
-<li>在RLC并联谐振中，品质因数的定义是电容或电感的支路电流与干路电流的比值 $$<br>Q &#x3D; \frac{1}{G} \sqrt{\frac{C}{L}}$$<br>可以看到电路的品质因数也是由RLC的参数决定，如果Q大于0，则说明电容&#x2F;电感的支路电流大于干路电流，这就叫做”过电流“</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>电路</tag>
       </tags>
   </entry>
   <entry>
@@ -455,6 +416,45 @@
       </tags>
   </entry>
   <entry>
+    <title>串联谐振与并联谐振</title>
+    <url>/2025/03/03/%E4%B8%B2%E8%81%94%E8%B0%90%E6%8C%AF%E4%B8%8E%E5%B9%B6%E8%81%94%E8%B0%90%E6%8C%AF/</url>
+    <content><![CDATA[<h1 id="1-什么是谐振？"><a href="#1-什么是谐振？" class="headerlink" title="1.什么是谐振？"></a>1.什么是谐振？</h1><h2 id="1-1RLC串联谐振"><a href="#1-1RLC串联谐振" class="headerlink" title="1.1RLC串联谐振"></a>1.1RLC串联谐振</h2><ul>
+<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img src="/../images/Pasted%20image%2020250303235346.png"></p>
+</li>
+<li><p>电路的阻抗为<br> $$ Z &#x3D; R + j\left( \omega L - \frac{1}{\omega C} \right) $$<br> 从上面可以看出阻抗具有虚部，那么端口电压与端口电流的相位肯定不是相同的，相差一个阻抗角</p>
+</li>
+<li><p>我们知道，流经电阻的电压和电流是相位相同的，那么我们是否可以把该电路的阻抗等效成一个电阻呢，当然可以，只需要令<br> $$ \left( \omega L - \frac{1}{\omega C} \right)&#x3D;0 $$<br> 此时该电路的阻抗就等效为R</p>
+</li>
+<li><p>可以求得：<br> $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</p>
+</li>
+</ul>
+<p> 当上式成立时，此时该电路就发生了谐振。</p>
+<ul>
+<li>如果我们变化这个频率，电路会怎样变化，w增大，可以推出<br>$$ \left( \omega L - \frac{1}{\omega C} \right)&gt;0 $$<br> 那么此时的阻抗角<br> $$\theta &#x3D; \arctan\left(\frac{X}{R}\right)&gt;0$$<br> 可以得出电压超前电流，那么此时该电路呈现出感性，反之则呈现出容性，此时电容与电感的总电压为0，但电容与电感两端的电压却不是为0，而是具有这样的特点：大小相同，方向相反</li>
+</ul>
+<h2 id="1-2RLC并联谐振"><a href="#1-2RLC并联谐振" class="headerlink" title="1.2RLC并联谐振"></a>1.2RLC并联谐振</h2><ul>
+<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img src="/../images/Pasted%20image%2020250304003015.png"></li>
+<li>电路的导纳为<br> $$ Y &#x3D; G + j\left( \omega C - \frac{1}{\omega L} \right) $$<br> 一样的我们令<br> $$ \left( \omega C - \frac{1}{\omega L} \right)&#x3D;0 $$<br> 此时电路的导纳就等效为G，端电流与端电压的相位就相同了</li>
+<li>同样可以求得<br>  $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</li>
+<li>如果我们改变这个频率，令w增大，那么可以推出<br>   $$ \left( \omega C - \frac{1}{\omega L} \right)&gt;0 $$<br>   此时电流的相位超前电压，电路呈现容性，反之呈现感性。此时电容与电感的总电流为0，但电容与电感所在的支路电流却不是为0，而是具有这样的特点：大小相同，方向相反</li>
+</ul>
+<h2 id="1-3谐振的特性"><a href="#1-3谐振的特性" class="headerlink" title="1.3谐振的特性"></a>1.3谐振的特性</h2><ul>
+<li>对于RLC串联电路，我们可由阻抗的模值等于<br>$$|Z| &#x3D; \sqrt{R^2 + X^2}$$<br>此时的电流等于<br>$$I &#x3D; \frac{U}Z$$<br>可知当阻抗最小时，电流最大，那么什么时候阻抗最小，如果X等于0，那么|Z|就最小，也就是发生谐振的时候，所以RLC串联电路发生谐振时，电路的电流是最大的</li>
+<li>同理我们可以推出RLC并联电路发生谐振时，电路的电流是最小的</li>
+</ul>
+<h2 id="1-4品质因数"><a href="#1-4品质因数" class="headerlink" title="1.4品质因数"></a>1.4品质因数</h2><ul>
+<li>在RLC串联谐振中，品质因数的定义是电容或电感的电压与电源的比值<br>$$Q &#x3D; \frac{w L}{R} &#x3D; \frac{1}{w C R}&#x3D;\frac{1}{R} \sqrt{\frac{L}{C}}$$<br>可以看到电路的品质因数由RLC的参数决定，如果Q大于0，则说明电容&#x2F;电感两端的电压大于电源电压，这就叫做”过电压“，在实际中，我们应该避免过电压的产生</li>
+<li>在RLC并联谐振中，品质因数的定义是电容或电感的支路电流与干路电流的比值 $$<br>Q &#x3D; \frac{1}{G} \sqrt{\frac{C}{L}}$$<br>可以看到电路的品质因数也是由RLC的参数决定，如果Q大于0，则说明电容&#x2F;电感的支路电流大于干路电流，这就叫做”过电流“</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>电路</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
     <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
     <content><![CDATA[<p>在开发STM32中，代码如下：</p>
@@ -466,6 +466,20 @@
       </categories>
       <tags>
         <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
       </tags>
   </entry>
   <entry>
@@ -590,20 +604,6 @@
       <categories>
         <category>无人机</category>
       </categories>
-  </entry>
-  <entry>
-    <title>解决STM32G431BOOT0与IIC冲突问题</title>
-    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<ul>
-<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
-      </tags>
   </entry>
   <entry>
     <title>解决在Vscode开发ROS没有提示</title>
