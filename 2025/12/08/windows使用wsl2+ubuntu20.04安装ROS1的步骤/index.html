@@ -22,44 +22,44 @@
     <meta name="description" content="1.首先确保电脑CPU能虚拟化并且打开如下功能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows使用wsl2+ubuntu20.04安装ROS1的步骤">
-<meta property="og:url" content="http://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/index.html">
+<meta property="og:url" content="https://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/index.html">
 <meta property="og:site_name" content="角页">
 <meta property="og:description" content="1.首先确保电脑CPU能虚拟化并且打开如下功能">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208111118.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208110347.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208120609.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208110517.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208110702.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208111709.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208111813.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208142046.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208142323.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208142353.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208142439.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208143138.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208145332.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208151916.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208152202.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208152415.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208152428.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208152536.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208161347.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208161403.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208161413.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208161457.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208111118.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208110347.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208120609.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208110517.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208110702.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208111709.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208111813.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208142046.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208142323.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208142353.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208142439.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208143138.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208145332.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208151916.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208152202.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208152415.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208152428.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208152536.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208161347.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208161403.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208161413.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208161457.png">
 <meta property="article:published_time" content="2025-12-08T02:57:40.000Z">
 <meta property="article:modified_time" content="2025-12-08T08:16:13.934Z">
 <meta property="article:author" content="jiaoye">
 <meta property="article:tag" content="ROS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020251208111118.png">
+<meta name="twitter:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020251208111118.png">
 
 
-<link rel="canonical" href="http://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/">
+<link rel="canonical" href="https://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/","path":"2025/12/08/windows使用wsl2+ubuntu20.04安装ROS1的步骤/","title":"windows使用wsl2+ubuntu20.04安装ROS1的步骤"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/","path":"2025/12/08/windows使用wsl2+ubuntu20.04安装ROS1的步骤/","title":"windows使用wsl2+ubuntu20.04安装ROS1的步骤"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>windows使用wsl2+ubuntu20.04安装ROS1的步骤 | 角页</title>
@@ -216,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/">
+    <link itemprop="mainEntityOfPage" href="https://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jiaoye.gif">
@@ -463,7 +463,24 @@
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script>
+    (function() {
+      var candidates = [];
+      candidates.push('https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js');
+      candidates.push('https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js');
+      var append = function(index) {
+        if (index >= candidates.length) return;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = candidates[index];
+        script.onerror = function() {
+          append(index + 1);
+        };
+        document.head.appendChild(script);
+      };
+      append(0);
+    })();
+  </script>
 
 
 

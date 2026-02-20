@@ -21,14 +21,14 @@
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="角页">
-<meta property="og:url" content="http://jiao-ye.github.io/tags/Obsidian/index.html">
+<meta property="og:url" content="https://jiao-ye.github.io/tags/Obsidian/index.html">
 <meta property="og:site_name" content="角页">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="jiaoye">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://jiao-ye.github.io/tags/Obsidian/">
+<link rel="canonical" href="https://jiao-ye.github.io/tags/Obsidian/">
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/Obsidian/index.html","title":""}</script>
@@ -311,7 +311,24 @@
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script>
+    (function() {
+      var candidates = [];
+      candidates.push('https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js');
+      candidates.push('https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js');
+      var append = function(index) {
+        if (index >= candidates.length) return;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = candidates[index];
+        script.onerror = function() {
+          append(index + 1);
+        };
+        document.head.appendChild(script);
+      };
+      append(0);
+    })();
+  </script>
 
 
 

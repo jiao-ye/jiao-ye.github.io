@@ -22,24 +22,24 @@
     <meta name="description" content="在焊接新的芯片后下载程序显示下图错误显示无法擦除扇区，连接ST-LINKUtility显示如下：发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32单片机下载显示failed to erase memory">
-<meta property="og:url" content="http://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/index.html">
+<meta property="og:url" content="https://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/index.html">
 <meta property="og:site_name" content="角页">
 <meta property="og:description" content="在焊接新的芯片后下载程序显示下图错误显示无法擦除扇区，连接ST-LINKUtility显示如下：发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250915165612.png">
-<meta property="og:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250915170058.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020250915165612.png">
+<meta property="og:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020250915170058.png">
 <meta property="article:published_time" content="2025-09-15T08:52:16.000Z">
 <meta property="article:modified_time" content="2025-09-16T03:03:48.331Z">
 <meta property="article:author" content="jiaoye">
 <meta property="article:tag" content="调试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiao-ye.github.io/images/Pasted%20image%2020250915165612.png">
+<meta name="twitter:image" content="https://jiao-ye.github.io/images/Pasted%20image%2020250915165612.png">
 
 
-<link rel="canonical" href="http://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/">
+<link rel="canonical" href="https://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/","path":"2025/09/15/STM32单片机下载显示failed to erase memory/","title":"STM32单片机下载显示failed to erase memory"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/","path":"2025/09/15/STM32单片机下载显示failed to erase memory/","title":"STM32单片机下载显示failed to erase memory"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>STM32单片机下载显示failed to erase memory | 角页</title>
@@ -195,7 +195,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/">
+    <link itemprop="mainEntityOfPage" href="https://jiao-ye.github.io/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jiaoye.gif">
@@ -365,7 +365,24 @@
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script>
+    (function() {
+      var candidates = [];
+      candidates.push('https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js');
+      candidates.push('https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js');
+      var append = function(index) {
+        if (index >= candidates.length) return;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = candidates[index];
+        script.onerror = function() {
+          append(index + 1);
+        };
+        document.head.appendChild(script);
+      };
+      append(0);
+    })();
+  </script>
 
 
 
