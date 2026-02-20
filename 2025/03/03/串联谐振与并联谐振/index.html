@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jiaoye.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#0f4c81","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":180,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jiaoye.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#0f4c81","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":180,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="1.什么是谐振？">
 <meta property="og:type" content="article">
@@ -265,7 +265,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="1-什么是谐振？"><a href="#1-什么是谐振？" class="headerlink" title="1.什么是谐振？"></a>1.什么是谐振？</h1><h2 id="1-1RLC串联谐振"><a href="#1-1RLC串联谐振" class="headerlink" title="1.1RLC串联谐振"></a>1.1RLC串联谐振</h2><ul>
-<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img data-src="/../images/Pasted%20image%2020250303235346.png"></p>
+<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img src="/../images/Pasted%20image%2020250303235346.png"></p>
 </li>
 <li><p>电路的阻抗为<br> $$ Z &#x3D; R + j\left( \omega L - \frac{1}{\omega C} \right) $$<br> 从上面可以看出阻抗具有虚部，那么端口电压与端口电流的相位肯定不是相同的，相差一个阻抗角</p>
 </li>
@@ -279,7 +279,7 @@
 <li>如果我们变化这个频率，电路会怎样变化，w增大，可以推出<br>$$ \left( \omega L - \frac{1}{\omega C} \right)&gt;0 $$<br> 那么此时的阻抗角<br> $$\theta &#x3D; \arctan\left(\frac{X}{R}\right)&gt;0$$<br> 可以得出电压超前电流，那么此时该电路呈现出感性，反之则呈现出容性，此时电容与电感的总电压为0，但电容与电感两端的电压却不是为0，而是具有这样的特点：大小相同，方向相反</li>
 </ul>
 <h2 id="1-2RLC并联谐振"><a href="#1-2RLC并联谐振" class="headerlink" title="1.2RLC并联谐振"></a>1.2RLC并联谐振</h2><ul>
-<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img data-src="/../images/Pasted%20image%2020250304003015.png"></li>
+<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img src="/../images/Pasted%20image%2020250304003015.png"></li>
 <li>电路的导纳为<br> $$ Y &#x3D; G + j\left( \omega C - \frac{1}{\omega L} \right) $$<br> 一样的我们令<br> $$ \left( \omega C - \frac{1}{\omega L} \right)&#x3D;0 $$<br> 此时电路的导纳就等效为G，端电流与端电压的相位就相同了</li>
 <li>同样可以求得<br>  $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</li>
 <li>如果我们改变这个频率，令w增大，那么可以推出<br>   $$ \left( \omega C - \frac{1}{\omega L} \right)&gt;0 $$<br>   此时电流的相位超前电压，电路呈现容性，反之呈现感性。此时电容与电感的总电流为0，但电容与电感所在的支路电流却不是为0，而是具有这样的特点：大小相同，方向相反</li>
@@ -382,7 +382,6 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
