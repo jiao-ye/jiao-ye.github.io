@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jiaoye.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#0f4c81","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":180,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jiaoye.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#0f4c81","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":180,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="1.FPU与DSP">
 <meta property="og:type" content="article">
@@ -285,30 +285,30 @@
 <li>STM32的FPU是芯片内部的硬件浮点运算单元，能高速处理所有浮点计算；而DSP库则是建立在FPU等硬件特性之上的软件函数库，它提供了一系列经过极致优化的数字信号处理算法（如FFT、滤波等）。两者关系可概括为：FPU是强大的硬件基础，负责通用浮点加速；DSP库则是专业的软件加速包，针对复杂算法进行特定优化。在实际应用中，应先启用FPU获得基础性能提升，再调用DSP库来处理专门的复杂运算任务。</li>
 <li>下面我们通过STM32CUBEMX + cmake  + vscode 来创建一个完整地项目</li>
 </ul>
-<h1 id="2-工程创建"><a href="#2-工程创建" class="headerlink" title="2.工程创建"></a>2.工程创建</h1><h2 id="2-1新建STMG431CBT6的工程"><a href="#2-1新建STMG431CBT6的工程" class="headerlink" title="2.1新建STMG431CBT6的工程"></a>2.1新建STMG431CBT6的工程</h2><p><img src="/../../images/Pasted%20image%2020250923155732.png"></p>
+<h1 id="2-工程创建"><a href="#2-工程创建" class="headerlink" title="2.工程创建"></a>2.工程创建</h1><h2 id="2-1新建STMG431CBT6的工程"><a href="#2-1新建STMG431CBT6的工程" class="headerlink" title="2.1新建STMG431CBT6的工程"></a>2.1新建STMG431CBT6的工程</h2><p><img data-src="/../../images/Pasted%20image%2020250923155732.png"></p>
 <ul>
-<li>选择外部高速时钟<br><img src="/../../images/Pasted%20image%2020250923160215.png"></li>
-<li>开启SWD，就是允许我们使用ST-link进行下载调试，时钟来源选择系统时钟<br><img src="/../../images/Pasted%20image%2020250923161121.png"></li>
+<li>选择外部高速时钟<br><img data-src="/../../images/Pasted%20image%2020250923160215.png"></li>
+<li>开启SWD，就是允许我们使用ST-link进行下载调试，时钟来源选择系统时钟<br><img data-src="/../../images/Pasted%20image%2020250923161121.png"></li>
 <li>因为我们要用到串口打印相关信息，开启串口2</li>
-<li><img src="/../../images/Pasted%20image%2020250923161436.png"></li>
-<li>配置时钟，按照自己的晶振频率设置<br><img src="/../../images/Pasted%20image%2020250923161706.png"></li>
-<li>配置相关项目相关信息<br>项目名称，开发工具，固件版本<br><img src="/../../images/Pasted%20image%2020250923161903.png"><br>生成源文件和头文件 ，生成项目<br><img src="/../../images/Pasted%20image%2020250923162323.png"></li>
+<li><img data-src="/../../images/Pasted%20image%2020250923161436.png"></li>
+<li>配置时钟，按照自己的晶振频率设置<br><img data-src="/../../images/Pasted%20image%2020250923161706.png"></li>
+<li>配置相关项目相关信息<br>项目名称，开发工具，固件版本<br><img data-src="/../../images/Pasted%20image%2020250923161903.png"><br>生成源文件和头文件 ，生成项目<br><img data-src="/../../images/Pasted%20image%2020250923162323.png"></li>
 </ul>
-<h2 id="2-2用VSCODE打开并编译看是否成功"><a href="#2-2用VSCODE打开并编译看是否成功" class="headerlink" title="2.2用VSCODE打开并编译看是否成功"></a>2.2用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img src="/../../images/Pasted%20image%2020250923165728.png"></p>
+<h2 id="2-2用VSCODE打开并编译看是否成功"><a href="#2-2用VSCODE打开并编译看是否成功" class="headerlink" title="2.2用VSCODE打开并编译看是否成功"></a>2.2用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img data-src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img data-src="/../../images/Pasted%20image%2020250923165728.png"></p>
 <h2 id="2-3开启FPU并且添加DSP库"><a href="#2-3开启FPU并且添加DSP库" class="headerlink" title="2.3开启FPU并且添加DSP库"></a>2.3开启FPU并且添加DSP库</h2><ul>
-<li>回到CUBEMX<br><img src="/../../images/Pasted%20image%2020250923170055.png"></li>
-<li>找到DSP库，并且勾选上，可能下载会比较慢<br><img src="/../../images/Pasted%20image%2020250923170334.png"><br>返回，并且勾选上添加DSP库，生成代码<br><img src="/../../images/Pasted%20image%2020250923171004.png"><br>返回Vscode看到有如下文件则添加成功<br><img src="/../../images/Pasted%20image%2020250923171138.png"><br>接下来在CMake文件中如下位置添加两行代码</li>
+<li>回到CUBEMX<br><img data-src="/../../images/Pasted%20image%2020250923170055.png"></li>
+<li>找到DSP库，并且勾选上，可能下载会比较慢<br><img data-src="/../../images/Pasted%20image%2020250923170334.png"><br>返回，并且勾选上添加DSP库，生成代码<br><img data-src="/../../images/Pasted%20image%2020250923171004.png"><br>返回Vscode看到有如下文件则添加成功<br><img data-src="/../../images/Pasted%20image%2020250923171138.png"><br>接下来在CMake文件中如下位置添加两行代码</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Lib/GCC/libarm_cortexM4lf_math.a</span><br><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Include</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250923171646.png"><br>到此，工程创建成功</p>
+<p><img data-src="/../../images/Pasted%20image%2020250923171646.png"><br>到此，工程创建成功</p>
 <h1 id="3-测试工程"><a href="#3-测试工程" class="headerlink" title="3.测试工程"></a>3.测试工程</h1><p>为了方便输出信息，我们将串口重定向，在usart.c文件中添加如下代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  // 阻塞方式打印 -&gt; 串口2</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2, (uint8_t *)&amp;ch, 1, 0xFFFF);</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>&#x3D;&#x3D;注意要在gcc-arm-none-eabi.cmake文件如下位置加入-u_printf_float&#x3D;&#x3D;<br><img src="/../../images/Pasted%20image%2020250925165625.png"></li>
+<li>&#x3D;&#x3D;注意要在gcc-arm-none-eabi.cmake文件如下位置加入-u_printf_float&#x3D;&#x3D;<br><img data-src="/../../images/Pasted%20image%2020250925165625.png"></li>
 </ul>
-<p>测试代码，注意需要包含stdio头文件<br><img src="/../../images/Pasted%20image%2020250923172715.png"><br>该插件的下载按钮如下<br><img src="/../../images/Pasted%20image%2020250923173120.png"><br>&#x3D;&#x3D;注意，必须加“\n”,不然会有莫名的问题</p>
+<p>测试代码，注意需要包含stdio头文件<br><img data-src="/../../images/Pasted%20image%2020250923172715.png"><br>该插件的下载按钮如下<br><img data-src="/../../images/Pasted%20image%2020250923173120.png"><br>&#x3D;&#x3D;注意，必须加“\n”,不然会有莫名的问题</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;hello\n&quot;);</span><br></pre></td></tr></table></figure>
-<p>调试信息如下：<br><img src="/../../images/Pasted%20image%2020250925170045.png"><br>成功&#x3D;&#x3D;</p>
+<p>调试信息如下：<br><img data-src="/../../images/Pasted%20image%2020250925170045.png"><br>成功&#x3D;&#x3D;</p>
 
     </div>
 
@@ -400,6 +400,7 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
