@@ -209,6 +209,79 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo搭建个人博客推送至github</title>
+    <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
+    <content><![CDATA[<h1 id="1-安装git与Nodejs"><a href="#1-安装git与Nodejs" class="headerlink" title="1.安装git与Nodejs"></a>1.安装git与Nodejs</h1><ul>
+<li><p>在Windows上安装Git，可以从Git官网直接<a href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a><br>装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就<br>说明Git安装成功。<br><img src="/../../images/Pasted%20image%2020250221215415.png"></p>
+</li>
+<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"># 其中Your Name和email@example.com替换成github账户名和邮箱</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装NodeJS<br>网址 <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 并配置环境变量。</li>
+<li>安装之后可以输入以下命令查看是否安装成功。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250221220038.png"></p>
+<h1 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h1><ul>
+<li>新建文件夹，在该文件夹下打开”git bach here“。<br><img src="/../../images/Pasted%20image%2020250221220553.png"></li>
+<li>在命令行执行下列命令。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行完成后，运行 hexo server 命令，在浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000</a> 就能够预览效果了。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250221220910.png"></p>
+<h1 id="3-修改主题"><a href="#3-修改主题" class="headerlink" title="3.修改主题"></a>3.修改主题</h1><ul>
+<li>我用的是NEXT主题：<a href="https://github.com/next-theme/hexo-theme-next%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E8%A7%A3%E5%8E%8B%E5%9C%A8myBlog/themes%E8%B7%AF%E5%BE%84%E4%B8%8B%E3%80%82%E7%84%B6%E5%90%8E%E6%89%93%E5%BC%80_config.yml%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E3%80%82">https://github.com/next-theme/hexo-theme-next，下载完成后解压在myBlog\themes路径下。然后打开_config.yml文件修改如下。</a><br><img src="/../../images/Pasted%20image%2020250221221700.png"><br>这里为了简便我将解压后的文件重命名为next，保存之后刷新 <a href="http://localhost:4000/">http://localhost:4000</a> 页面，主题就已经更改完成。</li>
+</ul>
+<h1 id="4-修改next主题配置"><a href="#4-修改next主题配置" class="headerlink" title="4.修改next主题配置"></a>4.修改next主题配置</h1><ul>
+<li>详细配置请见</li>
+</ul>
+<h1 id="5-将博客部署在github上"><a href="#5-将博客部署在github上" class="headerlink" title="5.将博客部署在github上"></a>5.将博客部署在github上</h1><ul>
+<li>在github上建立一个新仓库，在这里注意仓库名一定要是： 用户名.github.io，如我的用户名是jiao-ye，那么我的新仓库名就为jiao-ye.github.io</li>
+<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，将本地仓库能连接远程仓库，输入下列命令。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#email@example.com替换成github邮箱</span><br></pre></td></tr></table></figure>
+<p>按照提示完成后便可以生成ssh key。<br>查看ssh key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/Pasted%20image%2020250221223544.png"><br>复制输出的ssh key，在github上建立新的ssh key<br><img src="/../../images/Pasted%20image%2020250221223704.png"><br><img src="/../../images/Pasted%20image%2020250221223713.png"></p>
+<ul>
+<li>将本地仓库与远程仓库连接起来，打开_config.yml文件进行如下修改<br><img src="/../../images/Pasted%20image%2020250221223919.png"><br><img src="/../../images/Pasted%20image%2020250221223957.png"></li>
+<li>安装部署插件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行如下两条指令生成与部署</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g # 生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用浏览器输入 用户名.github.io 就可以访问自己的个人博客了</li>
+</ul>
+<h1 id="6-编写shell脚本方便部署"><a href="#6-编写shell脚本方便部署" class="headerlink" title="6.编写shell脚本方便部署"></a>6.编写shell脚本方便部署</h1><ul>
+<li>在myBlog下新建deploy.sh脚本，粘贴下列代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 生成静态文件</span><br><span class="line">hexo clean &amp;&amp; hexo generate</span><br><span class="line"></span><br><span class="line"># 部署到 GitHub Pages</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给与权限</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod u+x deploy.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>双击deploy.sh即可一键部署<br><img src="/../../images/Pasted%20image%2020250221224633.png"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>next主题的使用</title>
     <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
@@ -284,20 +357,6 @@
       </categories>
       <tags>
         <tag>电路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
-    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
-    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
       </tags>
   </entry>
   <entry>
@@ -396,6 +455,20 @@
       </tags>
   </entry>
   <entry>
+    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
+    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
+    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Obsidian来编写hexo博客</title>
     <url>/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="1-下载Obsidian"><a href="#1-下载Obsidian" class="headerlink" title="1.下载Obsidian"></a>1.下载Obsidian</h1><ul>
@@ -415,79 +488,6 @@
 <li>点击New shell command，创建新的命令</li>
 <li>写入start deploy.sh命令，该脚本在已经在<a href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" title="hexo搭建个人博客推送至github">hexo搭建个人博客推送至github</a>中创建<br> <img src="/../images/Pasted%20image%2020250222162125.png"></li>
 <li>点击执行按钮，就会自动部署到远程仓库</li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>Obsidian</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo搭建个人博客推送至github</title>
-    <url>/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/</url>
-    <content><![CDATA[<h1 id="1-安装git与Nodejs"><a href="#1-安装git与Nodejs" class="headerlink" title="1.安装git与Nodejs"></a>1.安装git与Nodejs</h1><ul>
-<li><p>在Windows上安装Git，可以从Git官网直接<a href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a><br>装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就<br>说明Git安装成功。<br><img src="/../../images/Pasted%20image%2020250221215415.png"></p>
-</li>
-<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"># 其中Your Name和email@example.com替换成github账户名和邮箱</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装NodeJS<br>网址 <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 并配置环境变量。</li>
-<li>安装之后可以输入以下命令查看是否安装成功。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221220038.png"></p>
-<h1 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h1><ul>
-<li>新建文件夹，在该文件夹下打开”git bach here“。<br><img src="/../../images/Pasted%20image%2020250221220553.png"></li>
-<li>在命令行执行下列命令。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行完成后，运行 hexo server 命令，在浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000</a> 就能够预览效果了。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221220910.png"></p>
-<h1 id="3-修改主题"><a href="#3-修改主题" class="headerlink" title="3.修改主题"></a>3.修改主题</h1><ul>
-<li>我用的是NEXT主题：<a href="https://github.com/next-theme/hexo-theme-next%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E8%A7%A3%E5%8E%8B%E5%9C%A8myBlog/themes%E8%B7%AF%E5%BE%84%E4%B8%8B%E3%80%82%E7%84%B6%E5%90%8E%E6%89%93%E5%BC%80_config.yml%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E3%80%82">https://github.com/next-theme/hexo-theme-next，下载完成后解压在myBlog\themes路径下。然后打开_config.yml文件修改如下。</a><br><img src="/../../images/Pasted%20image%2020250221221700.png"><br>这里为了简便我将解压后的文件重命名为next，保存之后刷新 <a href="http://localhost:4000/">http://localhost:4000</a> 页面，主题就已经更改完成。</li>
-</ul>
-<h1 id="4-修改next主题配置"><a href="#4-修改next主题配置" class="headerlink" title="4.修改next主题配置"></a>4.修改next主题配置</h1><ul>
-<li>详细配置请见</li>
-</ul>
-<h1 id="5-将博客部署在github上"><a href="#5-将博客部署在github上" class="headerlink" title="5.将博客部署在github上"></a>5.将博客部署在github上</h1><ul>
-<li>在github上建立一个新仓库，在这里注意仓库名一定要是： 用户名.github.io，如我的用户名是jiao-ye，那么我的新仓库名就为jiao-ye.github.io</li>
-<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，将本地仓库能连接远程仓库，输入下列命令。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#email@example.com替换成github邮箱</span><br></pre></td></tr></table></figure>
-<p>按照提示完成后便可以生成ssh key。<br>查看ssh key</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221223544.png"><br>复制输出的ssh key，在github上建立新的ssh key<br><img src="/../../images/Pasted%20image%2020250221223704.png"><br><img src="/../../images/Pasted%20image%2020250221223713.png"></p>
-<ul>
-<li>将本地仓库与远程仓库连接起来，打开_config.yml文件进行如下修改<br><img src="/../../images/Pasted%20image%2020250221223919.png"><br><img src="/../../images/Pasted%20image%2020250221223957.png"></li>
-<li>安装部署插件</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行如下两条指令生成与部署</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g # 生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
-<ul>
-<li>用浏览器输入 用户名.github.io 就可以访问自己的个人博客了</li>
-</ul>
-<h1 id="6-编写shell脚本方便部署"><a href="#6-编写shell脚本方便部署" class="headerlink" title="6.编写shell脚本方便部署"></a>6.编写shell脚本方便部署</h1><ul>
-<li>在myBlog下新建deploy.sh脚本，粘贴下列代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 生成静态文件</span><br><span class="line">hexo clean &amp;&amp; hexo generate</span><br><span class="line"></span><br><span class="line"># 部署到 GitHub Pages</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<ul>
-<li>给与权限</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod u+x deploy.sh</span><br></pre></td></tr></table></figure>
-<ul>
-<li>双击deploy.sh即可一键部署<br><img src="/../../images/Pasted%20image%2020250221224633.png"></li>
 </ul>
 ]]></content>
       <categories>
