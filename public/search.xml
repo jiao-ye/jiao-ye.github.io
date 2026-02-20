@@ -147,6 +147,18 @@
       </tags>
   </entry>
   <entry>
+    <title>STM32单片机下载显示failed to erase memory</title>
+    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
+    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vscode开发STM32G431使用串口重定向</title>
     <url>/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</url>
     <content><![CDATA[<ul>
@@ -162,89 +174,6 @@
       </categories>
       <tags>
         <tag>STM32G431</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32单片机下载显示failed to erase memory</title>
-    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
-    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32时钟树</title>
-    <url>/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><ul>
-<li>在对STM32编程时，代码第一步总是要开启外设时钟使能，在数据手册上可以看到所有外设都是挂载在时钟树下，所以时钟树到底是个什么玩意？本文在此介绍。</li>
-</ul>
-<h1 id="2-时钟树"><a href="#2-时钟树" class="headerlink" title="2.时钟树"></a>2.时钟树</h1><ul>
-<li>首先解释一下什么是时钟树，STM32的时钟树(Clock Tree)是指控制器内部时钟信号从源头到各个外设的分配和控制系统。它是一个复杂的网络结构，决定了CPU、总线和外设的工作频率。</li>
-</ul>
-<h2 id="2-1时钟的种类"><a href="#2-1时钟的种类" class="headerlink" title="2.1时钟的种类"></a>2.1时钟的种类</h2><ul>
-<li>从数据手册可以看出，STM32系列的单片机又有四个基础时钟源，<strong>HSI振荡器时钟，LSI振荡器时钟，HSE振荡器时钟，HSI振荡器时钟</strong>，这四个时钟就是最基本的时钟来源，也就是时钟树的根，之后就是<strong>PLL锁相环</strong>和<strong>SYSCLK系统时钟</strong>。</li>
-<li>这几者的关系可以先看成这样的关系<br><img src="/../images/Pasted%20image%2020250513211843.png"></li>
-<li>我们直接查看数据手册<br><img src="/../images/Pasted%20image%2020250513212416.png"><br>可以看到外设的最高频率可以达到170M，显然可以看到这四个基础时钟都无法直接提供170M的频率，那么这170M的时钟是哪来的呢？从上面的关系图可以看出，将HSE或者HSI接入PLL就能输出170M的频率了。</li>
-<li>系统时钟的来源：HSI振荡器时钟 HSE振荡器时钟 PLL锁相环  ，</li>
-<li>两个次级时钟源：LSI振荡器时钟 LSE振荡器时钟</li>
-</ul>
-<h2 id="2-2时钟树的框图"><a href="#2-2时钟树的框图" class="headerlink" title="2.2时钟树的框图"></a>2.2时钟树的框图</h2><p><img src="/../images/Pasted%20image%2020250513213131.png"><br>乍一看很复杂，但我们不需要看这么多，我们将其简化一下，只需要看红色部分就行<br><img src="/../images/Pasted%20image%2020250513215153.png"></p>
-<ul>
-<li>LSI(内部低速时钟)：时钟信号由内部RC振荡电路产生，频率为32.768K</li>
-<li>HSI(内部高速时钟)：时钟信号由内部RC振荡电路产生，STM32G431有两个时钟源(16M和48M)，一般用于独立看门狗</li>
-<li>LSE(外部低速时钟)：时钟信号由外部晶振提供，一般为32.768K，一般用于RTC实时时钟</li>
-<li>HSE(外部高速时钟)：时钟信号由外部晶振提供，范围为4-48M，主要是用该时钟</li>
-<li>PLL锁相环：将时钟的信号进行放大<br> 简单介绍PLL锁相环，先看PLL的框图：<br> <img src="/../images/Pasted%20image%2020250909172639.png"><br>  鉴相器：通过比较输入输出的相位差，输出一定的电压信号<br>  低通滤波：滤除鉴相器输出的杂波<br>  压控振荡器：使输出信号的频率与低通滤波输出的频率保持一致<br>  那么我们只要在反馈通道上加上一个分频器，就能实现输出信号的放大</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>next主题的使用</title>
-    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
-<ul>
-<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -318,6 +247,77 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32时钟树</title>
+    <url>/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><ul>
+<li>在对STM32编程时，代码第一步总是要开启外设时钟使能，在数据手册上可以看到所有外设都是挂载在时钟树下，所以时钟树到底是个什么玩意？本文在此介绍。</li>
+</ul>
+<h1 id="2-时钟树"><a href="#2-时钟树" class="headerlink" title="2.时钟树"></a>2.时钟树</h1><ul>
+<li>首先解释一下什么是时钟树，STM32的时钟树(Clock Tree)是指控制器内部时钟信号从源头到各个外设的分配和控制系统。它是一个复杂的网络结构，决定了CPU、总线和外设的工作频率。</li>
+</ul>
+<h2 id="2-1时钟的种类"><a href="#2-1时钟的种类" class="headerlink" title="2.1时钟的种类"></a>2.1时钟的种类</h2><ul>
+<li>从数据手册可以看出，STM32系列的单片机又有四个基础时钟源，<strong>HSI振荡器时钟，LSI振荡器时钟，HSE振荡器时钟，HSI振荡器时钟</strong>，这四个时钟就是最基本的时钟来源，也就是时钟树的根，之后就是<strong>PLL锁相环</strong>和<strong>SYSCLK系统时钟</strong>。</li>
+<li>这几者的关系可以先看成这样的关系<br><img src="/../images/Pasted%20image%2020250513211843.png"></li>
+<li>我们直接查看数据手册<br><img src="/../images/Pasted%20image%2020250513212416.png"><br>可以看到外设的最高频率可以达到170M，显然可以看到这四个基础时钟都无法直接提供170M的频率，那么这170M的时钟是哪来的呢？从上面的关系图可以看出，将HSE或者HSI接入PLL就能输出170M的频率了。</li>
+<li>系统时钟的来源：HSI振荡器时钟 HSE振荡器时钟 PLL锁相环  ，</li>
+<li>两个次级时钟源：LSI振荡器时钟 LSE振荡器时钟</li>
+</ul>
+<h2 id="2-2时钟树的框图"><a href="#2-2时钟树的框图" class="headerlink" title="2.2时钟树的框图"></a>2.2时钟树的框图</h2><p><img src="/../images/Pasted%20image%2020250513213131.png"><br>乍一看很复杂，但我们不需要看这么多，我们将其简化一下，只需要看红色部分就行<br><img src="/../images/Pasted%20image%2020250513215153.png"></p>
+<ul>
+<li>LSI(内部低速时钟)：时钟信号由内部RC振荡电路产生，频率为32.768K</li>
+<li>HSI(内部高速时钟)：时钟信号由内部RC振荡电路产生，STM32G431有两个时钟源(16M和48M)，一般用于独立看门狗</li>
+<li>LSE(外部低速时钟)：时钟信号由外部晶振提供，一般为32.768K，一般用于RTC实时时钟</li>
+<li>HSE(外部高速时钟)：时钟信号由外部晶振提供，范围为4-48M，主要是用该时钟</li>
+<li>PLL锁相环：将时钟的信号进行放大<br> 简单介绍PLL锁相环，先看PLL的框图：<br> <img src="/../images/Pasted%20image%2020250909172639.png"><br>  鉴相器：通过比较输入输出的相位差，输出一定的电压信号<br>  低通滤波：滤除鉴相器输出的杂波<br>  压控振荡器：使输出信号的频率与低通滤波输出的频率保持一致<br>  那么我们只要在反馈通道上加上一个分频器，就能实现输出信号的放大</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>next主题的使用</title>
+    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>有四个类型</p>
+<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>categories下index文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
+<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑 主题配置文件，启用本地搜索功能：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
+<ul>
+<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>next主题</tag>
       </tags>
   </entry>
   <entry>
@@ -485,6 +485,34 @@
       </tags>
   </entry>
   <entry>
+    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
+    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
+    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决STM32G431BOOT0与IIC冲突问题</title>
+    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ul>
+<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>STM32G431</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>无人机悬停时间计算方法</title>
     <url>/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h1 id="1-计算电机转速N和螺旋桨转矩M轴距"><a href="#1-计算电机转速N和螺旋桨转矩M轴距" class="headerlink" title="1.计算电机转速N和螺旋桨转矩M轴距"></a>1.计算电机转速N和螺旋桨转矩M轴距</h1><h2 id="1-1轴距"><a href="#1-1轴距" class="headerlink" title="1.1轴距"></a>1.1轴距</h2><ul>
@@ -578,20 +606,6 @@
       </categories>
   </entry>
   <entry>
-    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
-    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
-    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决在Vscode开发ROS没有提示</title>
     <url>/2025/10/31/%E8%A7%A3%E5%86%B3%E5%9C%A8Vscode%E5%BC%80%E5%8F%91ROS%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA/</url>
     <content><![CDATA[<p>首先在.vscode文件夹下的c_cpp_properties.json文件修改成下图：<br><img src="/../../images/Pasted%20image%2020251031194924.png"><br>在上图的includePath中加入自己工作空间的路径</p>
@@ -601,20 +615,6 @@
       </categories>
       <tags>
         <tag>ROS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决STM32G431BOOT0与IIC冲突问题</title>
-    <url>/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<ul>
-<li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>STM32G431</tag>
       </tags>
   </entry>
 </search>
