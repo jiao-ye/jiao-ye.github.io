@@ -1291,7 +1291,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #ff79ff;
+    background: #11f9ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1730,6 +1730,7 @@ pre code {
 }
 .back-to-top span {
   margin-right: 8px;
+  display: none;
 }
 .back-to-top .fa {
   text-align: center;
@@ -1741,16 +1742,6 @@ pre code {
 }
 .back-to-top.back-to-top-on:hover {
   opacity: 0.8;
-}
-.reading-progress-bar {
-  --progress: 0;
-  background: #ff7a18;
-  height: 4px;
-  position: fixed;
-  z-index: 50;
-  width: var(--progress);
-  left: 0;
-  top: 0;
 }
 .rtl.post-body p,
 .rtl.post-body a,
