@@ -107,6 +107,18 @@
       </tags>
   </entry>
   <entry>
+    <title>STM32单片机下载显示failed to erase memory</title>
+    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
+    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STM32G431启用FPU与DSP库</title>
     <url>/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/</url>
     <content><![CDATA[<h1 id="1-FPU与DSP"><a href="#1-FPU与DSP" class="headerlink" title="1.FPU与DSP"></a>1.FPU与DSP</h1><ul>
@@ -142,20 +154,8 @@
         <category>STM32</category>
       </categories>
       <tags>
+        <tag>调试</tag>
         <tag>STM32</tag>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32单片机下载显示failed to erase memory</title>
-    <url>/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/</url>
-    <content><![CDATA[<p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
       </tags>
   </entry>
   <entry>
@@ -360,20 +360,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
-    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
-    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
-]]></content>
-      <categories>
-        <category>STM32</category>
-      </categories>
-      <tags>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows使用wsl2+ubuntu20.04安装ROS1的步骤</title>
     <url>/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<h1 id="1-首先确保电脑CPU能虚拟化并且打开如下功能"><a href="#1-首先确保电脑CPU能虚拟化并且打开如下功能" class="headerlink" title="1.首先确保电脑CPU能虚拟化并且打开如下功能"></a>1.首先确保电脑CPU能虚拟化并且打开如下功能</h1><p><img src="/../../images/Pasted%20image%2020251208111118.png"></p>
@@ -496,6 +482,20 @@
       <tags>
         <tag>hexo博客</tag>
         <tag>Obsidian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Cmake+hal库开发STM32无法通过printf打印浮点数</title>
+    <url>/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/</url>
+    <content><![CDATA[<p>在开发STM32中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
+<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>调试</tag>
       </tags>
   </entry>
   <entry>
