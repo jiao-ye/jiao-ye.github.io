@@ -250,9 +250,14 @@
 <li>在Vscode中使用STM32 VS Code Extension来开发STM32G431不同于keil，在keil中，我们只要勾选MicroLIB就能实现串口重定向<br><img src="/../images/Pasted%20image%2020250603222055.png"></li>
 <li>在Vscode中我们要在STM32cubemx生成的代码下，在usart.c文件中加入如下代码</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;//包含头文件</span><br><span class="line"></span><br><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"> PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2,(uint8_t *)&amp;ch,1,0xFFFF);//阻塞方式打印</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：使用printf函数时，必须在末尾加上\r\n，否则无法输出</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/06/03/Vscode%E5%BC%80%E5%8F%91STM32G431%E4%BD%BF%E7%94%A8%E4%B8%B2%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -336,28 +341,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><ul>
-<li>在对STM32编程时，代码第一步总是要开启外设时钟使能，在数据手册上可以看到所有外设都是挂载在时钟树下，所以时钟树到底是个什么玩意？本文在此介绍。</li>
-</ul>
-<h1 id="2-时钟树"><a href="#2-时钟树" class="headerlink" title="2.时钟树"></a>2.时钟树</h1><ul>
-<li>首先解释一下什么是时钟树，STM32的时钟树(Clock Tree)是指控制器内部时钟信号从源头到各个外设的分配和控制系统。它是一个复杂的网络结构，决定了CPU、总线和外设的工作频率。</li>
-</ul>
-<h2 id="2-1时钟的种类"><a href="#2-1时钟的种类" class="headerlink" title="2.1时钟的种类"></a>2.1时钟的种类</h2><ul>
-<li>从数据手册可以看出，STM32系列的单片机又有四个基础时钟源，<strong>HSI振荡器时钟，LSI振荡器时钟，HSE振荡器时钟，HSI振荡器时钟</strong>，这四个时钟就是最基本的时钟来源，也就是时钟树的根，之后就是<strong>PLL锁相环</strong>和<strong>SYSCLK系统时钟</strong>。</li>
-<li>这几者的关系可以先看成这样的关系<br><img src="/../images/Pasted%20image%2020250513211843.png"></li>
-<li>我们直接查看数据手册<br><img src="/../images/Pasted%20image%2020250513212416.png"><br>可以看到外设的最高频率可以达到170M，显然可以看到这四个基础时钟都无法直接提供170M的频率，那么这170M的时钟是哪来的呢？从上面的关系图可以看出，将HSE或者HSI接入PLL就能输出170M的频率了。</li>
-<li>系统时钟的来源：HSI振荡器时钟 HSE振荡器时钟 PLL锁相环  ，</li>
-<li>两个次级时钟源：LSI振荡器时钟 LSE振荡器时钟</li>
-</ul>
-<h2 id="2-2时钟树的框图"><a href="#2-2时钟树的框图" class="headerlink" title="2.2时钟树的框图"></a>2.2时钟树的框图</h2><p><img src="/../images/Pasted%20image%2020250513213131.png"><br>乍一看很复杂，但我们不需要看这么多，我们将其简化一下，只需要看红色部分就行<br><img src="/../images/Pasted%20image%2020250513215153.png"></p>
-<ul>
-<li>LSI(内部低速时钟)：时钟信号由内部RC振荡电路产生，频率为32.768K</li>
-<li>HSI(内部高速时钟)：时钟信号由内部RC振荡电路产生，STM32G431有两个时钟源(16M和48M)，一般用于独立看门狗</li>
-<li>LSE(外部低速时钟)：时钟信号由外部晶振提供，一般为32.768K，一般用于RTC实时时钟</li>
-<li>HSE(外部高速时钟)：时钟信号由外部晶振提供，范围为4-48M，主要是用该时钟</li>
-<li>PLL锁相环：将时钟的信号进行放大<br> 简单介绍PLL锁相环，先看PLL的框图：<br> <img src="/../images/Pasted%20image%2020250909172639.png"><br>  鉴相器：通过比较输入输出的相位差，输出一定的电压信号<br>  低通滤波：滤除鉴相器输出的杂波<br>  压控振荡器：使输出信号的频率与低通滤波输出的频率保持一致<br>  那么我们只要在反馈通道上加上一个分频器，就能实现输出信号的放大</li>
-</ul>
-
+          <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/05/11/STM32%E6%97%B6%E9%92%9F%E6%A0%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -441,35 +433,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-什么是谐振？"><a href="#1-什么是谐振？" class="headerlink" title="1.什么是谐振？"></a>1.什么是谐振？</h1><h2 id="1-1RLC串联谐振"><a href="#1-1RLC串联谐振" class="headerlink" title="1.1RLC串联谐振"></a>1.1RLC串联谐振</h2><ul>
-<li><p>对于一个RLC串联电路，如果端电压与端电流同相位，则称该电路发生了谐振<br><img src="/../images/Pasted%20image%2020250303235346.png"></p>
-</li>
-<li><p>电路的阻抗为<br> $$ Z &#x3D; R + j\left( \omega L - \frac{1}{\omega C} \right) $$<br> 从上面可以看出阻抗具有虚部，那么端口电压与端口电流的相位肯定不是相同的，相差一个阻抗角</p>
-</li>
-<li><p>我们知道，流经电阻的电压和电流是相位相同的，那么我们是否可以把该电路的阻抗等效成一个电阻呢，当然可以，只需要令<br> $$ \left( \omega L - \frac{1}{\omega C} \right)&#x3D;0 $$<br> 此时该电路的阻抗就等效为R</p>
-</li>
-<li><p>可以求得：<br> $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</p>
-</li>
-</ul>
-<p> 当上式成立时，此时该电路就发生了谐振。</p>
-<ul>
-<li>如果我们变化这个频率，电路会怎样变化，w增大，可以推出<br>$$ \left( \omega L - \frac{1}{\omega C} \right)&gt;0 $$<br> 那么此时的阻抗角<br> $$\theta &#x3D; \arctan\left(\frac{X}{R}\right)&gt;0$$<br> 可以得出电压超前电流，那么此时该电路呈现出感性，反之则呈现出容性，此时电容与电感的总电压为0，但电容与电感两端的电压却不是为0，而是具有这样的特点：大小相同，方向相反</li>
-</ul>
-<h2 id="1-2RLC并联谐振"><a href="#1-2RLC并联谐振" class="headerlink" title="1.2RLC并联谐振"></a>1.2RLC并联谐振</h2><ul>
-<li>对于RLC并联谐振也是一样的，为了方便，我们用导纳来表示<br><img src="/../images/Pasted%20image%2020250304003015.png"></li>
-<li>电路的导纳为<br> $$ Y &#x3D; G + j\left( \omega C - \frac{1}{\omega L} \right) $$<br> 一样的我们令<br> $$ \left( \omega C - \frac{1}{\omega L} \right)&#x3D;0 $$<br> 此时电路的导纳就等效为G，端电流与端电压的相位就相同了</li>
-<li>同样可以求得<br>  $$ w &#x3D; \frac{1}{\sqrt{LC}} $$</li>
-<li>如果我们改变这个频率，令w增大，那么可以推出<br>   $$ \left( \omega C - \frac{1}{\omega L} \right)&gt;0 $$<br>   此时电流的相位超前电压，电路呈现容性，反之呈现感性。此时电容与电感的总电流为0，但电容与电感所在的支路电流却不是为0，而是具有这样的特点：大小相同，方向相反</li>
-</ul>
-<h2 id="1-3谐振的特性"><a href="#1-3谐振的特性" class="headerlink" title="1.3谐振的特性"></a>1.3谐振的特性</h2><ul>
-<li>对于RLC串联电路，我们可由阻抗的模值等于<br>$$|Z| &#x3D; \sqrt{R^2 + X^2}$$<br>此时的电流等于<br>$$I &#x3D; \frac{U}Z$$<br>可知当阻抗最小时，电流最大，那么什么时候阻抗最小，如果X等于0，那么|Z|就最小，也就是发生谐振的时候，所以RLC串联电路发生谐振时，电路的电流是最大的</li>
-<li>同理我们可以推出RLC并联电路发生谐振时，电路的电流是最小的</li>
-</ul>
-<h2 id="1-4品质因数"><a href="#1-4品质因数" class="headerlink" title="1.4品质因数"></a>1.4品质因数</h2><ul>
-<li>在RLC串联谐振中，品质因数的定义是电容或电感的电压与电源的比值<br>$$Q &#x3D; \frac{w L}{R} &#x3D; \frac{1}{w C R}&#x3D;\frac{1}{R} \sqrt{\frac{L}{C}}$$<br>可以看到电路的品质因数由RLC的参数决定，如果Q大于0，则说明电容&#x2F;电感两端的电压大于电源电压，这就叫做”过电压“，在实际中，我们应该避免过电压的产生</li>
-<li>在RLC并联谐振中，品质因数的定义是电容或电感的支路电流与干路电流的比值 $$<br>Q &#x3D; \frac{1}{G} \sqrt{\frac{C}{L}}$$<br>可以看到电路的品质因数也是由RLC的参数决定，如果Q大于0，则说明电容&#x2F;电感的支路电流大于干路电流，这就叫做”过电流“</li>
-</ul>
-
+          <h1 id="1-什么是谐振？"><a href="#1-什么是谐振？" class="headerlink" title="1.什么是谐振？"></a>1.什么是谐振？</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/03/03/%E4%B8%B2%E8%81%94%E8%B0%90%E6%8C%AF%E4%B8%8E%E5%B9%B6%E8%81%94%E8%B0%90%E6%8C%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -553,25 +525,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-什么是BUCK电路"><a href="#1-什么是BUCK电路" class="headerlink" title="1.什么是BUCK电路"></a>1.什么是BUCK电路</h1><ul>
-<li>在如下回路中，通过不断的开关mos管，我们可以得到这样的电压波形<br><img src="/../images/Pasted%20image%2020250226174346.png"><br><img src="/../images/Pasted%20image%2020250226174516.png"></li>
-</ul>
-<h2 id="1-1有什么办法能让这个波形变得更加缓呢"><a href="#1-1有什么办法能让这个波形变得更加缓呢" class="headerlink" title="1.1有什么办法能让这个波形变得更加缓呢"></a>1.1有什么办法能让这个波形变得更加缓呢</h2><ul>
-<li>我们可以想到，电容两端的电压不能突变，我们加上电容试试<br><img src="/../images/Pasted%20image%2020250226175122.png"><br>可以看到波形如下：<br><img src="/../images/Pasted%20image%2020250226175229.png"></li>
-<li>可以看到，当开关断开时，电压并没有降为0，这是因为当开关闭合时，电源同时给负载和电容供电，当开关断开时，电容又会给负载供电，所以此时的电压不会为0，此时来看看电流的波形<br><img src="/../images/Pasted%20image%2020250226180138.png"></li>
-<li>为什么会出现这个尖端呢，我们可以联想一下电容的公式：<br>$$ i(t) &#x3D; C \frac{dV(t)}{dt} $$</li>
-<li>当t(时间)无限小时，此时的i(电流)是无限大的，这就是尖端产生的原因。</li>
-</ul>
-<h2 id="1-2有什么能让这个尖端变缓呢"><a href="#1-2有什么能让这个尖端变缓呢" class="headerlink" title="1.2有什么能让这个尖端变缓呢"></a>1.2有什么能让这个尖端变缓呢</h2><ul>
-<li><p>可以很自然的想到，电感的电流是不可以突变的，我们加上电感试试，但由于当开关断开是，电感的左侧是开路的，我们需要构成一个回路，当开关闭合时，这个回路是断开的，开关断开是，这个回路是闭合的，可以想到用一个二极管放置在回路中，这就叫异步BUCK，既然有异步，那肯定就有同步，将一个MOS管代替二极管的位置，同时将控制开关的信号接一个反相器来控制MOS管，这时，当开关打开时，信号经过反相器就会将MOS管截止，反之就会打开。</p>
-</li>
-<li><p>下面是同步BUCK的示例<br><img src="/../images/Pasted%20image%2020250226195201.png"></p>
-</li>
-<li><p>在这里电源电压设置为10V，占空比设为0.5，理论值应为5V<br><img src="/../images/Pasted%20image%2020250226195734.png"><br>可以看到与理论值相差不大</p>
-</li>
-</ul>
-<p>异步BUCK结构拓补图<br><img src="/../images/Pasted%20image%2020250226201507.png"><br>同步BUCK结构拓补图<br><img src="/../images/Pasted%20image%2020250226201559.png"></p>
-
+          <h1 id="1-什么是BUCK电路"><a href="#1-什么是BUCK电路" class="headerlink" title="1.什么是BUCK电路"></a>1.什么是BUCK电路</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/02/26/BUCK%E7%94%B5%E8%B7%AF%E8%AF%A6%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -655,34 +617,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
-<ul>
-<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
-</ul>
-
+          <h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -766,25 +709,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-下载Obsidian"><a href="#1-下载Obsidian" class="headerlink" title="1.下载Obsidian"></a>1.下载Obsidian</h1><ul>
-<li>在官网下载Obsidian：<a target="_blank" rel="noopener" href="https://obsidian.md/">https://obsidian.md/</a><br><img src="/../../images/Pasted%20image%2020250221230923.png"><br>按照提示安装，最好将目标位置改为D盘</li>
-<li>安装完成，选择打开myBlog文件夹<br><img src="/../../images/Pasted%20image%2020250221231158.png"></li>
-</ul>
-<h1 id="2-配置Obsidian"><a href="#2-配置Obsidian" class="headerlink" title="2.配置Obsidian"></a>2.配置Obsidian</h1><ul>
-<li>点击Obsidian的设置<br><img src="/../../images/Pasted%20image%2020250221231614.png"></li>
-<li>点击文件与链接，忽略以下文件<br><img src="/../../images/Pasted%20image%2020250221231806.png"></li>
-<li>在myBlog\source下新建images文件夹，将内部链接类型改为基于当前笔记的相对路径，关闭wiki链接，将附件默认存放路径改为指定的附件文件夹，将附件文件夹路径改为source&#x2F;images<br><img src="/../../images/Pasted%20image%2020250221232138.png"></li>
-<li>将新建笔记的存放位置改为指定的附件文件夹，将存放新建笔记的文件<br><img src="/../../images/Pasted%20image%2020250221232446.png"></li>
-</ul>
-<h1 id="3-安装插件"><a href="#3-安装插件" class="headerlink" title="3.安装插件"></a>3.安装插件</h1><ul>
-<li>关闭安全模式，在插件市场下载如下四个插件<br><img src="/../images/Pasted%20image%2020250222161719.png"></li>
-</ul>
-<h2 id="3-1-git、float-toc、tree下载无需配置"><a href="#3-1-git、float-toc、tree下载无需配置" class="headerlink" title="3.1 git、float toc、tree下载无需配置"></a>3.1 git、float toc、tree下载无需配置</h2><h2 id="3-2-Shell插件配置"><a href="#3-2-Shell插件配置" class="headerlink" title="3.2 Shell插件配置"></a>3.2 Shell插件配置</h2><ul>
-<li>点击New shell command，创建新的命令</li>
-<li>写入start deploy.sh命令，该脚本在已经在<a href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/" title="hexo搭建个人博客推送至github">hexo搭建个人博客推送至github</a>中创建<br> <img src="/../images/Pasted%20image%2020250222162125.png"></li>
-<li>点击执行按钮，就会自动部署到远程仓库</li>
-</ul>
-
+          <h1 id="1-下载Obsidian"><a href="#1-下载Obsidian" class="headerlink" title="1.下载Obsidian"></a>1.下载Obsidian</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/02/21/%E4%BD%BF%E7%94%A8Obsidian%E6%9D%A5%E7%BC%96%E5%86%99hexo%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -868,68 +801,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-安装git与Nodejs"><a href="#1-安装git与Nodejs" class="headerlink" title="1.安装git与Nodejs"></a>1.安装git与Nodejs</h1><ul>
-<li><p>在Windows上安装Git，可以从Git官网直接<a target="_blank" rel="noopener" href="https://git-scm.com/downloads%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9%E5%AE%89">https://git-scm.com/downloads，然后按默认选项安</a><br>装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就<br>说明Git安装成功。<br><img src="/../../images/Pasted%20image%2020250221215415.png"></p>
-</li>
-<li><p>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"># 其中Your Name和email@example.com替换成github账户名和邮箱</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装NodeJS<br>网址 <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 并配置环境变量。</li>
-<li>安装之后可以输入以下命令查看是否安装成功。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221220038.png"></p>
-<h1 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h1><ul>
-<li>新建文件夹，在该文件夹下打开”git bach here“<br><img src="/../../images/Pasted%20image%2020250221220553.png"></li>
-<li>在命令行执行下列命令。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行完成后，运行 hexo server 命令，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 就能够预览效果了。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221220910.png"></p>
-<h1 id="3-修改主题"><a href="#3-修改主题" class="headerlink" title="3.修改主题"></a>3.修改主题</h1><ul>
-<li>我用的是NEXT主题：<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E8%A7%A3%E5%8E%8B%E5%9C%A8myBlog/themes%E8%B7%AF%E5%BE%84%E4%B8%8B%E3%80%82%E7%84%B6%E5%90%8E%E6%89%93%E5%BC%80_config.yml%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E3%80%82">https://github.com/next-theme/hexo-theme-next，下载完成后解压在myBlog\themes路径下。然后打开_config.yml文件修改如下。</a><br><img src="/../../images/Pasted%20image%2020250221221700.png"><br>这里为了简便我将解压后的文件重命名为next，保存之后刷新 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 页面，主题就已经更改完成。</li>
-</ul>
-<h1 id="4-修改next主题配置"><a href="#4-修改next主题配置" class="headerlink" title="4.修改next主题配置"></a>4.修改next主题配置</h1><ul>
-<li>详细配置请见</li>
-</ul>
-<h1 id="5-将博客部署在github上"><a href="#5-将博客部署在github上" class="headerlink" title="5.将博客部署在github上"></a>5.将博客部署在github上</h1><ul>
-<li>在github上建立一个新仓库，在这里注意仓库名一定要是： 用户名.github.io，如我的用户名是jiao-ye，那么我的新仓库名就为jiao-ye.github.io</li>
-<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，将本地仓库能连接远程仓库，输入下列命令。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#email@example.com替换成github邮箱</span><br></pre></td></tr></table></figure>
-<p>按照提示完成后便可以生成ssh key。<br>查看ssh key</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250221223544.png"><br>复制输出的ssh key，在github上建立新的ssh key<br><img src="/../../images/Pasted%20image%2020250221223704.png"><br><img src="/../../images/Pasted%20image%2020250221223713.png"></p>
-<ul>
-<li>将本地仓库与远程仓库连接起来，打开_config.yml文件进行如下修改<br><img src="/../../images/Pasted%20image%2020250221223919.png"><br><img src="/../../images/Pasted%20image%2020250221223957.png"></li>
-<li>安装部署插件</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行如下两条指令生成与部署</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
-<ul>
-<li>用浏览器输入 用户名.github.io 就可以访问自己的个人博客了</li>
-</ul>
-<h1 id="6-编写shell脚本方便部署"><a href="#6-编写shell脚本方便部署" class="headerlink" title="6.编写shell脚本方便部署"></a>6.编写shell脚本方便部署</h1><ul>
-<li>在myBlog下新建deploy.sh脚本，粘贴下列代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 生成静态文件</span><br><span class="line">hexo clean &amp;&amp; hexo generate</span><br><span class="line"></span><br><span class="line"># 部署到 GitHub Pages</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<ul>
-<li>给与权限</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x deploy.sh</span><br></pre></td></tr></table></figure>
-<ul>
-<li>双击deploy.sh即可一键部署<br><img src="/../../images/Pasted%20image%2020250221224633.png"></li>
-</ul>
-
+          <h1 id="1-安装git与Nodejs"><a href="#1-安装git与Nodejs" class="headerlink" title="1.安装git与Nodejs"></a>1.安装git与Nodejs</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/02/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E8%87%B3github/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

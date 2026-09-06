@@ -239,16 +239,14 @@
           <ul>
 <li>在&#x2F;etc下新建文件wsl.config</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/wsl.conf</span><br></pre></td></tr></table></figure>
-<ul>
-<li>粘贴以下内容</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[interop]</span><br><span class="line">appendWindowsPath=false</span><br></pre></td></tr></table></figure>
-<p><img src="/../images/Pasted%20image%2020260420171942.png"></p>
-<ul>
-<li>保存推出后重启wsl，刷新环境变量</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/20/%E8%A7%A3%E5%86%B3WSL%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%A2%ABwindows%E6%B1%A1%E6%9F%93%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -326,31 +324,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h3><ul>
-<li>选择开机不进图形界面</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl set-default multi-user.target</span><br></pre></td></tr></table></figure>
-<ul>
-<li>选择开机进入图形界面</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl set-default graphical.target</span><br></pre></td></tr></table></figure>
-<ul>
-<li>关机重启</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
-<h3 id="显示管理器"><a href="#显示管理器" class="headerlink" title="显示管理器"></a>显示管理器</h3><ul>
-<li>查看本机用的是哪个图形管理器</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files | grep display</span><br></pre></td></tr></table></figure>
-<ul>
-<li>禁用示例</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl disable lightdm</span><br><span class="line"></span><br><span class="line">sudo systemctl stop lightdm</span><br></pre></td></tr></table></figure>
-<h3 id="删除桌面"><a href="#删除桌面" class="headerlink" title="删除桌面"></a>删除桌面</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove --simulate lightdm</span><br></pre></td></tr></table></figure>
-<ul>
-<li>不进入图形界面比关闭显示管理器释放资源更多</li>
-</ul>
-
+          <h3 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/16/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E7%A6%81%E7%94%A8%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -434,78 +416,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-安装ROS"><a href="#1-安装ROS" class="headerlink" title="1.安装ROS"></a>1.安装ROS</h1><ul>
-<li>安装ROS请查看另一篇文章：[安装ROS环境](<a target="_blank" rel="noopener" href="https://jiao-ye.github.io/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/#more">windows使用wsl2+ubuntu20.04安装ROS1的步骤 | 角页</a>)</li>
-</ul>
-<h1 id="2-安装PX4仿真包"><a href="#2-安装PX4仿真包" class="headerlink" title="2.安装PX4仿真包"></a>2.安装PX4仿真包</h1><ul>
-<li>克隆仓库，建议直接安装在 ~ 目录下</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/PX4/PX4-Autopilot.git</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/Pasted%20image%2020251214150558.png"></p>
-<ul>
-<li>进入 PX4-Autopilot文件夹，安装依赖</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd PX4-Autopilot/</span><br><span class="line">bash ./Tools/setup/ubuntu.sh --no-sim-tools --no-nuttx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在windows终端重启系统</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --shutdown</span><br></pre></td></tr></table></figure>
-<ul>
-<li>验证PX4+Gazebo</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make px4_sitl gazebo</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/Pasted%20image%2020251214170614.png"><br>显示Gazebo界面则成功<br><img src="/../../../images/Pasted%20image%2020251214170710.png"></p>
-<h1 id="3-安装mavlink"><a href="#3-安装mavlink" class="headerlink" title="3.安装mavlink"></a>3.安装mavlink</h1><ul>
-<li>安装依赖</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update  </span><br><span class="line">sudo apt install protobuf-compiler libeigen3-dev libopencv-dev -y</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装mavros</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ros-noetic-mavros ros-noetic-mavros-extras</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装地理包</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /opt/ros/noetic/lib/mavros/install_geographiclib_datasets.sh</span><br></pre></td></tr></table></figure>
-<h1 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h1><h2 id="4-1设置环境变量"><a href="#4-1设置环境变量" class="headerlink" title="4.1设置环境变量"></a>4.1设置环境变量</h2><ul>
-<li>在此之前，要加入环境变量</li>
-<li>编辑环境变量</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">vim .bashrc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>加入以下内容<br><img src="/../../../images/Pasted%20image%2020251214171437.png"></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source ~/PX4-Autopilot/Tools/simulation/gazebo-classic/setup_gazebo.bash ~/PX4-Autopilot ~/PX4-Autopilot/build/px4_sitl_default</span><br><span class="line">export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot</span><br><span class="line">export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-2启动"><a href="#4-2启动" class="headerlink" title="4.2启动"></a>4.2启动</h2><ul>
-<li>一键启动PX4+gazebo+mavlink，在这里笔者启动带深度相机的launch文件</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_depth_camera</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/Pasted%20image%2020251214171706.png"></p>
-<ul>
-<li>测试是否有话题</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic list</span><br></pre></td></tr></table></figure>
-<p>成功<br><img src="/../../../images/Pasted%20image%2020251214171826.png"></p>
-<h2 id="4-3测试起飞"><a href="#4-3测试起飞" class="headerlink" title="4.3测试起飞"></a>4.3测试起飞</h2><ul>
-<li>在这里选择安装QGC地面站</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">wget https://github.com/mavlink/qgroundcontrol/releases/latest/download/QGroundControl.AppImage</span><br></pre></td></tr></table></figure>
-<ul>
-<li>赋予权限并启动</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x QGroundControl.AppImage</span><br><span class="line">./QGroundControl.AppImage</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/Pasted%20image%2020251214172238.png"></p>
-<ul>
-<li>解锁飞机</li>
-</ul>
-<p><img src="/../../../images/Pasted%20image%2020251214172308.png"></p>
-<ul>
-<li>滑动解锁<br><img src="/../../../images/Pasted%20image%2020251214172328.png"></li>
-<li>起飞<br><img src="/../../../images/Pasted%20image%2020251214172350.png"></li>
-<li>成功起飞<br><img src="/../../../images/Pasted%20image%2020251214172438.png"></li>
-</ul>
-
+          <h1 id="1-安装ROS"><a href="#1-安装ROS" class="headerlink" title="1.安装ROS"></a>1.安装ROS</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/12/12/PX4+gazebo+ros%E4%BB%BF%E7%9C%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -589,91 +508,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-首先确保电脑CPU能虚拟化并且打开如下功能"><a href="#1-首先确保电脑CPU能虚拟化并且打开如下功能" class="headerlink" title="1.首先确保电脑CPU能虚拟化并且打开如下功能"></a>1.首先确保电脑CPU能虚拟化并且打开如下功能</h1><p><img src="/../../images/Pasted%20image%2020251208111118.png"></p>
-<p><img src="/../../images/Pasted%20image%2020251208110347.png"></p>
-<h1 id="2-安装wsl2与ubuntu20-04"><a href="#2-安装wsl2与ubuntu20-04" class="headerlink" title="2.安装wsl2与ubuntu20.04"></a>2.安装wsl2与ubuntu20.04</h1><h2 id="2-1安装WSL2"><a href="#2-1安装WSL2" class="headerlink" title="2.1安装WSL2"></a>2.1安装WSL2</h2><ul>
-<li>在power shell里输入wsl–install，安装完成后显示&#96;适用于 Linux 的 Windows 子系统已安装</li>
-<li>输入wsl.exe –update，进度条完成后即可</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --install</span><br><span class="line">wsl.exe --update</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020251208120609.png"></p>
-<h2 id="2-2安装Ubuntu20-04"><a href="#2-2安装Ubuntu20-04" class="headerlink" title="2.2安装Ubuntu20.04"></a>2.2安装Ubuntu20.04</h2><ul>
-<li>直接在store安装，选择20.04版本<br><img src="/../../images/Pasted%20image%2020251208110517.png"></li>
-<li>安装完成后，打开终端输入</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
-<p>看是否有如下输出<br><img src="/../../images/Pasted%20image%2020251208110702.png"><br>注意：如果VERSION显示的是1.那么输入以下命令将wsl1切换成wsl2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-version Ubuntu-20.04 2 </span><br></pre></td></tr></table></figure>
-<ul>
-<li>切换成功后，在终端打开Ubuntu20.04<br><img src="/../../images/Pasted%20image%2020251208111709.png"><br>首次登录要输入用户和密码，打开后显示<br><img src="/../../images/Pasted%20image%2020251208111813.png"><br>安装完成</li>
-</ul>
-<h1 id="3-安装ROS"><a href="#3-安装ROS" class="headerlink" title="3.安装ROS"></a>3.安装ROS</h1><h2 id="3-1必要准备"><a href="#3-1必要准备" class="headerlink" title="3.1必要准备"></a>3.1必要准备</h2><ul>
-<li>在命令行输入以下命令，修改镜像</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输入ggdG删除原本镜像源<br><img src="/../../images/Pasted%20image%2020251208142046.png"></li>
-<li>粘贴中科大镜像源</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../../images/Pasted%20image%2020251208142323.png"></p>
-<ul>
-<li>输入wq保存退出</li>
-<li>在终端输入中科大的安装镜像源</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#x27;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#x27;</span><br></pre></td></tr></table></figure>
-<p>**<img src="/../../images/Pasted%20image%2020251208142353.png"></p>
-<ul>
-<li>设置key</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver &#x27;hkp://keyserver.ubuntu.com:80&#x27; --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020251208142439.png"></p>
-<ul>
-<li>更新apt</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-<p>这里出现网络问题<br><img src="/../../images/Pasted%20image%2020251208143138.png"><br>解决办法</p>
-<ul>
-<li>1.在ubuntu中执行</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/wsl.conf</span><br></pre></td></tr></table></figure>
-<p>在wsl.config文件中另外加入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[network]</span><br><span class="line">generateResolvConf = false</span><br></pre></td></tr></table></figure>
-<ul>
-<li>2.删除并手动创建 &#x2F;etc&#x2F;resolv.conf</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /etc/resolv.conf</span><br><span class="line">sudo vim /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-<ul>
-<li>3.写入</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 223.5.5.5</span><br><span class="line">nameserver 119.29.29.29</span><br></pre></td></tr></table></figure>
-<ul>
-<li>4.重启wsl，在powershell里输入wsl – shutdown重启<br>更新成功<br><img src="/../../images/Pasted%20image%2020251208145332.png"></li>
-</ul>
-<h2 id="3-2安装ROS"><a href="#3-2安装ROS" class="headerlink" title="3.2安装ROS"></a>3.2安装ROS</h2><ul>
-<li>输入命令，安装可能费时</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ros-noetic-desktop-full</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意，笔者并没有遇到安装不上问题，不知道是运气好还是啥，测试过很多次，都是一次成功<br><img src="/../images/Pasted%20image%2020251208151916.png"></li>
-<li>配置环境变量</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;source /opt/ros/noetic/setup.bash&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装依赖</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential</span><br></pre></td></tr></table></figure>
-<p><img src="/../images/Pasted%20image%2020251208152202.png"></p>
-<h2 id="3-3初始化"><a href="#3-3初始化" class="headerlink" title="3.3初始化"></a>3.3初始化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rosdep init</span><br><span class="line">rosdep update</span><br></pre></td></tr></table></figure>
-<p>如下输出则安装成功<br><img src="/../images/Pasted%20image%2020251208152415.png"><br><img src="/../images/Pasted%20image%2020251208152428.png"></p>
-<h1 id="4-测试ROS"><a href="#4-测试ROS" class="headerlink" title="4.测试ROS"></a>4.测试ROS</h1><ul>
-<li>打开三个终端<br><img src="/../images/Pasted%20image%2020251208152536.png"></li>
-<li>每个终端分别输入</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">roscore(启动核心)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rosrun turtlesim turtlesim_node(测试小乌龟界面节点)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rosrun turtlesim turtle_teleop_key(测试控制小乌龟运动节点)</span><br></pre></td></tr></table></figure>
-<p>roscore<br><img src="/../images/Pasted%20image%2020251208161347.png"><br>rosrun turtlesim turtlesim_node<br><img src="/../images/Pasted%20image%2020251208161403.png"><br>rosrun turtlesim turtle_teleop_key:<br><img src="/../images/Pasted%20image%2020251208161413.png"><br>将光标移动到执行key的终端，通过方向键控制小乌龟的行动<br><img src="/../images/Pasted%20image%2020251208161457.png"><br>测试完成</p>
-
+          <h1 id="1-首先确保电脑CPU能虚拟化并且打开如下功能"><a href="#1-首先确保电脑CPU能虚拟化并且打开如下功能" class="headerlink" title="1.首先确保电脑CPU能虚拟化并且打开如下功能"></a>1.首先确保电脑CPU能虚拟化并且打开如下功能</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -758,7 +601,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>首先在.vscode文件夹下的c_cpp_properties.json文件修改成下图：<br><img src="/../../images/Pasted%20image%2020251031194924.png"><br>在上图的includePath中加入自己工作空间的路径</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/10/31/%E8%A7%A3%E5%86%B3%E5%9C%A8Vscode%E5%BC%80%E5%8F%91ROS%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -842,92 +692,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-计算电机转速N和螺旋桨转矩M轴距"><a href="#1-计算电机转速N和螺旋桨转矩M轴距" class="headerlink" title="1.计算电机转速N和螺旋桨转矩M轴距"></a>1.计算电机转速N和螺旋桨转矩M轴距</h1><h2 id="1-1轴距"><a href="#1-1轴距" class="headerlink" title="1.1轴距"></a>1.1轴距</h2><ul>
-<li>对角线方向上两个电机中心之间的直线距离，轴距越短，对飞控的精度要求就更高</li>
-</ul>
-<h2 id="1-2拉力"><a href="#1-2拉力" class="headerlink" title="1.2拉力"></a>1.2拉力</h2><ul>
-<li>由整机的重量来计算单个螺旋桨需要的拉力</li>
-</ul>
-<p>$$<br>T &#x3D; \frac{G}{n}<br>$$</p>
-<ul>
-<li>G是重力，n是螺旋桨个数</li>
-</ul>
-<h2 id="1-3计算转速N"><a href="#1-3计算转速N" class="headerlink" title="1.3计算转速N"></a>1.3计算转速N</h2><h3 id="大气压强计算公式"><a href="#大气压强计算公式" class="headerlink" title="大气压强计算公式"></a>大气压强计算公式</h3><ul>
-<li>经验公式：<br>$$<br>P_a &#x3D; P_0 \cdot \left(1 - \frac{0.0065 \cdot h}{273+T_h}\right)^{5.255}<br>$$</li>
-<li>P0：标准大气压为 101325</li>
-<li>h：海拔高度</li>
-<li>Th：温度</li>
-</ul>
-<h3 id="空气密度"><a href="#空气密度" class="headerlink" title="空气密度"></a>空气密度</h3><ul>
-<li>经验公式：<br>$$<br>\rho &#x3D; \frac{273P_a}{101325(273 + T_h)} \rho_0<br>$$</li>
-<li>ρ：空气密度</li>
-<li>Th：温度</li>
-<li>ρ0：标准空气密度为1.293</li>
-</ul>
-<h3 id="转速"><a href="#转速" class="headerlink" title="转速"></a>转速</h3><p>$$<br>N &#x3D; 60 \sqrt{\frac{T}{\rho D_{p}^{4} C_{T}}}<br>$$</p>
-<ul>
-<li>T：拉力</li>
-<li>ρ：空气密度</li>
-<li>Dp：螺旋桨直径</li>
-<li>Ct：推力系数，不同的电机不同的值</li>
-</ul>
-<h2 id="1-4计算转矩"><a href="#1-4计算转矩" class="headerlink" title="1.4计算转矩"></a>1.4计算转矩</h2><p>$$<br>M &#x3D; \rho D_p^5 C_M \left( \frac{N}{60} \right)^2<br>$$</p>
-<ul>
-<li>ρ：空气密度</li>
-<li>Dp：螺旋桨直径</li>
-<li>Cm：转矩系数，不同的电机不同的值</li>
-<li>N：转速</li>
-</ul>
-<h1 id="2-计算电机的等效电流Im和等效电压Um"><a href="#2-计算电机的等效电流Im和等效电压Um" class="headerlink" title="2.计算电机的等效电流Im和等效电压Um"></a>2.计算电机的等效电流Im和等效电压Um</h1><h2 id="2-1等效电流"><a href="#2-1等效电流" class="headerlink" title="2.1等效电流"></a>2.1等效电流</h2><ul>
-<li>根据目标转矩计算电机的等效电流</li>
-</ul>
-<p>$$<br>I_m &#x3D; \frac{M K_{v} U_{0}}{9.55(U_{0} - I_{0} R_0) + I_{0}}<br>$$</p>
-<ul>
-<li>M：转矩</li>
-<li>Kv：电机kv值</li>
-<li>U0：空载电压</li>
-<li>I0：空载电流</li>
-<li>R0：电机内阻</li>
-</ul>
-<h2 id="2-2等效电压"><a href="#2-2等效电压" class="headerlink" title="2.2等效电压"></a>2.2等效电压</h2><p>$$<br>U_m &#x3D; \left( \frac{M K_{v} U_{0}}{9.55 (U_{0} - I_{0} R_0)} + I_{0} \right) R_m + \frac{U_{0} - I_{0} R_0}{K_{v} U_{0}} N<br>$$</p>
-<ul>
-<li>M：转矩</li>
-<li>Kv：电机Kv值</li>
-<li>U0：空载电压</li>
-<li>I0：空载电流</li>
-<li>R0：电机内阻</li>
-<li>N：转速</li>
-<li>9.55：角速度与转速转化系数  将  转&#x2F;每分钟 转化成 弧度&#x2F;秒</li>
-</ul>
-<h1 id="计算电调相关参数"><a href="#计算电调相关参数" class="headerlink" title="计算电调相关参数"></a>计算电调相关参数</h1><h2 id="输入油门指令σ-占空比"><a href="#输入油门指令σ-占空比" class="headerlink" title="输入油门指令σ(占空比)"></a>输入油门指令σ(占空比)</h2><ul>
-<li>计算电调的占空比<br>$$<br>\sigma &#x3D; \frac{U_m + I_m R_e}{U_b}<br>$$</li>
-<li>Um：等效电压</li>
-<li>Im：等效电流</li>
-<li>Re：其它电阻，如电调导线电阻</li>
-<li>Ub：电池电压</li>
-</ul>
-<h2 id="3-电调输入电流与输入电压"><a href="#3-电调输入电流与输入电压" class="headerlink" title="3.电调输入电流与输入电压"></a>3.电调输入电流与输入电压</h2><p>输入电流：</p>
-<p>$$<br>I_e&#x3D;σ\cdot I_m<br>$$</p>
-<ul>
-<li>σ：占空比</li>
-<li>Im：等效电流</li>
-</ul>
-<p>电池放电电流：</p>
-<p>$$<br>I_b&#x3D;n_r\cdot I_e +I_other<br>$$</p>
-<ul>
-<li>Nr：电机个数</li>
-<li>Ie：电调输入电流</li>
-<li>Iother：其它损耗电流</li>
-</ul>
-<p>输入电压：</p>
-<p>$$<br>U_e&#x3D;U_b-I_b \cdot R_b<br>$$<br>Ub：电池电压<br>Ib：电池放电电流<br>Rb：电源内阻</p>
-<h1 id="4-悬停时间"><a href="#4-悬停时间" class="headerlink" title="4.悬停时间"></a>4.悬停时间</h1><p>$$<br>T_b &#x3D; \frac{C_b - C_{\min}}{I_b} \times \frac{60}{1000}<br>$$</p>
-<ul>
-<li>Cb：电池容量</li>
-<li>Cmin：最小容量</li>
-<li>Ib：放电电流</li>
-</ul>
-
+          <h1 id="1-计算电机转速N和螺旋桨转矩M轴距"><a href="#1-计算电机转速N和螺旋桨转矩M轴距" class="headerlink" title="1.计算电机转速N和螺旋桨转矩M轴距"></a>1.计算电机转速N和螺旋桨转矩M轴距</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1011,35 +784,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-FPU与DSP"><a href="#1-FPU与DSP" class="headerlink" title="1.FPU与DSP"></a>1.FPU与DSP</h1><ul>
-<li>STM32的FPU是芯片内部的硬件浮点运算单元，能高速处理所有浮点计算；而DSP库则是建立在FPU等硬件特性之上的软件函数库，它提供了一系列经过极致优化的数字信号处理算法（如FFT、滤波等）。两者关系可概括为：FPU是强大的硬件基础，负责通用浮点加速；DSP库则是专业的软件加速包，针对复杂算法进行特定优化。在实际应用中，应先启用FPU获得基础性能提升，再调用DSP库来处理专门的复杂运算任务。</li>
-<li>下面我们通过STM32CUBEMX + cmake  + vscode 来创建一个完整地项目</li>
-</ul>
-<h1 id="2-工程创建"><a href="#2-工程创建" class="headerlink" title="2.工程创建"></a>2.工程创建</h1><h2 id="2-1新建STMG431CBT6的工程"><a href="#2-1新建STMG431CBT6的工程" class="headerlink" title="2.1新建STMG431CBT6的工程"></a>2.1新建STMG431CBT6的工程</h2><p><img src="/../../images/Pasted%20image%2020250923155732.png"></p>
-<ul>
-<li>选择外部高速时钟<br><img src="/../../images/Pasted%20image%2020250923160215.png"></li>
-<li>开启SWD，就是允许我们使用ST-link进行下载调试，时钟来源选择系统时钟<br><img src="/../../images/Pasted%20image%2020250923161121.png"></li>
-<li>因为我们要用到串口打印相关信息，开启串口2</li>
-<li><img src="/../../images/Pasted%20image%2020250923161436.png"></li>
-<li>配置时钟，按照自己的晶振频率设置<br><img src="/../../images/Pasted%20image%2020250923161706.png"></li>
-<li>配置相关项目相关信息<br>项目名称，开发工具，固件版本<br><img src="/../../images/Pasted%20image%2020250923161903.png"><br>生成源文件和头文件 ，生成项目<br><img src="/../../images/Pasted%20image%2020250923162323.png"></li>
-</ul>
-<h2 id="2-2用VSCODE打开并编译看是否成功"><a href="#2-2用VSCODE打开并编译看是否成功" class="headerlink" title="2.2用VSCODE打开并编译看是否成功"></a>2.2用VSCODE打开并编译看是否成功</h2><p>导入Cmake项目，选择刚生成的文件打开，直接导入即可<br><img src="/../../images/Pasted%20image%2020250923165558.png"><br>点击编译，输出如下信息显示成功<br><img src="/../../images/Pasted%20image%2020250923165728.png"></p>
-<h2 id="2-3开启FPU并且添加DSP库"><a href="#2-3开启FPU并且添加DSP库" class="headerlink" title="2.3开启FPU并且添加DSP库"></a>2.3开启FPU并且添加DSP库</h2><ul>
-<li>回到CUBEMX<br><img src="/../../images/Pasted%20image%2020250923170055.png"></li>
-<li>找到DSP库，并且勾选上，可能下载会比较慢<br><img src="/../../images/Pasted%20image%2020250923170334.png"><br>返回，并且勾选上添加DSP库，生成代码<br><img src="/../../images/Pasted%20image%2020250923171004.png"><br>返回Vscode看到有如下文件则添加成功<br><img src="/../../images/Pasted%20image%2020250923171138.png"><br>接下来在CMake文件中如下位置添加两行代码</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Lib/GCC/libarm_cortexM4lf_math.a</span><br><span class="line">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/Drivers/CMSIS/DSP/Include</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/../../images/Pasted%20image%2020250923171646.png"><br>到此，工程创建成功</p>
-<h1 id="3-测试工程"><a href="#3-测试工程" class="headerlink" title="3.测试工程"></a>3.测试工程</h1><p>为了方便输出信息，我们将串口重定向，在usart.c文件中添加如下代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __GNUC__</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line"></span><br><span class="line">#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">PUTCHAR_PROTOTYPE</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  // 阻塞方式打印 -&gt; 串口2</span><br><span class="line"></span><br><span class="line">  HAL_UART_Transmit(&amp;huart2, (uint8_t *)&amp;ch, 1, 0xFFFF);</span><br><span class="line"></span><br><span class="line">  return ch;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>&#x3D;&#x3D;注意要在gcc-arm-none-eabi.cmake文件如下位置加入-u_printf_float&#x3D;&#x3D;<br><img src="/../../images/Pasted%20image%2020250925165625.png"></li>
-</ul>
-<p>测试代码，注意需要包含stdio头文件<br><img src="/../../images/Pasted%20image%2020250923172715.png"><br>该插件的下载按钮如下<br><img src="/../../images/Pasted%20image%2020250923173120.png"><br>&#x3D;&#x3D;注意，必须加“\n”,不然会有莫名的问题</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;hello\n&quot;);</span><br></pre></td></tr></table></figure>
-<p>调试信息如下：<br><img src="/../../images/Pasted%20image%2020250925170045.png"><br>成功&#x3D;&#x3D;</p>
-
+          <h1 id="1-FPU与DSP"><a href="#1-FPU与DSP" class="headerlink" title="1.FPU与DSP"></a>1.FPU与DSP</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1124,9 +877,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>在开发STM32中，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    printf(&quot;angle = %d&quot;, angle);</span><br><span class="line"></span><br><span class="line">    printf(&quot;angle = %f\n&quot;, angle_f);</span><br><span class="line">  注意，最后打印字符时必须要加上换行符，否则会出错</span><br></pre></td></tr></table></figure>
-<p>输出界面：<br><img src="/../images/Pasted%20image%2020250916104932.png"><br>可以看到浮点数并没有被打印出来，我们只需要在.cmake文件中加入-u_printf_float<br><img src="/../images/Pasted%20image%2020250916105907.png"><br>重新编译下载<br><img src="/../images/Pasted%20image%2020250916110026.png"><br>正常打印浮点数，但此时占用的FLASH较多，建议不需要时关闭</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/16/%E4%BD%BF%E7%94%A8Cmake+hal%E5%BA%93%E5%BC%80%E5%8F%91STM32%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87printf%E6%89%93%E5%8D%B0%E6%B5%AE%E7%82%B9%E6%95%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1211,7 +969,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>在焊接新的芯片后下载程序显示下图<br><img src="/../../images/Pasted%20image%2020250915165612.png"><br>错误显示无法擦除扇区，连接ST-LINKUtility显示如下：<br><img src="/../../images/Pasted%20image%2020250915170058.png"><br>发现扇区0.1被锁住，取消勾选，再点击apply就行。我买的不是全新的吗？？？？？</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/15/STM32%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E6%98%BE%E7%A4%BAfailed%20to%20erase%20memory/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1292,7 +1057,14 @@
           <ul>
 <li>在STM32G431中，启动时选择主Flash启动，此时需要将BOOT0引脚拉低为低电平，但此时BOOT0引脚作为IIC外挂了4.7k电阻，此时不可能将引脚拉低。</li>
 </ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/06/04/%E8%A7%A3%E5%86%B3STM32G431BOOT0%E4%B8%8EIIC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
