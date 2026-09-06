@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#0f4c81"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#0f4c81">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jiaoye.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":280,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#0f4c81","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":180,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1.计算电机转速N和螺旋桨转矩M轴距1.1轴距 对角线方向上两个电机中心之间的直线距离，轴距越短，对飞控的精度要求就更高  1.2拉力 由整机的重量来计算单个螺旋桨需要的拉力  $$T &#x3D; \frac{G}{n}$$  G是重力，n是螺旋桨个数  1.3计算转速N大气压强计算公式 经验公式：$$P_a &#x3D; P_0 \cdot \left(1 - \frac{0.0065 \cd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无人机悬停时间计算方法">
+<meta property="og:url" content="https://www.jiaoye.top/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="角页">
+<meta property="og:description" content="1.计算电机转速N和螺旋桨转矩M轴距1.1轴距 对角线方向上两个电机中心之间的直线距离，轴距越短，对飞控的精度要求就更高  1.2拉力 由整机的重量来计算单个螺旋桨需要的拉力  $$T &#x3D; \frac{G}{n}$$  G是重力，n是螺旋桨个数  1.3计算转速N大气压强计算公式 经验公式：$$P_a &#x3D; P_0 \cdot \left(1 - \frac{0.0065 \cd">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-23T06:37:15.000Z">
+<meta property="article:modified_time" content="2025-12-14T11:51:19.000Z">
+<meta property="article:author" content="jiaoye">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.jiaoye.top/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.jiaoye.top/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/","path":"2025/10/23/无人机悬停时间计算方法/","title":"无人机悬停时间计算方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>无人机悬停时间计算方法 | 角页</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">角页</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%AE%A1%E7%AE%97%E7%94%B5%E6%9C%BA%E8%BD%AC%E9%80%9FN%E5%92%8C%E8%9E%BA%E6%97%8B%E6%A1%A8%E8%BD%AC%E7%9F%A9M%E8%BD%B4%E8%B7%9D"><span class="nav-number">1.</span> <span class="nav-text">1.计算电机转速N和螺旋桨转矩M轴距</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1%E8%BD%B4%E8%B7%9D"><span class="nav-number">1.1.</span> <span class="nav-text">1.1轴距</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E6%8B%89%E5%8A%9B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2拉力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3%E8%AE%A1%E7%AE%97%E8%BD%AC%E9%80%9FN"><span class="nav-number">1.3.</span> <span class="nav-text">1.3计算转速N</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E6%B0%94%E5%8E%8B%E5%BC%BA%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">大气压强计算公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E6%B0%94%E5%AF%86%E5%BA%A6"><span class="nav-number">1.3.2.</span> <span class="nav-text">空气密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E9%80%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">转速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4%E8%AE%A1%E7%AE%97%E8%BD%AC%E7%9F%A9"><span class="nav-number">1.4.</span> <span class="nav-text">1.4计算转矩</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97%E7%94%B5%E6%9C%BA%E7%9A%84%E7%AD%89%E6%95%88%E7%94%B5%E6%B5%81Im%E5%92%8C%E7%AD%89%E6%95%88%E7%94%B5%E5%8E%8BUm"><span class="nav-number">2.</span> <span class="nav-text">2.计算电机的等效电流Im和等效电压Um</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1%E7%AD%89%E6%95%88%E7%94%B5%E6%B5%81"><span class="nav-number">2.1.</span> <span class="nav-text">2.1等效电流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2%E7%AD%89%E6%95%88%E7%94%B5%E5%8E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">2.2等效电压</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%94%B5%E8%B0%83%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">计算电调相关参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B2%B9%E9%97%A8%E6%8C%87%E4%BB%A4%CF%83-%E5%8D%A0%E7%A9%BA%E6%AF%94"><span class="nav-number">3.1.</span> <span class="nav-text">输入油门指令σ(占空比)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%94%B5%E8%B0%83%E8%BE%93%E5%85%A5%E7%94%B5%E6%B5%81%E4%B8%8E%E8%BE%93%E5%85%A5%E7%94%B5%E5%8E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">3.电调输入电流与输入电压</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4"><span class="nav-number">4.</span> <span class="nav-text">4.悬停时间</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jiaoye"
+      src="/images/jiaoye.gif">
+  <p class="site-author-name" itemprop="name">jiaoye</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.jiaoye.top/2025/10/23/%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%82%AC%E5%81%9C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jiaoye.gif">
+      <meta itemprop="name" content="jiaoye">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="角页">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="无人机悬停时间计算方法 | 角页">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          无人机悬停时间计算方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-10-23 14:37:15" itemprop="dateCreated datePublished" datetime="2025-10-23T14:37:15+08:00">2025-10-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-14 19:51:19" itemprop="dateModified" datetime="2025-12-14T19:51:19+08:00">2025-12-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%97%A0%E4%BA%BA%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">无人机</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-计算电机转速N和螺旋桨转矩M轴距"><a href="#1-计算电机转速N和螺旋桨转矩M轴距" class="headerlink" title="1.计算电机转速N和螺旋桨转矩M轴距"></a>1.计算电机转速N和螺旋桨转矩M轴距</h1><h2 id="1-1轴距"><a href="#1-1轴距" class="headerlink" title="1.1轴距"></a>1.1轴距</h2><ul>
+<li>对角线方向上两个电机中心之间的直线距离，轴距越短，对飞控的精度要求就更高</li>
+</ul>
+<h2 id="1-2拉力"><a href="#1-2拉力" class="headerlink" title="1.2拉力"></a>1.2拉力</h2><ul>
+<li>由整机的重量来计算单个螺旋桨需要的拉力</li>
+</ul>
+<p>$$<br>T &#x3D; \frac{G}{n}<br>$$</p>
+<ul>
+<li>G是重力，n是螺旋桨个数</li>
+</ul>
+<h2 id="1-3计算转速N"><a href="#1-3计算转速N" class="headerlink" title="1.3计算转速N"></a>1.3计算转速N</h2><h3 id="大气压强计算公式"><a href="#大气压强计算公式" class="headerlink" title="大气压强计算公式"></a>大气压强计算公式</h3><ul>
+<li>经验公式：<br>$$<br>P_a &#x3D; P_0 \cdot \left(1 - \frac{0.0065 \cdot h}{273+T_h}\right)^{5.255}<br>$$</li>
+<li>P0：标准大气压为 101325</li>
+<li>h：海拔高度</li>
+<li>Th：温度</li>
+</ul>
+<h3 id="空气密度"><a href="#空气密度" class="headerlink" title="空气密度"></a>空气密度</h3><ul>
+<li>经验公式：<br>$$<br>\rho &#x3D; \frac{273P_a}{101325(273 + T_h)} \rho_0<br>$$</li>
+<li>ρ：空气密度</li>
+<li>Th：温度</li>
+<li>ρ0：标准空气密度为1.293</li>
+</ul>
+<h3 id="转速"><a href="#转速" class="headerlink" title="转速"></a>转速</h3><p>$$<br>N &#x3D; 60 \sqrt{\frac{T}{\rho D_{p}^{4} C_{T}}}<br>$$</p>
+<ul>
+<li>T：拉力</li>
+<li>ρ：空气密度</li>
+<li>Dp：螺旋桨直径</li>
+<li>Ct：推力系数，不同的电机不同的值</li>
+</ul>
+<h2 id="1-4计算转矩"><a href="#1-4计算转矩" class="headerlink" title="1.4计算转矩"></a>1.4计算转矩</h2><p>$$<br>M &#x3D; \rho D_p^5 C_M \left( \frac{N}{60} \right)^2<br>$$</p>
+<ul>
+<li>ρ：空气密度</li>
+<li>Dp：螺旋桨直径</li>
+<li>Cm：转矩系数，不同的电机不同的值</li>
+<li>N：转速</li>
+</ul>
+<h1 id="2-计算电机的等效电流Im和等效电压Um"><a href="#2-计算电机的等效电流Im和等效电压Um" class="headerlink" title="2.计算电机的等效电流Im和等效电压Um"></a>2.计算电机的等效电流Im和等效电压Um</h1><h2 id="2-1等效电流"><a href="#2-1等效电流" class="headerlink" title="2.1等效电流"></a>2.1等效电流</h2><ul>
+<li>根据目标转矩计算电机的等效电流</li>
+</ul>
+<p>$$<br>I_m &#x3D; \frac{M K_{v} U_{0}}{9.55(U_{0} - I_{0} R_0) + I_{0}}<br>$$</p>
+<ul>
+<li>M：转矩</li>
+<li>Kv：电机kv值</li>
+<li>U0：空载电压</li>
+<li>I0：空载电流</li>
+<li>R0：电机内阻</li>
+</ul>
+<h2 id="2-2等效电压"><a href="#2-2等效电压" class="headerlink" title="2.2等效电压"></a>2.2等效电压</h2><p>$$<br>U_m &#x3D; \left( \frac{M K_{v} U_{0}}{9.55 (U_{0} - I_{0} R_0)} + I_{0} \right) R_m + \frac{U_{0} - I_{0} R_0}{K_{v} U_{0}} N<br>$$</p>
+<ul>
+<li>M：转矩</li>
+<li>Kv：电机Kv值</li>
+<li>U0：空载电压</li>
+<li>I0：空载电流</li>
+<li>R0：电机内阻</li>
+<li>N：转速</li>
+<li>9.55：角速度与转速转化系数  将  转&#x2F;每分钟 转化成 弧度&#x2F;秒</li>
+</ul>
+<h1 id="计算电调相关参数"><a href="#计算电调相关参数" class="headerlink" title="计算电调相关参数"></a>计算电调相关参数</h1><h2 id="输入油门指令σ-占空比"><a href="#输入油门指令σ-占空比" class="headerlink" title="输入油门指令σ(占空比)"></a>输入油门指令σ(占空比)</h2><ul>
+<li>计算电调的占空比<br>$$<br>\sigma &#x3D; \frac{U_m + I_m R_e}{U_b}<br>$$</li>
+<li>Um：等效电压</li>
+<li>Im：等效电流</li>
+<li>Re：其它电阻，如电调导线电阻</li>
+<li>Ub：电池电压</li>
+</ul>
+<h2 id="3-电调输入电流与输入电压"><a href="#3-电调输入电流与输入电压" class="headerlink" title="3.电调输入电流与输入电压"></a>3.电调输入电流与输入电压</h2><p>输入电流：</p>
+<p>$$<br>I_e&#x3D;σ\cdot I_m<br>$$</p>
+<ul>
+<li>σ：占空比</li>
+<li>Im：等效电流</li>
+</ul>
+<p>电池放电电流：</p>
+<p>$$<br>I_b&#x3D;n_r\cdot I_e +I_other<br>$$</p>
+<ul>
+<li>Nr：电机个数</li>
+<li>Ie：电调输入电流</li>
+<li>Iother：其它损耗电流</li>
+</ul>
+<p>输入电压：</p>
+<p>$$<br>U_e&#x3D;U_b-I_b \cdot R_b<br>$$<br>Ub：电池电压<br>Ib：电池放电电流<br>Rb：电源内阻</p>
+<h1 id="4-悬停时间"><a href="#4-悬停时间" class="headerlink" title="4.悬停时间"></a>4.悬停时间</h1><p>$$<br>T_b &#x3D; \frac{C_b - C_{\min}}{I_b} \times \frac{60}{1000}<br>$$</p>
+<ul>
+<li>Cb：电池容量</li>
+<li>Cmin：最小容量</li>
+<li>Ib：放电电流</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/09/22/STM32G431%E5%90%AF%E7%94%A8FPU%E4%B8%8EDSP%E5%BA%93/" rel="prev" title="STM32G431启用FPU与DSP库">
+                  <i class="fa fa-angle-left"></i> STM32G431启用FPU与DSP库
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/10/31/%E8%A7%A3%E5%86%B3%E5%9C%A8Vscode%E5%BC%80%E5%8F%91ROS%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA/" rel="next" title="解决在Vscode开发ROS没有提示">
+                  解决在Vscode开发ROS没有提示 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">jiaoye</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
