@@ -289,11 +289,6 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2026/09/07/test/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>next主题的使用</title>
     <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
@@ -331,6 +326,11 @@
         <tag>hexo博客</tag>
         <tag>next主题</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2026/09/07/test/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>windows使用wsl2+ubuntu20.04安装ROS1的步骤</title>
