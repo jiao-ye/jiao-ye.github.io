@@ -330,7 +330,7 @@
   <entry>
     <title></title>
     <url>/2026/09/07/test/</url>
-    <content><![CDATA[<p>1234<br>![[..&#x2F;images&#x2F;Pasted image 20260907134314.png]]</p>
+    <content><![CDATA[<p>1234<br><img src="/../images/Pasted%20image%2020260907134837.png"></p>
 ]]></content>
   </entry>
   <entry>
