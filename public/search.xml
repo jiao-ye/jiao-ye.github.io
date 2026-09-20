@@ -289,6 +289,45 @@
       </tags>
   </entry>
   <entry>
+    <title>next主题的使用</title>
+    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>有四个类型</p>
+<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>categories下index文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
+<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑 主题配置文件，启用本地搜索功能：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
+<ul>
+<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
+        <tag>next主题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows使用wsl2+ubuntu20.04安装ROS1的步骤</title>
     <url>/2025/12/08/windows%E4%BD%BF%E7%94%A8wsl2+ubuntu20.04%E5%AE%89%E8%A3%85ROS1%E7%9A%84%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<h1 id="1-首先确保电脑CPU能虚拟化并且打开如下功能"><a href="#1-首先确保电脑CPU能虚拟化并且打开如下功能" class="headerlink" title="1.首先确保电脑CPU能虚拟化并且打开如下功能"></a>1.首先确保电脑CPU能虚拟化并且打开如下功能</h1><p><img src="/../../images/Pasted%20image%2020251208111118.png"></p>
@@ -384,45 +423,6 @@
       </tags>
   </entry>
   <entry>
-    <title>next主题的使用</title>
-    <url>/2025/02/22/next%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="1-主题类型设置"><a href="#1-主题类型设置" class="headerlink" title="1.主题类型设置"></a>1.主题类型设置</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes 主题类型设置</span><br><span class="line"></span><br><span class="line"># scheme: Muse</span><br><span class="line"></span><br><span class="line">#scheme: Mist</span><br><span class="line"></span><br><span class="line">#scheme: Pisces</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>有四个类型</p>
-<h1 id="2-菜单栏"><a href="#2-菜单栏" class="headerlink" title="2.菜单栏"></a>2.菜单栏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line"></span><br><span class="line">  home: / || fa fa-home #主页</span><br><span class="line"></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"></span><br><span class="line">  tags: /tags/ || fa fa-tags #标签页</span><br><span class="line"></span><br><span class="line">  categories: /categories/ || fa fa-th #种类页</span><br><span class="line"></span><br><span class="line">  archives: /archives/ || fa fa-archive #日志页</span><br><span class="line"></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line"></span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line"></span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
-<p>打开后，在myBlog\source路径下新建tags与categories文件夹，并在文件夹下建立index.md文件，<br>tags下index文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 标签</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>categories下index文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">title: 种类</span><br><span class="line"></span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line"></span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h1 id="3-修改主页头像"><a href="#3-修改主页头像" class="headerlink" title="3.修改主页头像"></a>3.修改主页头像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line"></span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line"></span><br><span class="line">  url: /images/jiaoye.gif #在这里填入你头像的路径 头像格式为215 X 215</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be displayed in circle.</span><br><span class="line"></span><br><span class="line">  rounded: false</span><br><span class="line"></span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line"></span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
-<h1 id="4-开启搜索功能"><a href="#4-开启搜索功能" class="headerlink" title="4.开启搜索功能"></a>4.开启搜索功能</h1><ul>
-<li>安装插件<code>hexo-generator-searchdb</code>,执行以下命令:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改hexo&#x2F;config.yml配置内容，新增以下内容到任意位置</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑 主题配置文件，启用本地搜索功能：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="5-开启评论功能"><a href="#5-开启评论功能" class="headerlink" title="5.开启评论功能"></a>5.开启评论功能</h1><h2 id="5-1-建立一个新的github仓库"><a href="#5-1-建立一个新的github仓库" class="headerlink" title="5.1 建立一个新的github仓库"></a>5.1 建立一个新的github仓库</h2><p><img src="/../images/Pasted%20image%2020251214195244.png"></p>
-<ul>
-<li>在仓库设置里打开discussions功能<br><img src="/../images/Pasted%20image%2020251214195444.png"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-        <tag>next主题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>串联谐振与并联谐振</title>
     <url>/2025/03/03/%E4%B8%B2%E8%81%94%E8%B0%90%E6%8C%AF%E4%B8%8E%E5%B9%B6%E8%81%94%E8%B0%90%E6%8C%AF/</url>
     <content><![CDATA[<h1 id="1-什么是谐振？"><a href="#1-什么是谐振？" class="headerlink" title="1.什么是谐振？"></a>1.什么是谐振？</h1><h2 id="1-1RLC串联谐振"><a href="#1-1RLC串联谐振" class="headerlink" title="1.1RLC串联谐振"></a>1.1RLC串联谐振</h2><ul>
@@ -459,6 +459,51 @@
       </categories>
       <tags>
         <tag>电路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从原理图到起飞：一架无人机的诞生</title>
+    <url>/2026/09/17/%E4%BB%8E%E5%8E%9F%E7%90%86%E5%9B%BE%E5%88%B0%E8%B5%B7%E9%A3%9E%EF%BC%9A%E4%B8%80%E6%9E%B6%E6%97%A0%E4%BA%BA%E6%9C%BA%E7%9A%84%E8%AF%9E%E7%94%9F/</url>
+    <content><![CDATA[<h1 id="1-项目目标与整体方案"><a href="#1-项目目标与整体方案" class="headerlink" title="1.项目目标与整体方案"></a>1.项目目标与整体方案</h1><p>目前我是一名工科研二，研究方向与无人机相关。有过 FOC 的无刷电机控制的经验，也因此接触了电机控制、嵌入式开发和硬件设计。进入研究生阶段后，我开始有了一个想法：能不能把过去几年学到的这些东西真正串起来，做一台属于自己的无人机。    </p>
+<p>这里说的“做一台无人机”，并不是购买现成的飞控、电调和机架之后完成装配，而是希望尽可能参与到整个系统的设计过程中。从飞控硬件、四合一电调，到 PX4 固件适配、机载计算机以及最终的整机联调，想把已经学过、正在学以及项目过程中需要补充的知识真正用到一个完整的系统里。</p>
+<p> 对我来说，这个项目的意义也不只是得到一台能够飞起来的无人机。相比最终的成品，我更希望借这个过程重新梳理自己在嵌入式、硬件、电机控制和无人机方向上的知识，看看这些原本分散的内容，在一个真实的工程系统中究竟是怎样联系起来的。</p>
+<p>因此有了这个项目，也有了这篇文章。我会尽量按照实际的设计和调试过程进行记录，包括方案选择、硬件设计、遇到的问题以及最终的解决方法。项目中大量内容都会建立在 Pixhawk、PX4 等现有开源项目和公开资料的基础上，所以本项目也全部开源。</p>
+<h1 id="2-飞控硬件设计"><a href="#2-飞控硬件设计" class="headerlink" title="2.飞控硬件设计"></a>2.飞控硬件设计</h1><p>飞控是整架无人机中最核心的控制单元，负责传感器数据采集、姿态与位置估计、控制量计算以及电机输出等任务。本项目的飞控部分参考 <a href="https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-012%20Pixhawk%20Autopilot%20v6X%20Standard.pdf?utm_source=chatgpt.com">Pixhawk FMUv6X官方硬件标准</a>硬件架构。具体如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">模块</th>
+<th align="center">项目设计</th>
+<th align="center">官方设计</th>
+<th align="center">作用&#x2F;主要区别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">主控MCU</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">IMU1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">IMU2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h1 id="3-四合一电调设计"><a href="#3-四合一电调设计" class="headerlink" title="3.四合一电调设计"></a>3.四合一电调设计</h1><h1 id="4-机载电脑与通信系统"><a href="#4-机载电脑与通信系统" class="headerlink" title="4.机载电脑与通信系统"></a>4.机载电脑与通信系统</h1><h1 id="5-PX4固件适配与调试"><a href="#5-PX4固件适配与调试" class="headerlink" title="5.PX4固件适配与调试"></a>5.PX4固件适配与调试</h1><h1 id="6-整机装配与测试"><a href="#6-整机装配与测试" class="headerlink" title="6.整机装配与测试"></a>6.整机装配与测试</h1><h1 id="7-首飞与总结"><a href="#7-首飞与总结" class="headerlink" title="7.首飞与总结"></a>7.首飞与总结</h1>]]></content>
+      <categories>
+        <category>无人机</category>
+      </categories>
+      <tags>
+        <tag>PX4</tag>
+        <tag>STM32</tag>
       </tags>
   </entry>
   <entry>

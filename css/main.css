@@ -1292,7 +1292,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #a2ba26;
+    background: #6acc26;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2874,4 +2874,11 @@ header.header {
   .comments {
     padding: 10px 12px;
   }
+}
+.post-body p {
+  text-indent: 2em;
+}
+.post-body p:has(img),
+.post-body img {
+  text-indent: 0;
 }
